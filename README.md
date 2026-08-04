@@ -9,10 +9,16 @@
 
 ---
 
+<div align="center">
+
+![CyberNikitka Web 1.0 Portal Live Preview](img/hero-preview.png)
+
 [![Live Demo](https://img.shields.io/badge/Live_Demo-cyber--nikitka--2000s.vercel.app-blue?style=for-the-badge&logo=vercel)](https://cyber-nikitka-2000s.vercel.app)
 [![Stack](https://img.shields.io/badge/Stack-Vanilla_HTML5%2FCSS3%2FES6%20%7C%20Vercel%20Serverless%20%7C%20Turso%20libSQL-000000?style=for-the-badge)](https://cyber-nikitka-2000s.vercel.app)
 [![Infra Cost](https://img.shields.io/badge/Infra_Cost-%240%2Fmonth-brightgreen?style=for-the-badge)](#-cost-engineering--performance-metrics)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+</div>
 
 ---
 
@@ -29,23 +35,39 @@
 
 ---
 
+## 📸 Галерея интерфейса и интерактивные модули
+
+<details open>
+<summary><b>🖼️ Нажмите, чтобы развернуть/свернуть галерею скриншотов</b></summary>
+
+<br>
+
+### 1. Главный портал, новости и ретро-информеры
+![Главная страница](img/hero-preview.png)
+
+### 2. Прайс-лист услуг и Калькулятор сборки ПК 2007 года
+![Услуги и калькулятор](img/services-preview.png)
+
+### 3. Каталог обмена CD/DVD дисков
+![Каталог дисков](img/disks-preview.png)
+
+### 4. Интерактивная Гостевая книга с ответами админа
+![Гостевая книга](img/guestbook-preview.png)
+
+</details>
+
+---
+
 ## 🚀 Демонстрационная вертушка (Live Showcase)
 
 🔗 **Прямой адрес сайта:** [https://cyber-nikitka-2000s.vercel.app](https://cyber-nikitka-2000s.vercel.app)
 
-### Интерактивные модули портала:
-1. **Калькулятор сборки ПК и Прайс-лист:** Динамический расчет стоимости с формированием заявки на выезд мастера.
-2. **Каталог софта и игр на CD/DVD дисках:** Быстрый клиентский поиск и фильтрация по 30+ дискам эпохи 2000-х.
-3. **Гостевая книга и Стена сообщений:** Полноценный интерактивный форум/гостевая книга с ответами администратора.
-4. **Информеры курсов ЦБ РФ и Погоды:** Динамические виджеты, стилизованные под информеры 2007 года.
-5. **Музыкальный Winamp 2.x плеер:** Прямой стриминг аудиотреков 2000-х.
-
 ---
 
-## 🏗️ Архитектура системы и потоки данных
+## 🏗️ Современные схемы и диаграммы архитектуры
 
-<details>
-<summary><b>🔍 Посмотреть Mermaid-диаграмму архитектуры (Нажмите, чтобы развернуть)</b></summary>
+<details open>
+<summary><b>📐 1. Общая архитектура системы и потоки данных (System Architecture)</b></summary>
 
 ```mermaid
 flowchart TD
@@ -81,6 +103,102 @@ flowchart TD
     TURSO -->|JSON Data| API
     API -->|CORS / JSON Response| JS
     JS -->|DOM Reflow / UI Hydration| UI
+```
+
+</details>
+
+<details>
+<summary><b>🔄 2. Последовательность отказоустойчивой синхронизации (Sequence Diagram)</b></summary>
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Пользователь (Браузер)
+    participant UI as Ретро UI / DOM
+    participant ClientJS as main.js / api-client.js
+    participant Edge as Vercel Edge Serverless (/api)
+    participant Turso as Turso Cloud DB (libSQL)
+    participant Local as Browser LocalStorage
+
+    User->>UI: Отправка отзыва в Гостевой книге
+    UI->>ClientJS: Валидация капчи (2+3=5) & escapeHtml()
+    ClientJS->>Edge: POST /api/guestbook (X-Cyber-Token)
+    alt Облачная БД доступна
+        Edge->>Turso: INSERT INTO guestbook VALUES (...)
+        Turso-->>Edge: HTTP 200 OK (Row inserted)
+        Edge-->>ClientJS: { status: "success", data: post }
+    else Сбой сети / Отсутствие Turso ключей
+        Edge-->>ClientJS: HTTP 503 / Network Error
+        ClientJS->>Local: CyberNikitkaData.saveLocalFallback(post)
+        ClientJS-->>UI: Локальное обновление DOM (Офлайн-режим)
+    end
+    ClientJS->>UI: Отрисовка сообщения & проигрывание клика Web Audio
+```
+
+</details>
+
+<details>
+<summary><b>🔊 3. Синтезатор звуковых эффектов Web Audio API (Audio Pipeline)</b></summary>
+
+```mermaid
+flowchart LR
+    EVENT["Событие UI (Клик, Error, Winamp)"] --> ENGINE["AudioContext (sensory-pack.js)"]
+    ENGINE --> OSC1["OscillatorNode (Triangle / Square)"]
+    ENGINE --> OSC2["Noise Buffer (HDD Seek Simulation)"]
+    OSC1 --> GAIN["GainNode (Envelope ADSR)"]
+    OSC2 --> GAIN
+    GAIN --> DEST["AudioDestination (Динамики)"]
+```
+
+</details>
+
+<details>
+<summary><b>🗄️ 4. Схема реляционной базы данных (ER Diagram)</b></summary>
+
+```mermaid
+erDiagram
+    USERS ||--o{ SESSIONS : has
+    USERS ||--o{ GUESTBOOK : writes
+    USERS ||--o{ REPAIR_REQUESTS : orders
+    USERS ||--o{ FORUM_TOPICS : creates
+    FORUM_TOPICS ||--o{ FORUM_POSTS : contains
+
+    USERS {
+        int id PK
+        string username UK
+        string password_hash
+        string salt
+        string role
+        string icq_uin
+    }
+    SESSIONS {
+        int id PK
+        int user_id FK
+        string token UK
+        datetime expires_at
+    }
+    DISKS {
+        int id PK
+        string title
+        string category
+        string media_type
+        string status
+    }
+    GUESTBOOK {
+        int id PK
+        string author
+        string message
+        string admin_reply
+        datetime created_at
+    }
+    REPAIR_REQUESTS {
+        int id PK
+        int user_id FK
+        string client_name
+        string phone
+        string service_type
+        decimal total_price
+    }
 ```
 
 </details>

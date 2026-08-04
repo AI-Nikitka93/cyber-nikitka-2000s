@@ -9,10 +9,16 @@
 
 ---
 
+<div align="center">
+
+![CyberNikitka Web 1.0 Portal Live Preview](img/hero-preview.png)
+
 [![Live Demo](https://img.shields.io/badge/Live_Demo-cyber--nikitka--2000s.vercel.app-blue?style=for-the-badge&logo=vercel)](https://cyber-nikitka-2000s.vercel.app)
 [![Stack](https://img.shields.io/badge/Stack-Vanilla_HTML5%2FCSS3%2FES6%20%7C%20Vercel%20Serverless%20%7C%20Turso%20libSQL-000000?style=for-the-badge)](https://cyber-nikitka-2000s.vercel.app)
 [![Infra Cost](https://img.shields.io/badge/Infra_Cost-%240%2Fmonth-brightgreen?style=for-the-badge)](#-cost-engineering--performance-metrics)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+</div>
 
 ---
 
@@ -27,23 +33,39 @@
 
 ---
 
+## 📸 Interface Gallery & Interactive Modules
+
+<details open>
+<summary><b>🖼️ Click to expand/collapse UI Screenshots Gallery</b></summary>
+
+<br>
+
+### 1. Main Web Portal, News & Retro Informers
+![Main Portal](img/hero-preview.png)
+
+### 2. Service Price List & 2007 PC Assembly Calculator
+![Services and Calculator](img/services-preview.png)
+
+### 3. CD/DVD Exchange Nostalgia Catalog
+![CD/DVD Catalog](img/disks-preview.png)
+
+### 4. Interactive Guestbook & Admin Wall
+![Guestbook](img/guestbook-preview.png)
+
+</details>
+
+---
+
 ## 🚀 Live Demonstration
 
 🔗 **Live Showcase Website:** [https://cyber-nikitka-2000s.vercel.app](https://cyber-nikitka-2000s.vercel.app)
 
-### Core Showcase Modules:
-1. **PC Assembly Calculator & Service Price List:** Dynamic price estimation and repair booking form validation.
-2. **CD/DVD Nostalgia Exchange Catalog:** Real-time text search and category filtering across 30+ retro games and software discs.
-3. **Public Guestbook & Admin Board:** Interactive message board with administrator replies and anti-spam captcha.
-4. **Retro Informers & Dynamic CBR Currency API:** Real-time Central Bank of Russia currency rates styled as 2007 web widgets.
-5. **Winamp 2.x Audio Player:** Streaming retro audio tracks with custom skin controls.
-
 ---
 
-## 🏗️ System Architecture & Data Flow
+## 🏗️ Architecture Diagrams & Schematics Suite
 
-<details>
-<summary><b>🔍 View Mermaid Architecture Diagram (Click to expand)</b></summary>
+<details open>
+<summary><b>📐 1. System Architecture & Data Flow</b></summary>
 
 ```mermaid
 flowchart TD
@@ -79,6 +101,102 @@ flowchart TD
     TURSO -->|JSON Data| API
     API -->|CORS / JSON Response| JS
     JS -->|DOM Reflow / UI Hydration| UI
+```
+
+</details>
+
+<details>
+<summary><b>🔄 2. Dual-State Offline Fallback Sequence Diagram</b></summary>
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as User (Browser)
+    participant UI as Retro UI / DOM
+    participant ClientJS as main.js / api-client.js
+    participant Edge as Vercel Edge Serverless (/api)
+    participant Turso as Turso Cloud DB (libSQL)
+    participant Local as Browser LocalStorage
+
+    User->>UI: Submit Guestbook Message
+    UI->>ClientJS: Captcha Validation (2+3=5) & escapeHtml()
+    ClientJS->>Edge: POST /api/guestbook (X-Cyber-Token)
+    alt Cloud DB Available
+        Edge->>Turso: INSERT INTO guestbook VALUES (...)
+        Turso-->>Edge: HTTP 200 OK (Row inserted)
+        Edge-->>ClientJS: { status: "success", data: post }
+    else Network Error / Missing Turso Keys
+        Edge-->>ClientJS: HTTP 503 / Network Error
+        ClientJS->>Local: CyberNikitkaData.saveLocalFallback(post)
+        ClientJS-->>UI: Local DOM Reflow (Offline Mode)
+    end
+    ClientJS->>UI: Render Message & Trigger Web Audio Click
+```
+
+</details>
+
+<details>
+<summary><b>🔊 3. Web Audio API Sound Effects Synthesizer Pipeline</b></summary>
+
+```mermaid
+flowchart LR
+    EVENT["UI Trigger Event (Click, Error, Winamp)"] --> ENGINE["AudioContext (sensory-pack.js)"]
+    ENGINE --> OSC1["OscillatorNode (Triangle / Square)"]
+    ENGINE --> OSC2["Noise Buffer (HDD Seek Simulation)"]
+    OSC1 --> GAIN["GainNode (Envelope ADSR)"]
+    OSC2 --> GAIN
+    GAIN --> DEST["AudioDestination (Speakers)"]
+```
+
+</details>
+
+<details>
+<summary><b>🗄️ 4. Relational Database ER Diagram</b></summary>
+
+```mermaid
+erDiagram
+    USERS ||--o{ SESSIONS : has
+    USERS ||--o{ GUESTBOOK : writes
+    USERS ||--o{ REPAIR_REQUESTS : orders
+    USERS ||--o{ FORUM_TOPICS : creates
+    FORUM_TOPICS ||--o{ FORUM_POSTS : contains
+
+    USERS {
+        int id PK
+        string username UK
+        string password_hash
+        string salt
+        string role
+        string icq_uin
+    }
+    SESSIONS {
+        int id PK
+        int user_id FK
+        string token UK
+        datetime expires_at
+    }
+    DISKS {
+        int id PK
+        string title
+        string category
+        string media_type
+        string status
+    }
+    GUESTBOOK {
+        int id PK
+        string author
+        string message
+        string admin_reply
+        datetime created_at
+    }
+    REPAIR_REQUESTS {
+        int id PK
+        int user_id FK
+        string client_name
+        string phone
+        string service_type
+        decimal total_price
+    }
 ```
 
 </details>
