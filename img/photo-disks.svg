@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="100">
+  <rect width="160" height="100" fill="#F0F4F8" stroke="#000080" stroke-width="2"/>
+  <text x="80" y="16" font-family="Tahoma" font-size="10" font-weight="bold" fill="#000080" text-anchor="middle">КОЛЛЕКЦИЯ CD/DVD</text>
+  <rect x="20" y="25" width="120" height="10" fill="#FF0000" stroke="#000"/>
+  <rect x="20" y="38" width="120" height="10" fill="#008000" stroke="#000"/>
+  <rect x="20" y="51" width="120" height="10" fill="#0000FF" stroke="#000"/>
+  <rect x="20" y="64" width="120" height="10" fill="#FFD700" stroke="#000"/>
+  <rect x="20" y="77" width="120" height="10" fill="#800080" stroke="#000"/>
+</svg>

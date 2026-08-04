@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+  <title>Гостевая книга — КиберНикитка</title>
+  <link rel="stylesheet" href="css/retro-style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<div class="site-container">
+  <!-- ШАПКА САЙТА -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html" class="wordart-logo" title="КиберНикитка">
+        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+      </a>
+      <div class="tagline" data-i18n="header.guestbookTagline">Оставляйте отзывы о ремонте и предложения по обмену дисков</div>
+    </div>
+    <div class="header-search">
+      <input type="text" id="header-search-input" class="header-search-input" placeholder="Поиск на сайте..." aria-label="Поиск по сайту" data-i18n-placeholder="header.searchPlaceholder">
+      <button type="button" class="header-search-btn" onclick="location.href='disks.html'" data-i18n="header.searchBtn">Поиск</button>
+      <div class="lang-switcher-box">
+        <span class="lang-label" data-i18n="header.langSwitchLabel">LANG:</span>
+        <button type="button" class="lang-btn active" data-lang="ru" onclick="CyberI18n.setLang('ru')">🇷🇺 RU</button>
+        <button type="button" class="lang-btn" data-lang="en" onclick="CyberI18n.setLang('en')">🇬🇧 EN</button>
+      </div>
+    </div>
+    <div class="header-right">
+      <div><span data-i18n="header.urgentCall">Срочный вызов: </span><span class="phone-number">8 (900) 200-07-07</span></div>
+      <div id="header-clock" data-i18n="header.clockLoading">Загрузка времени...</div>
+    </div>
+  </header>
+
+  <!-- БЕГУЩАЯ СТРОКА -->
+  <div class="marquee-bar">
+    <marquee scrollamount="4" behavior="scroll" direction="left" data-i18n="marquee.guestbook">
+      ★ Оставляйте свои отзывы о работе Мастера Никитки и предложения по сайту! ★
+    </marquee>
+  </div>
+
+  <!-- ОСНОВНОЙ ТРЕХКОЛОНОЧНЫЙ БЛОК -->
+  <div class="main-wrapper">
+    <!-- ЛЕВАЯ НАВИГАЦИЯ -->
+    <nav class="sidebar-left">
+      <h2 data-i18n="nav.sidebarTitle">НАВИГАЦИЯ</h2>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-button" data-i18n="nav.home">■ Главная страница</a>
+        <a href="services.html" class="nav-button" data-i18n="nav.services">■ Услуги и Цены</a>
+        <a href="disks.html" class="nav-button" data-i18n="nav.disks">■ Обмен CD/DVD</a>
+        <a href="forum.html" class="nav-button" data-i18n="nav.forum">■ Ретро-Форум</a>
+        <a href="guestbook.html" class="nav-button active" data-i18n="nav.guestbook">■ Гостевая книга</a>
+        <a href="contacts.html" class="nav-button" data-i18n="nav.contacts">■ Контакты мастерской</a>
+      </div>
+    </nav>
+
+    <!-- ЦЕНТРАЛЬНЫЙ КОНТЕНТ -->
+    <main class="content-center">
+      <h1 data-i18n="guestbook.mainHeading">Гостевая книга мастерской</h1>
+      <p data-i18n="guestbook.intro">Здесь вы можете оставить отзыв о проведенном ремонте или договориться об обмене редкого диска.</p>
+
+      <!-- Форма добавления отзыва -->
+      <div class="retro-form-box">
+        <h3 data-i18n="guestbook.formTitle">Оставить запись в Гостевой книге</h3>
+        <div id="guestbook-banner" style="display: none;"></div>
+        <form id="guestbook-form">
+          <div class="form-group">
+            <label for="author" data-i18n="guestbook.labelAuthor">Ваше имя или никнейм: *</label>
+            <input type="text" id="author" name="author" class="retro-input" placeholder="Например: Dimon_2007" required data-i18n-placeholder="guestbook.authorPlaceholder">
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="guestbook.labelMessage">Текст сообщения: *</label>
+            <textarea id="message" name="message" class="retro-textarea" placeholder="Напишите ваш отзыв или вопрос..." required data-i18n-placeholder="guestbook.messagePlaceholder"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="captcha" data-i18n="guestbook.labelCaptcha">Проверка на спам: сколько будет 2 + 3? *</label>
+            <input type="text" id="captcha" name="captcha" class="retro-input" style="width: 80px;" placeholder="Число" required data-i18n-placeholder="guestbook.captchaPlaceholder">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="retro-button" data-i18n="guestbook.btnSubmit">ДОБАВИТЬ ЗАПИСЬ</button>
+            <button type="reset" class="retro-button" data-i18n="guestbook.btnClear">ОЧИСТИТЬ</button>
+          </div>
+        </form>
+      </div>
+
+      <h2 data-i18n="guestbook.postsTitle">ЛЕНТА СООБЩЕНИЙ</h2>
+      <div id="guestbook-posts">
+        <article class="guestbook-post">
+          <div class="post-header">
+            <span class="post-author">Алексей П. (ул. Ленина)</span>
+            <span>03.08.2026</span>
+          </div>
+          <div class="post-body">
+            Спасибо Никитке за быструю починку компьютера! Синий экран вылетал каждые 10 минут, думал сгорела видеокарта. Оказалось просто высохла термопаста и забился пылью кулер. Почистил всё за полчаса, теперь летает!
+          </div>
+          <div class="admin-reply">
+            <div class="admin-reply-title" data-i18n="guestbook.adminReplyTitle">Ответ Мастера Никитки:</div>
+            <div>Рад был помочь, Алексей! Не забывайте продувать пыль хотя бы раз в полгода!</div>
+          </div>
+        </article>
+
+        <article class="guestbook-post">
+          <div class="post-header">
+            <span class="post-author">Gamer_X</span>
+            <span>01.08.2026</span>
+          </div>
+          <div class="post-body">
+            Привет! Поменял вчера диск S.T.A.L.K.E.R. на Half-Life 2. Диск в идеальном состоянии, без царапин, установка прошла без ошибок. Респект Никитке! Есть ли в наличии Warcraft 3?
+          </div>
+          <div class="admin-reply">
+            <div class="admin-reply-title" data-i18n="guestbook.adminReplyTitle">Ответ Мастера Никитки:</div>
+            <div>Привет! Да, Warcraft III: Frozen Throne есть на CD-ROM, заходи в гости, обменяемся!</div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- ПРАВАЯ ПАНЕЛЬ ИНФОРМЕРОВ -->
+    <aside class="sidebar-right">
+      <h2 data-i18n="guestbook.rulesTitle">ПРАВИЛА</h2>
+      <div class="informer-box" style="text-align: left;" data-i18n="guestbook.rulesBody">
+        Запрещены мат, оскорбления и спам! Все сообщения проходят модерацию.
+      </div>
+
+      <!-- ⏳ КОМПАКТНЫЙ РЕТРО-ИНФОРМЕР «ТОГДА (2007) VS СЕГОДНЯ» -->
+      <div class="informer-box informer-then-now">
+        <div class="informer-title">⏳ 2007 vs СЕГОДНЯ 🚀</div>
+        <div style="margin: 3px 0 2px 0; text-align: center;">
+          <label style="font-size: 8px; font-weight: bold; color: #000080;">🏙️ ГОРОД: </label>
+          <select id="inf-city-select" style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px; border: 1px solid #7F9DB9; background: #FFFDF0; color: #000; width: 115px;">
+            <optgroup label="🔍 Поиск города">
+              <option value="custom_search">🔍 [ Ввести свой город... ]</option>
+            </optgroup>
+            <optgroup label="🇷🇺 Россия">
+              <option value="moscow">📍 Москва</option>
+              <option value="spb">📍 Санкт-Петербург</option>
+              <option value="omsk">📍 Омск</option>
+              <option value="novosibirsk">📍 Новосибирск</option>
+              <option value="ekaterinburg">📍 Екатеринбург</option>
+              <option value="kazan">📍 Казань</option>
+              <option value="nnov">📍 Н. Новгород</option>
+              <option value="chelyabinsk">📍 Челябинск</option>
+              <option value="samara">📍 Самара</option>
+              <option value="ufa">📍 Уфа</option>
+              <option value="rostov">📍 Ростов-на-Дону</option>
+              <option value="krasnodar">📍 Краснодар</option>
+              <option value="voronezh">📍 Воронеж</option>
+              <option value="perm">📍 Пермь</option>
+              <option value="volgograd">📍 Волгоград</option>
+              <option value="krasnoyarsk">📍 Красноярск</option>
+              <option value="saratov">📍 Саратов</option>
+              <option value="tumen">📍 Тюмень</option>
+              <option value="tolyatti">📍 Тольятти</option>
+              <option value="barnaul">📍 Барнаул</option>
+              <option value="vladivostok">📍 Владивосток</option>
+            </optgroup>
+            <optgroup label="🇧🇾 Беларусь">
+              <option value="minsk">📍 Минск</option>
+              <option value="brest">📍 Брест</option>
+              <option value="grodno">📍 Гродно</option>
+              <option value="gomel">📍 Гомель</option>
+              <option value="vitebsk">📍 Витебск</option>
+              <option value="mogilev">📍 Могилев</option>
+            </optgroup>
+            <optgroup label="🇰🇿 Казахстан & СНГ">
+              <option value="almaty">📍 Алматы</option>
+              <option value="astana">📍 Астана</option>
+              <option value="yerevan">📍 Ереван</option>
+              <option value="tbilisi">📍 Тбилиси</option>
+              <option value="tashkent">📍 Ташкент</option>
+            </optgroup>
+          </select>
+        </div>
+        <div id="inf-custom-box" style="display: none; margin: 3px 0; text-align: center; background: #E6F0FA; padding: 3px; border: 1px inset #808080;">
+          <input type="text" id="inf-custom-input" placeholder="Название города..." style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px 3px; width: 95px; border: 1px solid #7F9DB9;">
+          <button type="button" id="inf-custom-btn" style="font-size: 8.5px; padding: 0 4px; cursor: pointer; background: #FFFDF0; border: 1px outset #FFF;">OK</button>
+          <div id="inf-custom-msg" style="font-size: 7.5px; color: #8B0000; margin-top: 2px;"></div>
+        </div>
+        <table class="informer-mini-table">
+          <thead>
+            <tr>
+              <th style="width: 38%;">Параметр</th>
+              <th class="col-then" style="width: 26%;">2007</th>
+              <th class="col-now" style="width: 36%;">СЕЙЧАС</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong id="inf-weather-label">🌡️ Погода</strong></td>
+              <td id="inf-w-then" class="col-then">+20.6°C</td>
+              <td id="inf-w-now" class="col-now">+25.2°C</td>
+            </tr>
+            <tr>
+              <td><strong>💵 USD (ЦБ)</strong></td>
+              <td class="col-then">25.56₽</td>
+              <td id="inf-usd-now" class="col-now">80.07₽ <span class="retro-arrow-up">▲</span></td>
+            </tr>
+            <tr>
+              <td><strong>💶 EUR (ЦБ)</strong></td>
+              <td class="col-then">34.98₽</td>
+              <td id="inf-eur-now" class="col-now">91.96₽ <span class="retro-arrow-up">▲</span></td>
+            </tr>
+            <tr>
+              <td><strong>⛽ АИ-92</strong></td>
+              <td class="col-then">18.50₽</td>
+              <td class="col-now col-fuel-multi" title="РФ Avg: 68.82₽ / Москва: 65.50₽">
+                <span class="fuel-prem">68.82₽</span> <span class="fuel-sep">/</span> <span class="fuel-std">65.50₽</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="informer-marquee">
+          <marquee scrollamount="2" behavior="scroll">🎵 Хит 2007: МакSим — «Знаешь ли ты» ★ 🎮 Игра 2007: S.T.A.L.K.E.R. ★ ⛽ АИ-92: 18.50₽ ➔ 68.82₽ (РФ) / 65.50₽ (МСК)</marquee>
+        </div>
+      </div>
+
+      <div class="informer-box" style="text-align: center; border: 2px solid #0088CC; background: #F0F8FF;">
+        <div style="background: #0088CC; color: #FFF; font-weight: bold; padding: 2px 4px; font-size: 10px;">
+          📱 ТЕЛЕГРАМ СОЗДАТЕЛЯ
+        </div>
+        <div style="margin-top: 4px; font-size: 10px;">
+          Пишите Мастеру Никитке прямо в Telegram:<br>
+          <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" style="font-weight: bold; color: #0088CC; font-size: 11px; text-decoration: underline;">
+            👉 @Ai_nikitka93
+          </a>
+        </div>
+      </div>
+
+      <h2>ДРУЗЬЯ САЙТА</h2>
+      <div class="badges-container">
+        <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" class="badge-88x31" title="Telegram Создателя: @Ai_nikitka93"><img src="img/banner-telegram.png" alt="Telegram @Ai_nikitka93" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-netscape" title="Netscape Navigator"><img src="img/banner-netscape.png" alt="Netscape Navigator" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-rambler" title="Rambler TOP100"><img src="img/banner-rambler.png" alt="Rambler TOP100" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-800x600" title="1024x768 Best View"><img src="img/banner-800x600.png" alt="1024x768 Best View" width="88" height="31"></a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ПОДВАЛ САЙТА -->
+  <footer class="site-footer">
+    <div>
+      <span data-i18n="footer.copyright">© 2001–2026 Компьютерная помощь «КиберНикитка».</span> <a href="admin.html" style="color: #FFF; text-decoration: underline;" data-i18n="footer.adminLink">Панель Мастера [Admin]</a><br>
+      <span style="font-size: 9.5px; color: #FFFF80; font-weight: bold;" data-i18n="footer.portfolioNote">🎈 Развлекательный арт-проект & Ретро Web 1.0 Портфолио Концепт</span>
+    </div>
+    <div>
+      <span data-i18n="footer.hitCounterLabel">Посетитель № </span><span id="hit-counter" class="counter-box">004219</span>
+    </div>
+  </footer>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/api-client.js"></script>
+<script src="js/sensory-pack.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const user = window.ApiClient ? window.ApiClient.getCurrentUser() : null;
+  if (user && user.username) {
+    const authorInput = document.getElementById('author');
+    if (authorInput) {
+      authorInput.value = user.display_name || user.username;
+      authorInput.readOnly = true;
+      authorInput.style.backgroundColor = '#EAEAEA';
+    }
+  }
+});
+</script>
+</body>
+</html>

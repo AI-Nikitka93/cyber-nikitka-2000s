@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="70" shape-rendering="crispEdges">
+  <rect width="160" height="70" fill="#FFFFFF" stroke="#000080" stroke-width="2"/>
+  <rect width="160" height="18" fill="#000080"/>
+  <text x="8" y="13" font-family="Tahoma, Arial" font-size="9" font-weight="bold" fill="#FFFFFF">ПОГОДА 2007 (МОСКВА)</text>
+  <text x="10" y="46" font-family="Tahoma, Arial" font-size="18" font-weight="bold" fill="#FF4500">+24°C</text>
+  <text x="75" y="36" font-family="Tahoma, Arial" font-size="10" font-weight="bold" fill="#000000">Солнечно</text>
+  <text x="75" y="52" font-family="Tahoma, Arial" font-size="9" fill="#555555">Давление 748 мм</text>
+</svg>

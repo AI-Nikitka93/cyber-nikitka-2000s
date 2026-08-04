@@ -1,0 +1,1513 @@
+/* ==========================================================================
+   ДИЗАЙН-СИСТЕМА И ЕДИНЫЕ СТИЛИ РЕТРО-САЙТА 2000-х «КИБЕРНИКИТКА» v3.0
+   (Полная адаптивность: от 320px смартфонов до 4K UltraWide мониторов)
+   ========================================================================== */
+
+:root {
+  /* Web-safe палитра 2000-х годов */
+  --color-win-gray: #D4D0C8;
+  --color-win-gray-light: #ECE9D8;
+  --color-win-gray-dark: #808080;
+  --color-win-gray-shadow: #404040;
+  --color-navy-dark: #000080;
+  --color-navy-light: #1084D0;
+  --color-blue-bg: #EAF2F8;
+  --color-text-main: #000000;
+  --color-link-blue: #0000FF;
+  --color-link-visited: #800080;
+  --color-link-hover: #FF0000;
+  --color-red-accent: #CC0000;
+  --color-zebra-blue: #F0F4F8;
+  
+  --font-main: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #008080; /* Классический бирюзовый фоновый цвет Windows 98 */
+  font-family: var(--font-main);
+  font-size: 11px;
+  color: var(--color-text-main);
+  line-height: 1.4;
+  /* Текстура фоновой сетки 2000-х для ультра-широких мониторов */
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
+/* Изображения */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ссылки */
+a {
+  color: var(--color-link-blue);
+  text-decoration: underline;
+}
+a:visited {
+  color: var(--color-link-visited);
+}
+a:hover, a:focus {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
+
+/* Заголовки */
+h1 {
+  font-size: 16px;
+  color: var(--color-navy-dark);
+  margin: 0 0 10px 0;
+  border-bottom: 2px solid var(--color-navy-dark);
+  padding-bottom: 3px;
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 13px;
+  background: linear-gradient(180deg, var(--color-navy-dark), var(--color-navy-light));
+  color: #FFFFFF;
+  padding: 4px 8px;
+  margin: 12px 0 6px 0;
+  border: 1px outset #FFFFFF;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 12px;
+  color: var(--color-navy-dark);
+  margin: 8px 0 4px 0;
+}
+
+/* ------------------------------------------------------------------------
+   ОБЩИЙ КОНТЕЙНЕР И АДАПТИВНАЯ СЕТКА
+   ------------------------------------------------------------------------ */
+.site-container {
+  width: 1024px;
+  max-width: 98vw;
+  margin: 10px auto;
+  background-color: var(--color-win-gray);
+  border-top: 2px solid #FFFFFF;
+  border-left: 2px solid #FFFFFF;
+  border-right: 2px solid var(--color-win-gray-dark);
+  border-bottom: 2px solid var(--color-win-gray-dark);
+  box-shadow: 4px 4px 0px #000000;
+  padding: 4px;
+}
+
+/* Шапка сайта */
+.site-header {
+  background: linear-gradient(180deg, #000080, #1084D0);
+  color: #FFFFFF;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border: 2px outset #FFFFFF;
+  margin-bottom: 4px;
+  flex-wrap: nowrap;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.wordart-logo {
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+  color: #FFD700;
+  text-shadow: 2px 2px 0px #000050, -1px -1px 0px #8B0000;
+  text-decoration: none;
+  font-family: Impact, Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-size: 10px;
+  color: #E0E0E0;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-right {
+  text-align: right;
+  font-size: 10.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.phone-number {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFF00;
+  text-shadow: 1px 1px 0px #000;
+}
+
+/* Компонент Поиска в шапке */
+.header-search {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex: 0 1 auto;
+}
+
+.header-search-input {
+  width: 140px;
+  max-width: 150px;
+  padding: 3px 6px;
+  font-size: 11px;
+  font-family: var(--font-main);
+  border: 2px inset #808080;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.header-search-btn {
+  padding: 3px 8px;
+  font-size: 10.5px;
+  font-weight: bold;
+  background-color: var(--color-win-gray);
+  border-top: 2px solid #FFFFFF;
+  border-left: 2px solid #FFFFFF;
+  border-right: 2px solid var(--color-win-gray-dark);
+  border-bottom: 2px solid var(--color-win-gray-dark);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.header-search-btn:active {
+  border-top: 2px solid var(--color-win-gray-dark);
+  border-left: 2px solid var(--color-win-gray-dark);
+  border-right: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+}
+
+/* Языковой переключатель */
+.lang-switcher-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background-color: var(--color-win-gray);
+  border-top: 2px solid #FFFFFF;
+  border-left: 2px solid #FFFFFF;
+  border-right: 2px solid var(--color-win-gray-dark);
+  border-bottom: 2px solid var(--color-win-gray-dark);
+  padding: 2px 5px;
+  margin-left: 6px;
+  color: #000000;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.lang-label {
+  font-weight: bold;
+  color: #000080;
+  font-size: 9.5px;
+  margin-right: 2px;
+}
+
+.lang-btn {
+  padding: 1px 5px;
+  font-size: 9.5px;
+  font-family: var(--font-main);
+  font-weight: bold;
+  background-color: var(--color-win-gray-light);
+  border-top: 1.5px solid #FFFFFF;
+  border-left: 1.5px solid #FFFFFF;
+  border-right: 1.5px solid var(--color-win-gray-dark);
+  border-bottom: 1.5px solid var(--color-win-gray-dark);
+  cursor: pointer;
+  color: #000080;
+}
+
+.lang-btn.active {
+  background-color: #000080;
+  color: #FFFFFF;
+  border-top: 1.5px solid var(--color-win-gray-dark);
+  border-left: 1.5px solid var(--color-win-gray-dark);
+  border-right: 1.5px solid #FFFFFF;
+  border-bottom: 1.5px solid #FFFFFF;
+}
+
+/* Бегущая строка */
+.marquee-bar {
+  background-color: #000000;
+  color: #00FF00;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 3px;
+  border: 2px inset #808080;
+  margin-bottom: 6px;
+}
+
+/* Трехколоночная структура */
+.main-wrapper {
+  display: grid;
+  grid-template-columns: 190px 1fr 190px;
+  gap: 6px;
+}
+
+/* Левая и правая боковые панели */
+.sidebar-left, .sidebar-right {
+  background-color: var(--color-win-gray-light);
+  border: 2px inset #FFFFFF;
+  padding: 6px;
+}
+
+/* Центр */
+.content-center {
+  background-color: #FFFFFF;
+  border: 2px inset #808080;
+  padding: 10px;
+  min-height: 500px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ------------------------------------------------------------------------
+   КНОПКИ И МЕНЮ НАВИГАЦИИ
+   ------------------------------------------------------------------------ */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-button {
+  display: block;
+  padding: 6px 8px;
+  background-color: var(--color-win-gray);
+  color: var(--color-text-main);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 11px;
+  border-top: 2px solid #FFFFFF;
+  border-left: 2px solid #FFFFFF;
+  border-right: 2px solid var(--color-win-gray-dark);
+  border-bottom: 2px solid var(--color-win-gray-dark);
+  touch-action: manipulation;
+}
+
+.nav-button:hover {
+  background-color: #FFFFFF;
+  color: var(--color-navy-dark);
+}
+
+.nav-button.active {
+  background-color: var(--color-navy-dark);
+  color: #FFFFFF;
+  border-top: 2px solid var(--color-win-gray-dark);
+  border-left: 2px solid var(--color-win-gray-dark);
+  border-right: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+}
+
+.retro-button {
+  display: inline-block;
+  padding: 5px 12px;
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: bold;
+  background-color: var(--color-win-gray);
+  color: var(--color-text-main);
+  border-top: 2px solid #FFFFFF;
+  border-left: 2px solid #FFFFFF;
+  border-right: 2px solid var(--color-win-gray-dark);
+  border-bottom: 2px solid var(--color-win-gray-dark);
+  cursor: pointer;
+  text-align: center;
+  touch-action: manipulation;
+}
+
+.retro-button:active {
+  border-top: 2px solid var(--color-win-gray-dark);
+  border-left: 2px solid var(--color-win-gray-dark);
+  border-right: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+  padding: 6px 11px 4px 13px;
+}
+
+.retro-button:focus-visible {
+  outline: 2px dotted #000000;
+  outline-offset: 1px;
+}
+
+/* ------------------------------------------------------------------------
+   ТАБЛИЦЫ В СТИЛЕ РЕТРО / ЗЕБРА (С АВТО-СКРОЛЛОМ НА МОБИЛЬНЫХ)
+   ------------------------------------------------------------------------ */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 10px;
+}
+
+.retro-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-size: 11px;
+  border: 2px inset #808080;
+}
+
+.retro-table th {
+  background: linear-gradient(180deg, var(--color-navy-dark), var(--color-navy-light));
+  color: #FFFFFF;
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: bold;
+  border: 1px solid #000080;
+}
+
+.retro-table td {
+  padding: 6px 8px;
+  border: 1px solid #D0D0D0;
+}
+
+.retro-table tbody tr:nth-child(even) {
+  background-color: var(--color-zebra-blue);
+}
+
+.retro-table tbody tr:nth-child(odd) {
+  background-color: #FFFFFF;
+}
+
+.retro-table tbody tr:hover {
+  background-color: #FFF8DC;
+}
+
+.retro-table td.price-col, .retro-table th.price-col {
+  text-align: right;
+  font-weight: bold;
+}
+
+/* ------------------------------------------------------------------------
+   ФОРМЫ И ИНПУТЫ (С АВТО-КОРРЕКЦИЕЙ ДЛЯ МОБИЛЬНЫХ)
+   ------------------------------------------------------------------------ */
+.retro-form-box {
+  background-color: var(--color-win-gray);
+  border: 2px outset #FFFFFF;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.retro-input, .retro-select, .retro-textarea {
+  width: 100%;
+  padding: 5px 6px;
+  font-family: var(--font-main);
+  font-size: 11px;
+  border: 2px inset #808080;
+  background-color: #FFFFFF;
+  color: #000000;
+  box-sizing: border-box;
+}
+
+.retro-input:focus, .retro-select:focus, .retro-textarea:focus {
+  outline: 2px dotted var(--color-navy-dark);
+  background-color: #FFFFE0;
+}
+
+.retro-textarea {
+  resize: vertical;
+  min-height: 65px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------------------
+   КАТАЛОГ ДИСКОВ (GRID & CARDS)
+   ------------------------------------------------------------------------ */
+.catalog-filter-bar {
+  background-color: var(--color-win-gray);
+  border: 2px outset #FFFFFF;
+  padding: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.disk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.disk-card {
+  background-color: var(--color-win-gray);
+  border: 2px outset #FFFFFF;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.disk-cover {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border: 1px inset #808080;
+  background-color: #000000;
+  margin-bottom: 6px;
+}
+
+.disk-title {
+  font-weight: bold;
+  color: var(--color-navy-dark);
+  font-size: 11px;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.disk-meta {
+  font-size: 10px;
+  color: #555555;
+  margin-bottom: 6px;
+}
+
+.disk-status {
+  display: inline-block;
+  background-color: #008000;
+  color: #FFFFFF;
+  font-size: 9px;
+  padding: 1px 4px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* ------------------------------------------------------------------------
+   ГОСТЕВАЯ КНИГА И ПОСТЫ
+   ------------------------------------------------------------------------ */
+.guestbook-post {
+  background-color: #FFFFFF;
+  border: 2px outset #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.post-header {
+  background-color: var(--color-win-gray);
+  border-bottom: 1px solid #808080;
+  padding: 5px 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.post-author {
+  color: var(--color-navy-dark);
+}
+
+.post-body {
+  padding: 8px;
+  font-size: 11px;
+}
+
+.admin-reply {
+  background-color: #FFFFE0;
+  border-top: 1px dashed #808080;
+  padding: 6px 8px;
+  margin-top: 4px;
+  font-size: 10px;
+}
+
+.admin-reply-title {
+  font-weight: bold;
+  color: var(--color-red-accent);
+}
+
+/* ------------------------------------------------------------------------
+   ИНФОРМЕРЫ И 88x31 БАННЕРЫ
+   ------------------------------------------------------------------------ */
+.informer-box {
+  background-color: #FFFFFF;
+  border: 2px inset #808080;
+  padding: 6px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.informer-title {
+  background-color: var(--color-navy-dark);
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 2px 4px;
+  margin-bottom: 4px;
+}
+
+.badges-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.badge-88x31 {
+  width: 88px;
+  height: 31px;
+  border: 1px solid #000000;
+  display: block;
+}
+
+/* ------------------------------------------------------------------------
+   WINAMP 2.X PLAYER WIDGET STYLES
+   ------------------------------------------------------------------------ */
+.winamp-box {
+  background-color: #222222;
+  border: 2px outset #FFFFFF;
+  padding: 4px;
+  margin-bottom: 10px;
+  color: #00FF00;
+  font-family: var(--font-mono);
+  max-width: 100%;
+}
+
+.winamp-header {
+  background: linear-gradient(180deg, #444, #111);
+  color: #FFF;
+  font-family: var(--font-main);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #555;
+}
+
+.winamp-display {
+  background-color: #000000;
+  border: 1px inset #555;
+  padding: 4px;
+  margin: 4px 0;
+}
+
+.winamp-title-marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+  color: #00FF00;
+}
+
+.winamp-analyzer {
+  background-color: #000000;
+  border: 1px solid #333;
+}
+
+.winamp-controls {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.winamp-btn {
+  flex: 1;
+  background: #333333;
+  color: #FFFFFF;
+  border: 1px outset #666666;
+  font-size: 9px;
+  font-family: var(--font-main);
+  font-weight: bold;
+  padding: 4px 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.winamp-btn:active {
+  border: 1px inset #666666;
+  background: #111111;
+}
+
+/* ------------------------------------------------------------------------
+   ПОДВАЛ САЙТА
+   ------------------------------------------------------------------------ */
+.site-footer {
+  background: linear-gradient(180deg, var(--color-navy-dark), #000050);
+  color: #FFFFFF;
+  padding: 8px 12px;
+  margin-top: 4px;
+  border: 2px outset #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.counter-box {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background-color: #000000;
+  color: #FF0000;
+  padding: 2px 6px;
+  border: 1px solid #808080;
+  letter-spacing: 2px;
+}
+
+/* Accessibility SR-Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================================================
+   МУЛЬТИДЕВАЙСНАЯ АДАПТИВНОСТЬ (RESPONSIVE MEDIA QUERIES)
+   Поддержка: Смартфоны (320px-600px), Планшеты (601px-960px), Ноутбуки (961px-1200px), 4K Widescreen (>1200px)
+   ======================================================================== */
+
+/* 1. ПЛАНШЕТЫ И НЕБОЛЬШИЕ НОУТБУКИ (601px - 960px) */
+@media (max-width: 960px) {
+  .site-container {
+    width: 100%;
+    margin: 4px auto;
+  }
+  
+  .main-wrapper {
+    grid-template-columns: 170px 1fr;
+  }
+
+  .sidebar-right {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .badges-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* 2. СМАРТФОНЫ И МОБИЛЬНЫЕ УСТРОЙСТВА (<= 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 12px; /* Чуть крупнее шрифт для комфортного чтения на телефоне */
+  }
+
+  .site-container {
+    width: 100%;
+    margin: 0;
+    padding: 2px;
+    border-left: none;
+    border-right: none;
+  }
+
+  .site-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: stretch;
+  }
+
+  .header-left {
+    align-items: center;
+  }
+
+  .wordart-logo img {
+    height: 36px !important;
+  }
+
+  .header-search {
+    width: 100%;
+  }
+
+  .header-search-input {
+    width: 100%;
+    min-width: 0;
+    font-size: 14px; /* Предотвращает нежелательный авто-зум на iOS Safari */
+    padding: 6px;
+  }
+
+  .header-right {
+    text-align: center;
+  }
+
+  .phone-number {
+    font-size: 18px;
+  }
+
+  .main-wrapper {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .sidebar-left {
+    order: -1;
+  }
+
+  .nav-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .nav-button {
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 10px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content-center {
+    padding: 6px;
+    min-height: auto;
+  }
+
+  .disk-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+
+  .retro-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .retro-input, .retro-select, .retro-textarea {
+    font-size: 14px; /* Предотвращает авто-зум в iOS */
+    padding: 8px 6px;
+  }
+
+  .retro-button {
+    padding: 8px 16px;
+    min-height: 38px;
+  }
+
+  .sidebar-right {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .forum-modal-window {
+    width: 96%;
+    padding: 8px;
+  }
+}
+
+/* 3. КРУПНЫЕ ДИСПЛЕИ И 4K МОНИТОРЫ (> 1200px) */
+@media (min-width: 1200px) {
+  .site-container {
+    width: 1040px;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* ==========================================================================
+   ФАЗА 7.6: ДЕТАЛИЗАЦИЯ ЛИЧНОГО КАБИНЕТА 2000-х (QIP, RATING, WALL, BADGES)
+   ========================================================================== */
+.rating-bar-container {
+  background-color: #222222;
+  border: 2px inset #808080;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+  margin: 6px 0;
+  box-shadow: inset 1px 1px 2px #000;
+}
+
+.rating-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00AA00, #00FF00, #FFFF00, #FF0000);
+  transition: width 0.5s ease-in-out;
+}
+
+.rating-percent-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 10px;
+  text-shadow: 1px 1px 2px #000000;
+}
+
+.badge-gallery {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.badge-item {
+  background-color: #FFFDF0;
+  border: 1px solid #CC0000;
+  font-size: 9px;
+  font-weight: bold;
+  padding: 3px 6px;
+  color: #8B0000;
+  box-shadow: 2px 2px 0px #808080;
+}
+
+.wall-comment-card {
+  background-color: #FFFFFF;
+  border: 1px inset #808080;
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+.wall-comment-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #AAA;
+  padding-bottom: 3px;
+  margin-bottom: 4px;
+  font-size: 10px;
+}
+
+.avatar-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.avatar-picker-item {
+  width: 52px;
+  height: 52px;
+  border: 2px outset #FFFFFF;
+  cursor: pointer;
+  object-fit: cover;
+  background-color: #000000;
+  transition: transform 0.1s ease;
+}
+
+.avatar-picker-item:hover, .avatar-picker-item.selected {
+  border: 3px solid #CC0000;
+  outline: 2px solid #FFFF00;
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   КОМПАКТНЫЙ ИНФОРМЕР 2007 VS СЕГОДНЯ (190px SIDEBAR WIDGET)
+   ========================================================================== */
+.informer-then-now {
+  background-color: #F4F7FA;
+  border: 2px outset #FFFFFF;
+  padding: 4px;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+
+.informer-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 9.5px;
+}
+
+.informer-mini-table th, .informer-mini-table td {
+  border: 1px solid #B0B0B0;
+  padding: 3px 2px;
+  text-align: center;
+}
+
+.informer-mini-table th {
+  background: #000080;
+  color: #FFFFFF;
+  font-size: 9px;
+  padding: 2px;
+}
+
+.informer-mini-table .col-then {
+  background-color: #E6F0FA;
+  color: #000080;
+  font-weight: bold;
+}
+
+.informer-mini-table .col-now {
+  background-color: #FFF0F0;
+  color: #CC0000;
+  font-weight: bold;
+}
+
+.informer-marquee {
+  background-color: #000000;
+  color: #00FF00;
+  font-family: monospace;
+  font-size: 9px;
+  padding: 2px;
+  margin-top: 5px;
+  border: 1px inset #808080;
+}
+
+.informer-mini-table .col-fuel-multi {
+  font-size: 8.5px;
+  line-height: 1.1;
+  padding: 2px 1px;
+}
+
+.fuel-prem {
+  color: #B22222;
+  font-weight: bold;
+}
+
+.fuel-std {
+  color: #D2691E;
+  font-weight: bold;
+}
+
+.fuel-sep {
+  color: #777;
+  font-weight: normal;
+}
+
+.retro-arrow-up {
+  color: #CC0000;
+  font-size: 7px;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   УЛУЧШЕНИЯ ПК КОНФИГУРАТОРА 2000-х (Win98 / WinXP UI & DIAGNOSTICS v3.0)
+   ========================================================================== */
+
+.retro-fieldset {
+  border: 2px groove #FFFFFF;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  background-color: var(--color-win-gray-light);
+}
+
+.retro-legend {
+  font-weight: bold;
+  color: var(--color-navy-dark);
+  padding: 2px 6px;
+  background: var(--color-win-gray);
+  border: 1px outset #FFFFFF;
+  font-size: 11px;
+}
+
+.preset-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 6px;
+  background-color: #EAF2F8;
+  border: 1px inset #808080;
+  flex-wrap: wrap;
+}
+
+.preset-label {
+  font-weight: bold;
+  color: var(--color-navy-dark);
+  font-size: 11px;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  font-size: 10px;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+.builder-diag-panel {
+  margin-top: 12px;
+  padding: 8px;
+  background-color: var(--color-zebra-blue);
+  border: 2px inset #808080;
+}
+
+.diag-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.price-highlight {
+  color: var(--color-navy-dark);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 11px;
+  border: 1px outset #FFFFFF;
+  border-radius: 2px;
+}
+.badge-success {
+  background-color: #008000;
+  color: #FFFFFF;
+}
+.badge-warning {
+  background-color: #CC9900;
+  color: #000000;
+}
+.badge-danger {
+  background-color: #CC0000;
+  color: #FFFFFF;
+}
+
+.power-meter-container {
+  margin: 8px 0;
+}
+.power-meter-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+.retro-progress-track {
+  height: 16px;
+  background-color: #FFFFFF;
+  border: 2px inset #808080;
+  padding: 1px;
+  position: relative;
+}
+.retro-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00FF00 0%, #FFFF00 70%, #FF0000 100%);
+  transition: width 0.3s ease-in-out;
+}
+
+.fps-matrix-container {
+  margin-top: 8px;
+  background: #FFFFFF;
+  border: 1px solid #808080;
+  padding: 6px;
+}
+.fps-matrix-title {
+  font-weight: bold;
+  color: var(--color-navy-dark);
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+.fps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 6px;
+}
+.fps-card {
+  background: var(--color-win-gray-light);
+  border: 1px outset #FFFFFF;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.game-title {
+  font-size: 9px;
+  color: #333;
+  font-weight: bold;
+}
+.fps-val {
+  font-weight: bold;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+.fps-ultra { color: #008000; }
+.fps-high { color: #0000FF; }
+.fps-med { color: #CC6600; }
+.fps-low { color: #CC0000; }
+
+.builder-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.btn-benchmark {
+  font-weight: bold;
+  background-color: #D4D0C8;
+}
+.btn-print {
+  font-weight: bold;
+  background-color: #EAF2F8;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .site-container, .site-container * {
+    visibility: visible;
+  }
+  .sidebar-left, .sidebar-right, .site-header, .site-footer, .builder-actions, .preset-toolbar {
+    display: none !important;
+  }
+  .content-center {
+    width: 100% !important;
+    border: none !important;
+  }
+  .retro-fieldset {
+    border: 1px solid #000 !important;
+  }
+}
+
+/* ==========================================================================
+   2000s TIME MACHINE TELEPORTATION MODAL & EPIC NYAN-CAT RUNNER
+   ========================================================================== */
+.time-machine-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 10px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.time-machine-window {
+  background-color: var(--color-win-gray);
+  border: 4px outset #FFFFFF;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.85);
+  width: 520px;
+  max-width: 95vw;
+  font-family: var(--font-main);
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.time-machine-titlebar {
+  background: linear-gradient(90deg, #000080 0%, #1084D0 50%, #000080 100%);
+  color: #FFFFFF;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.time-machine-body {
+  padding: 12px;
+  background-color: var(--color-win-gray-light);
+  border: 2px inset #808080;
+  margin: 6px;
+}
+
+.time-portal-box {
+  background: #000000;
+  color: #00FF00;
+  border: 2px inset #808080;
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  text-align: center;
+  box-shadow: inset 0 0 15px #00FF00, 0 0 10px rgba(0, 255, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.time-portal-cat-banner {
+  font-size: 14px;
+  margin: 8px 0;
+  color: #FFFF00;
+  font-weight: bold;
+  animation: catPulse 0.7s infinite alternate;
+}
+
+@keyframes catPulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 2px #FFFF00); }
+  100% { transform: scale(1.06); filter: drop-shadow(0 0 8px #FF00FF); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ЭПИЧЕСКИЙ БЕГУЩИЙ NYAN-CAT 2000-х ВДОЛЬ ЭКРАНА */
+.running-cat-container {
+  position: fixed;
+  bottom: 80px;
+  left: -500px;
+  z-index: 100000;
+  pointer-events: auto;
+  cursor: pointer;
+  font-family: var(--font-main);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: runCatAcross 18s linear forwards;
+}
+
+.running-cat-container:hover {
+  animation-play-state: paused;
+}
+
+.cat-speech-bubble {
+  background: #FFFF00;
+  color: #000080;
+  border: 3px solid #CC0000;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 4px 4px 0px #000000;
+  animation: bounceBubble 0.8s infinite alternate;
+  white-space: nowrap;
+}
+
+.cat-speech-bubble::after {
+  content: " (⏸️ Наведите мышкой для паузы!)";
+  font-size: 10px;
+  color: #CC0000;
+  font-weight: normal;
+}
+
+.cat-main-body {
+  display: flex;
+  align-items: center;
+  background: #000000;
+  border: 3px outset #FFFFFF;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.cat-rainbow-trail {
+  font-size: 18px;
+  background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  margin-right: 8px;
+  animation: rainbowGlow 0.4s infinite alternate;
+}
+
+.cat-head-sprite {
+  font-size: 32px;
+  animation: catWiggle 0.3s infinite alternate;
+}
+
+.cat-items-trail {
+  font-size: 16px;
+  color: #FFFF00;
+  margin-left: 10px;
+}
+
+@keyframes bounceBubble {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+@keyframes catWiggle {
+  0% { transform: rotate(-6deg) scale(1); }
+  100% { transform: rotate(6deg) scale(1.1); }
+}
+
+@keyframes rainbowGlow {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; filter: brightness(1.4); }
+}
+
+@keyframes runCatAcross {
+  0% { left: -500px; }
+  100% { left: 105vw; }
+}
+
+/* ЧАСТИЦЫ ДИСКЕТ И ДИСКОВ ПРИ ОФОРМЛЕНИИ */
+.retro-floppy-particle {
+  position: fixed;
+  z-index: 99998;
+  pointer-events: none;
+  font-size: 22px;
+  animation: floatParticleUp 2.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes floatParticleUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-250px) rotate(360deg) scale(1.5);
+  }
+}
+
+/* ------------------------------------------------------------------------
+   WEB 1.0 RETRO LANGUAGE SWITCHER TOGGLE
+   ------------------------------------------------------------------------ */
+.lang-switcher-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background-color: var(--color-win-gray, #ECE9D8);
+  border: 2px outset #FFFFFF;
+  padding: 1px 4px;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 9.5px;
+  font-weight: bold;
+  color: #000000;
+  box-shadow: 1px 1px 0px #000000;
+  user-select: none;
+}
+
+.lang-label {
+  font-size: 8.5px;
+  color: #000080;
+  margin-right: 1px;
+}
+
+.lang-btn {
+  font-family: Tahoma, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  padding: 1px 4px;
+  cursor: pointer;
+  background: #ECE9D8;
+  color: #000000;
+  border: 1px outset #FFFFFF;
+  outline: none;
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  background-color: #FFFFC0;
+  color: #000080;
+}
+
+.lang-btn.active {
+  background-color: #000080;
+  color: #FFFFFF;
+  border: 1px inset #FFFFFF;
+  box-shadow: inset 1px 1px 0px #000;
+}
+
+/* ------------------------------------------------------------------------
+   АДАПТИВНОСТЬ ДЛЯ ЭКРАНОВ РАЗНОГО РАЗРЕШЕНИЯ (УБИРАЕТ СЖАТИЕ СТРАНИЦЫ)
+   ------------------------------------------------------------------------ */
+@media (max-width: 960px) {
+  .site-container {
+    width: 98vw;
+    margin: 4px auto;
+  }
+  .main-wrapper {
+    grid-template-columns: 180px 1fr;
+  }
+  .sidebar-right {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .main-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-left {
+    margin-bottom: 8px;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   МОДАЛЬНЫЕ ОКНА И ОВЕРЛЕИ
+   ------------------------------------------------------------------------ */
+.forum-modal-overlay, .modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+}
+
+.forum-modal-overlay.active, .forum-modal-overlay.show,
+.modal-overlay.active, .modal-overlay.show {
+  display: flex !important;
+}
+
+.forum-modal-window, .modal-window {
+  background-color: #ECE9D8;
+  border: 3px outset #FFFFFF;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  max-width: 90vw;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="31" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="nsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#000000" />
+      <stop offset="100%" stop-color="#008080" />
+    </linearGradient>
+  </defs>
+  <rect width="88" height="31" fill="url(#nsGrad)" stroke="#FFFFFF" stroke-width="1"/>
+  <text x="5" y="13" font-family="Tahoma, Arial" font-size="9" font-weight="bold" fill="#FFFFFF">Netscape</text>
+  <text x="5" y="24" font-family="Tahoma, Arial" font-size="8" fill="#00FFFF">NAVIGATOR</text>
+</svg>

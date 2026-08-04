@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "project": "КиберНикитка — Компьютерная помощь и обмен CD/DVD дисками",
+    "version": "1.0.0-2007retro",
+    "backup_date": "2007-11-15T12:00:00Z",
+    "total_disks": 30,
+    "total_guestbook_posts": 8
+  },
+  "disks": [
+    {
+      "id": "disk-001",
+      "title": "S.T.A.L.K.E.R.: Тень Чернобыля",
+      "category": "games",
+      "type": "DVD-5",
+      "year": 2007,
+      "publisher": "GSC Game World / 1C",
+      "description": "Легендарный украинский шутер про Аномальную Зону Отчуждения, артефакты и сталкеров.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-002",
+      "title": "Heroes of Might and Magic V",
+      "category": "games",
+      "type": "DVD-5",
+      "year": 2006,
+      "publisher": "Nival / 1C",
+      "description": "Пошаговая стратегия с отличной 3D графикой и захватывающим сюжетным режимом.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-003",
+      "title": "Half-Life 2: Episode Two",
+      "category": "games",
+      "type": "DVD-5",
+      "year": 2007,
+      "publisher": "Valve / Бука",
+      "description": "Продолжение приключений Гордона Фримена и Аликс Вэнс в Белой Роще.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-004",
+      "title": "Warcraft III: The Frozen Throne",
+      "category": "games",
+      "type": "CD-ROM",
+      "year": 2003,
+      "publisher": "Blizzard / СофтКлаб",
+      "description": "Официальное дополнение к стратегии Warcraft III с новыми героями и кампанией Артаса.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-005",
+      "title": "GTA: Vice City (Мод Ментовский Беспредел)",
+      "category": "games",
+      "type": "CD-ROM",
+      "year": 2004,
+      "publisher": "Пиратский сборник",
+      "description": "Классическая GTA Vice City с русской озвучкой, отечественными машинами и милицией.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-006",
+      "title": "Need for Speed: Most Wanted",
+      "category": "games",
+      "type": "DVD-5",
+      "year": 2005,
+      "publisher": "Electronic Arts",
+      "description": "Лучшие уличные гонки с полицией, Черным Списком из 15 гонщиков и крутым саундтреком.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-007",
+      "title": "Diablo II: Lord of Destruction",
+      "category": "games",
+      "type": "CD-ROM",
+      "year": 2001,
+      "publisher": "Blizzard / Фаргус",
+      "description": "Культовая Action-RPG с русской локализацией от Фаргуса и актом V (Гора Ареат).",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-008",
+      "title": "Gothic II: Ночь Ворона",
+      "category": "games",
+      "type": "CD-ROM (3 CD)",
+      "year": 2005,
+      "publisher": "Piranha Bytes / 1C",
+      "description": "Суровая немецкая RPG про Хоринис, Яркендар и древние артефакты Аданоса.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-009",
+      "title": "Counter-Strike 1.6 + Bot Pack 2006",
+      "category": "games",
+      "type": "CD-ROM",
+      "year": 2006,
+      "publisher": "Сборник сисадмина",
+      "description": "Сетевой командный шутер с установленными ZBot 1.5 и локальными картами (de_dust2, cs_mansion).",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-10",
+      "title": "The Elder Scrolls IV: Oblivion",
+      "category": "games",
+      "type": "DVD-5",
+      "year": 2006,
+      "publisher": "Bethesda / 1C",
+      "description": "Масштабная ролевая игра с открытым миром Сиродила и закрытием Врат Обливиона.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-011",
+      "title": "Windows XP Professional SP3 (Репак 2007)",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2007,
+      "publisher": "ZverCD",
+      "description": "Легендарная сборка Windows XP с автоматической установкой драйверов и программ.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-012",
+      "title": "Nero Burning ROM 7 Premium + Alcohol 120%",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2006,
+      "publisher": "Софт-пак",
+      "description": "Набор утилит для прожига CD/DVD болванок, создания виртуальных приводов и снятия ISO образов.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-013",
+      "title": "Kaspersky Internet Security 7.0 + Ключи",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2007,
+      "publisher": "Лаборатория Касперского",
+      "description": "Надежная защита от сетевых червей, троянов и фишинговых сайтов с хрюкающим звуком.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-014",
+      "title": "WinRAR 3.70 + Total Commander 7.0",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2007,
+      "publisher": "Утилиты",
+      "description": "Файловый менеджер и архиватор — обязательный софт для любого компьютера на Windows.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-015",
+      "title": "K-Lite Codec Pack Full + Winamp 5.5",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2007,
+      "publisher": "Мультимедиа",
+      "description": "Полный набор видео-кодеков (Xvid, DivX, AC3) и легендарный плеер Winamp со скинами.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-016",
+      "title": "Adobe Photoshop CS2 (Русская версия)",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2005,
+      "publisher": "Adobe",
+      "description": "Графический редактор для работы с растровой графикой, фотомонтажем и дизайна баннеров.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-017",
+      "title": "DriverPack Solution 2007 (База драйверов)",
+      "category": "soft",
+      "type": "DVD-5",
+      "year": 2007,
+      "publisher": "Системные утилиты",
+      "description": "Офлайн-сборка драйверов для материнских плат, видеокарт Nvidia/ATI и сетевых карт.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-018",
+      "title": "ICQ 6.0 + QIP 2005 Build 8030",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2007,
+      "publisher": "Интернет утилиты",
+      "description": "Клиенты мгновенных сообщений для общения по протоколу ICQ без рекламы и тормозов.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-019",
+      "title": "FineReader 8.0 Professional",
+      "category": "soft",
+      "type": "CD-ROM",
+      "year": 2006,
+      "publisher": "ABBYY",
+      "description": "Программа для оптического распознавания текста со сканера и фотографий книг.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-020",
+      "title": "Энциклопедия Кирилла и Мефодия 2007",
+      "category": "soft",
+      "type": "DVD-5",
+      "year": 2007,
+      "publisher": "КМ Онлайн",
+      "description": "Главная электронная энциклопедия со статьями, картами мира и видеофрагментами.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-021",
+      "title": "Матрица: Трилогия (Три фильма на 1 DVD)",
+      "category": "movies",
+      "type": "DVD-9",
+      "year": 2003,
+      "publisher": "Кино-сборник",
+      "description": "«Матрица», «Матрица: Перезагрузка» и «Матрица: Революция» в дубляже.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-022",
+      "title": "Властелин Колец: Две Сорванные Башни (Гоблин)",
+      "category": "movies",
+      "type": "DVD-5",
+      "year": 2003,
+      "publisher": "Полный Пэ",
+      "description": "Смешной перевод Дмитрия Гоблина Пучкова с переозвучкой и смешной музыкой.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-023",
+      "title": "Бумер 1 и 2 (Коллекционное издание)",
+      "category": "movies",
+      "type": "DVD-5",
+      "year": 2006,
+      "publisher": "СТВ",
+      "description": "Отечественная криминальная драма про четверых друзей и черную БМВ.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-024",
+      "title": "Терминатор 2: Судный День (Расширенная версия)",
+      "category": "movies",
+      "type": "DVD-5",
+      "year": 2001,
+      "publisher": "Carolco / Премьер Видео",
+      "description": "Шедевр Джеймса Кэмерона с Арнольдом Шварценеггером и жидким роботом T-1000.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-025",
+      "title": "Бригада (Полный сериал 1-15 серии)",
+      "category": "movies",
+      "type": "DVD-9 (2 DVD)",
+      "year": 2002,
+      "publisher": "Аватар Фильм",
+      "description": "Легендарный российский культовый сериал про Сашу Белого и его друзей.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-026",
+      "title": "Пираты Карибского Моря: На краю Света",
+      "category": "movies",
+      "type": "DVD-5",
+      "year": 2007,
+      "publisher": "Disney / 1C",
+      "description": "Приключения Капитана Джека Воробья, Уилла Тернера и Элизабет Суонн.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-027",
+      "title": "Ледниковый Период 2: Глобальное Потепление",
+      "category": "movies",
+      "type": "DVD-5",
+      "year": 2006,
+      "publisher": "20th Century Fox",
+      "description": "Веселый анимационный мультфильм про мамонта Мэнни, сида и белку Скрата.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-028",
+      "title": "Ночной Дозор + Дневной Дозор",
+      "category": "movies",
+      "type": "DVD-5",
+      "year": 2006,
+      "publisher": "Первый Канал",
+      "description": "Фантастические фильмы Тимура Бекмамбетова по романам Сергея Лукьяненко.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-029",
+      "title": "Шрек 1, 2 и 3 (Коллекция мультфильмов)",
+      "category": "movies",
+      "type": "DVD-9",
+      "year": 2007,
+      "publisher": "DreamWorks Animation",
+      "description": "Приключения зеленого огра Шрека, Осла и Кота в сапогах в сказочном королевстве.",
+      "status": "in_stock"
+    },
+    {
+      "id": "disk-030",
+      "title": "Звездные Войны: Эпизод III — Месть Ситхов",
+      "category": "movies",
+      "type": "DVD-5",
+      "year": 2005,
+      "publisher": "Lucasfilm / 20th Century Fox",
+      "description": "Заключительный фильм приквел-трилогии: превращение Энакина Скайуокера в Дарта Вейдера.",
+      "status": "in_stock"
+    }
+  ],
+  "guestbook": [
+    {
+      "id": "post-101",
+      "author": "Сергей_ПК",
+      "date": "12.11.2007",
+      "message": "Никитка, спасибо за замену видеокарты GeForce 8600GT! Кризис теперь идет без лагов!",
+      "admin_reply": "Пожалуйста, Сергей! Не забывай обновлять драйверы ForceWare!"
+    },
+    {
+      "id": "post-102",
+      "author": "Колян_99",
+      "date": "28.10.2007",
+      "message": "Обменялся диском S.T.A.L.K.E.R. Диск идеальный, спасибо мастерской за честный обмен 1 к 1!",
+      "admin_reply": "Всегда рады! Заходи за Heroes V!"
+    },
+    {
+      "id": "post-103",
+      "author": "Мария_Ивановна",
+      "date": "15.10.2007",
+      "message": "Вызывала мастера для очистки компьютера от вирусов. Приехал вовремя, всё почистил и поставил Касперского.",
+      "admin_reply": "Спасибо за обращение, Мария Ивановна! Всегда к вашим услугам."
+    },
+    {
+      "id": "post-104",
+      "author": "SysAdmin_Max",
+      "date": "02.10.2007",
+      "message": "Классный дизайн сайта! Настоящий ретро-стиль как во времена диалапа и Rambler TOP100!",
+      "admin_reply": "Спасибо! Стараемся поддерживать дух первого веб-интернета!"
+    },
+    {
+      "id": "post-105",
+      "author": "Gamer_2007",
+      "date": "20.09.2007",
+      "message": "Есть ли в наличии диск с Gothic 2 Ночь Ворона?",
+      "admin_reply": "Да, комплект на 3 CD в наличии! Приходи в офис на ул. Компьютерная."
+    },
+    {
+      "id": "post-106",
+      "author": "Дмитрий_В",
+      "date": "05.09.2007",
+      "message": "Собрал через Никитку игровой системник на Core 2 Duo. Сборка очень аккуратная!",
+      "admin_reply": "Спасибо за отзыв, Дмитрий! Гарантия на системный блок 1 год."
+    }
+  ]
+}

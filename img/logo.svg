@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="60" viewBox="0 0 320 60">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE600" />
+      <stop offset="50%" stop-color="#FFD700" />
+      <stop offset="100%" stop-color="#FF8C00" />
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="3" dy="3" stdDeviation="0" flood-color="#000050"/>
+    </filter>
+  </defs>
+  <text x="14" y="44" font-family="Impact, Arial Black, Tahoma" font-size="30" font-style="italic" font-weight="bold" fill="#8B0000">КИБЕРНИКИТКА</text>
+  <text x="10" y="40" font-family="Impact, Arial Black, Tahoma" font-size="30" font-style="italic" font-weight="bold" fill="url(#goldGrad)" filter="url(#dropShadow)">КИБЕРНИКИТКА</text>
+</svg>

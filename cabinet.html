@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+  <title>Личный Кабинет Пользователя — КиберНикитка</title>
+  <link rel="stylesheet" href="css/retro-style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    .cab-profile-card {
+      display: flex; gap: 15px; background: var(--color-zebra-blue); padding: 12px;
+      border: 2px inset #808080; align-items: flex-start; margin-bottom: 15px; flex-wrap: wrap;
+    }
+    .cab-avatar-wrap { position: relative; cursor: pointer; }
+    .cab-avatar { width: 80px; height: 80px; border: 2px outset #FFF; object-fit: cover; background: #000; }
+    .cab-avatar-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: #FFF;
+      font-size: 8px; text-align: center; padding: 2px 0; font-weight: bold;
+    }
+    .cab-section-title {
+      background: linear-gradient(180deg, var(--color-navy-dark), var(--color-navy-light));
+      color: #FFF; padding: 4px 8px; font-weight: bold; margin-top: 15px; margin-bottom: 8px; font-size: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .qip-select {
+      background: #000; color: #00FF00; font-family: var(--font-main); font-size: 10px; border: 1px solid #FFF; padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-container">
+  <!-- ШАПКА САЙТА -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html" class="wordart-logo" title="КиберНикитка">
+        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+      </a>
+      <div class="tagline" data-i18n="header.subtagline">Персональный компьютерный мастер, чистка от пыли и обмен CD/DVD дисками</div>
+    </div>
+    <div class="header-search">
+      <input type="text" id="header-search-input" class="header-search-input" placeholder="Поиск по сайту..." aria-label="Поиск по сайту" data-i18n-placeholder="header.searchPlaceholder">
+      <button type="button" class="header-search-btn" onclick="location.href='disks.html'" data-i18n="header.searchBtn">Поиск</button>
+      <div class="lang-switcher-box">
+        <span class="lang-label" data-i18n="header.langSwitchLabel">LANG:</span>
+        <button type="button" class="lang-btn active" data-lang="ru" onclick="CyberI18n.setLang('ru')">🇷🇺 RU</button>
+        <button type="button" class="lang-btn" data-lang="en" onclick="CyberI18n.setLang('en')">🇬🇧 EN</button>
+      </div>
+    </div>
+    <div class="header-right">
+      <div><span data-i18n="header.urgentCall">Срочный вызов: </span><span class="phone-number">8 (900) 200-07-07</span></div>
+      <div id="header-clock" data-i18n="header.clockLoading">Загрузка времени...</div>
+    </div>
+  </header>
+
+  <!-- БЕГУЩАЯ СТРОКА -->
+  <div class="marquee-bar">
+    <marquee scrollamount="4" behavior="scroll" direction="left" data-i18n="marquee.cabinet">
+      ★ Добро пожаловать в Кабинет Пользователя! Устанавливайте QIP-статусы, качайте Рейтинг 2007 года и оставляйте автографы на стене! ★
+    </marquee>
+  </div>
+
+  <!-- ОСНОВНОЙ ТРЕХКОЛОНОЧНЫЙ БЛОК -->
+  <div class="main-wrapper">
+    <!-- ЛЕВАЯ НАВИГАЦИЯ -->
+    <nav class="sidebar-left">
+      <h2 data-i18n="nav.sidebarTitle">НАВИГАЦИЯ</h2>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-button" data-i18n="nav.home">■ Главная страница</a>
+        <a href="services.html" class="nav-button" data-i18n="nav.services">■ Услуги и Цены</a>
+        <a href="disks.html" class="nav-button" data-i18n="nav.disks">■ Обмен CD/DVD</a>
+        <a href="forum.html" class="nav-button" data-i18n="nav.forum">■ Ретро-Форум</a>
+        <a href="guestbook.html" class="nav-button" data-i18n="nav.guestbook">■ Гостевая книга</a>
+        <a href="contacts.html" class="nav-button" data-i18n="nav.contacts">■ Контакты мастерской</a>
+        <a href="cabinet.html" class="nav-button active" data-i18n="nav.cabinet">■ Личный Кабинет</a>
+      </div>
+
+      <div class="informer-box" style="margin-top: 10px;">
+        <div class="informer-title" data-i18n="cabinet.viewsTitle">ПРОСМОТРЫ</div>
+        <div style="font-size: 10px; margin-bottom: 6px;">
+          <span data-i18n="cabinet.viewsLabel">Профиль просмотрен:</span><br>
+          <strong id="views-count-val" class="counter-box" style="display: inline-block; margin-top: 2px;">000184</strong> <span data-i18n="cabinet.viewsTimes">раз</span>
+        </div>
+        <button type="button" class="retro-button" style="width: 100%; font-size: 10px;" onclick="openAvatarModal()" data-i18n="cabinet.btnChangeAvatar">🖼 Изменить аватарку</button>
+        <button type="button" class="retro-button" style="width: 100%; margin-top: 4px;" onclick="ApiClient.logout()" data-i18n="cabinet.btnLogout">🚪 Выйти из системы</button>
+      </div>
+    </nav>
+
+    <!-- ЦЕНТРАЛЬНЫЙ КОНТЕНТ -->
+    <main class="content-center">
+      <h1 data-i18n="cabinet.mainHeading">Кабинет Пользователя (Версия 2007)</h1>
+
+      <!-- 1. КАРТОЧКА ПРОФИЛЯ С QIP СТАТУСОМ -->
+      <div class="cab-profile-card">
+        <div class="cab-avatar-wrap" onclick="openAvatarModal()" title="Нажмите, чтобы сменить аватарку">
+          <img id="cab-avatar-img" src="img/avatar-cs.png" alt="Аватар" class="cab-avatar">
+          <div class="cab-avatar-overlay">СМЕНИТЬ</div>
+        </div>
+
+        <div style="flex: 1; min-width: 220px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h2 id="cab-username" style="margin: 0; background: none; color: var(--color-navy-dark); padding: 0; border: none; font-size: 16px;">Загрузка профиля...</h2>
+            <span id="cab-rank" class="retro-banner-success" style="padding: 1px 4px; font-size: 9px;">[Пользователь]</span>
+          </div>
+
+          <!-- МОДУЛЬ 1: QIP СТАТУС ПРИСУТСТВИЯ -->
+          <div style="margin-top: 4px; font-size: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+            <span data-i18n="cabinet.qipStatusLabel">QIP Статус:</span>
+            <select id="qip-status-select" class="qip-select" onchange="saveQipStatus()">
+              <option value="🟢 В сети (Online)" data-i18n="cabinet.qip.online">🟢 В сети (Online)</option>
+              <option value="🟡 Занят (DND)" data-i18n="cabinet.qip.dnd">🟡 Занят (DND)</option>
+              <option value="🍕 Ем пельмени" data-i18n="cabinet.qip.dumplings">🍕 Ем пельмени</option>
+              <option value="🎮 Играю в CS 1.6" data-i18n="cabinet.qip.cs16">🎮 Играю в CS 1.6</option>
+              <option value="💤 Сплю" data-i18n="cabinet.qip.sleeping">💤 Сплю</option>
+              <option value="🚬 Курю на балконе" data-i18n="cabinet.qip.smoking">🚬 Курю на балконе</option>
+              <option value="🎧 Слушаю Winamp" data-i18n="cabinet.qip.winamp">🎧 Слушаю Winamp</option>
+            </select>
+          </div>
+
+          <!-- МОДУЛЬ 2: ТЕКСТОВЫЙ СТАТУС / ЦИТАТА ДНЯ -->
+          <div style="margin-top: 6px; font-size: 10px; display: flex; gap: 4px;">
+            <input type="text" id="status-quote-input" class="retro-input" style="flex: 1; font-size: 10px;" placeholder="Моя цитата / статус в аське..." data-i18n-placeholder="cabinet.statusQuotePlaceholder">
+            <button type="button" class="retro-button" style="padding: 2px 6px; font-size: 9px;" onclick="saveTextQuote()" data-i18n="cabinet.btnSaveQuote">[Сохранить]</button>
+          </div>
+
+          <div style="font-size: 10px; margin-top: 4px; color: #555;">
+            ICQ UIN: <strong id="cab-icq">777-200-07</strong> | Город: <strong id="cab-city">Москва</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- МОДУЛЬ 3: ШКАЛА РЕЙТИНГА / АВТОРИТЕТА 2007 (ВКОНТАКТЕ STYLE) -->
+      <div style="background: var(--color-win-gray); border: 2px outset #FFF; padding: 8px; margin-bottom: 12px;" id="rating-box">
+        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 10px;">
+          <span data-i18n="cabinet.ratingTitle">⚡ МОЙ РЕЙТИНГ АВТОРИТЕТА (2007 YEAR):</span>
+          <span id="rating-percent-num" style="color: #CC0000;">85%</span>
+        </div>
+        <div class="rating-bar-container">
+          <div id="rating-bar-fill" class="rating-bar-fill" style="width: 85%;"></div>
+          <div class="rating-percent-text" id="rating-bar-text">АВТОРИТЕТ: 85% [ГЕРОЙ 2007 ГОДА]</div>
+        </div>
+        <div style="font-size: 9px; color: #555;" data-i18n="cabinet.ratingInfo">
+          💡 Рейтинг растет от добавления дисков (+10%), тем на форуме (+5%) и заказов ремонта (+15%)!
+        </div>
+      </div>
+
+      <!-- МОДУЛЬ 4: ГАЛЕРЕЯ БЕЙДЖЕЙ И МЕДАЛЕЙ -->
+      <div class="cab-section-title" data-i18n="cabinet.badgesSectionTitle">🏆 МОИ НАГРАДЫ И РЕТРО-БЕЙДЖИ</div>
+      <div class="badge-gallery" id="badge-gallery-container">
+        <span class="badge-item">🏆 Гуру Диалапа 56k</span>
+        <span class="badge-item">📀 Коллекционер Фаргус</span>
+        <span class="badge-item">👑 Олдфаг 2001</span>
+        <span class="badge-item">🔧 Мастер Паяльника</span>
+        <span class="badge-item">🎯 Боец CS 1.6</span>
+      </div>
+
+      <!-- МОДУЛЬ 6: КОНФИГУРАЦИЯ ПК В ПОДПИСИ НА ФОРУМЕ (BBCODE SIGNATURE) -->
+      <div class="cab-section-title" data-i18n="cabinet.pcSpecsSectionTitle">🖥 МОЯ КОНФИГУРАЦИЯ ПК ДЛЯ ПОДПИСИ НА ФОРУМЕ</div>
+      <div class="retro-form-box">
+        <div style="font-size: 10px; margin-bottom: 6px; color: #333;" data-i18n="cabinet.pcSpecsDesc">
+          Укажите спецификацию вашего ПК. Она будет автоматически отображаться в подписи к вашим сообщениям на Форуме!
+        </div>
+        <form id="pc-specs-form" onsubmit="event.preventDefault(); savePcSpecs();">
+          <div class="form-group" style="margin-bottom: 6px;">
+            <label for="pc_specs_input" data-i18n="cabinet.labelPcSpecs">Процессор, ОЗУ и Видеокарта:</label>
+            <input type="text" id="pc_specs_input" class="retro-input" placeholder="Например: Core 2 Duo E6600 | 2GB DDR2 | GeForce 8800GT" value="Core 2 Duo E6600 | 2GB DDR2 | GeForce 8800GT" data-i18n-placeholder="cabinet.pcSpecsPlaceholder">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="retro-button" data-i18n="cabinet.btnSavePcSpecs">💾 СОХРАНИТЬ ПОДПИСЬ ПК</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- МОДУЛЬ 7: СТЕНА ПРОФИЛЯ / "АВТОГРАФЫ" -->
+      <div class="cab-section-title">
+        <span data-i18n="cabinet.wallSectionTitle">✍️ СТЕНА АВТОГРАФОВ ПРОФИЛЯ</span>
+        <span style="font-size: 9px; font-weight: normal;" data-i18n="cabinet.wallLeaveNote">[ Оставь автограф! ]</span>
+      </div>
+      <div class="retro-form-box">
+        <form id="wall-form" onsubmit="event.preventDefault(); submitWallAutograph();">
+          <div class="form-group" style="margin-bottom: 4px;">
+            <label for="wall_msg" data-i18n="cabinet.labelWallMsg">Оставить роспись / сообщение на стене:</label>
+            <input type="text" id="wall_msg" class="retro-input" placeholder="Напиши что-нибудь приветливое (например: Был тут, респект!)..." required data-i18n-placeholder="cabinet.wallMsgPlaceholder">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="retro-button" data-i18n="cabinet.btnSubmitWall">🖊️ РОСПИСАТЬСЯ НА СТЕНЕ</button>
+          </div>
+        </form>
+
+        <h4 style="margin-top: 10px; margin-bottom: 6px;" data-i18n="cabinet.wallAutographsTitle">Автографы друзей и гостей:</h4>
+        <div id="wall-comments-list">
+          <div class="wall-comment-card">
+            <div class="wall-comment-header">
+              <strong>nikitka_master 👑 [Мастер]</strong>
+              <span>04.08.2026 12:00</span>
+            </div>
+            <div>Привет! Оставил первый автограф на твоей стенке 2007 года! Заходи на Форум и в Обмен дисками!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- МОДУЛЬ 2: МОЙ ДИСКОВЫЙ ФОНД -->
+      <div class="cab-section-title" data-i18n="cabinet.disksSectionTitle">📀 МОЙ ДИСКОВЫЙ ФОНД (ДОБАВИТЬ ДИСК НА ОБМЕН)</div>
+      <div class="retro-form-box">
+        <h3 data-i18n="cabinet.addDiskTitle">Добавить диск в каталог обмена:</h3>
+        <div id="add-disk-banner" style="display: none; margin-bottom: 8px;"></div>
+
+        <form id="add-disk-form" onsubmit="event.preventDefault(); handleAddDisk();">
+          <div style="display: flex; gap: 10px;" class="form-group">
+            <div style="flex: 2;">
+              <label for="disk_title" data-i18n="cabinet.labelDiskTitle">Название диска: *</label>
+              <input type="text" id="disk_title" class="retro-input" placeholder="Например: Fallout 2 (Лицензия 1С)" required data-i18n-placeholder="cabinet.diskTitlePlaceholder">
+            </div>
+            <div style="flex: 1;">
+              <label for="disk_category" data-i18n="disks.categoriesLabel">Категория:</label>
+              <select id="disk_category" class="retro-select">
+                <option value="games" data-i18n="disks.catGames">Игры</option>
+                <option value="soft" data-i18n="disks.catSoft">Софт / Программы</option>
+                <option value="movies" data-i18n="disks.catMovies">Фильмы / Кино</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px;" class="form-group">
+            <div style="flex: 1;">
+              <label for="disk_type" data-i18n="cabinet.labelDiskType">Тип носителя:</label>
+              <select id="disk_type" class="retro-select">
+                <option value="DVD-5">DVD-5 (4.7 GB)</option>
+                <option value="DVD-9">DVD-9 (8.5 GB)</option>
+                <option value="CD-ROM">CD-ROM (700 MB)</option>
+              </select>
+            </div>
+            <div style="flex: 1;">
+              <label for="disk_year" data-i18n="cabinet.labelDiskYear">Год выпуска:</label>
+              <input type="number" id="disk_year" class="retro-input" value="2007" min="1995" max="2010">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="disk_desc" data-i18n="cabinet.labelDiskDesc">Описание диска и условия обмена:</label>
+            <textarea id="disk_desc" class="retro-textarea" style="min-height: 45px;" placeholder="Состояние коробки, царапины, на что хотели бы обменять..." data-i18n-placeholder="cabinet.diskDescPlaceholder"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="retro-button">➕ ДОБАВИТЬ ДИСК В КАТАЛОГ</button>
+          </div>
+        </form>
+
+        <h4 style="margin-top: 10px; margin-bottom: 6px;">Мои диски в каталоге:</h4>
+        <table class="retro-table">
+          <thead>
+            <tr>
+              <th>Название диска</th>
+              <th>Категория</th>
+              <th>Формат</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody id="my-disks-list">
+            <tr><td colspan="4">Загрузка дисков...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- МОДУЛЬ 3: ВЫЗОВЫ МАСТЕРА -->
+      <div class="cab-section-title">🛠 МОИ ВЫЗОВЫ МАСТЕРА И ЗАЯВКИ НА РЕМОНТ</div>
+      <div class="retro-form-box">
+        <table class="retro-table">
+          <thead>
+            <tr>
+              <th>№ Заявки</th>
+              <th>Телефон</th>
+              <th>Дата</th>
+              <th>Статус заявки</th>
+            </tr>
+          </thead>
+          <tbody id="my-requests-list">
+            <tr><td colspan="4">Загрузка истории заявок...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- МОДУЛЬ 4: АКТИВНОСТЬ НА ФОРУМЕ -->
+      <div class="cab-section-title">💬 МОЯ АКТИВНОСТЬ НА ФОРУМЕ</div>
+      <div class="retro-form-box">
+        <h4 style="margin-top: 0;">Мои созданные темы:</h4>
+        <div id="my-topics-list" style="margin-bottom: 8px;">
+          <p>Загрузка тем...</p>
+        </div>
+
+        <h4>Мои ответы и посты:</h4>
+        <div id="my-posts-list">
+          <p>Загрузка ответов...</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- ПРАВАЯ ПАНЕЛЬ ИНФОРМЕРОВ -->
+    <aside class="sidebar-right">
+      <h2>ИНФО</h2>
+      <div class="informer-box" style="text-align: left;">
+        Выставляйте свои диски в обменный фонд! Чем больше дисков — тем выше ваш <strong>Авторитет 2007</strong>!
+      </div>
+
+      <!-- ⏳ КОМПАКТНЫЙ РЕТРО-ИНФОРМЕР «ТОГДА (2007) VS СЕГОДНЯ» -->
+      <div class="informer-box informer-then-now">
+        <div class="informer-title">⏳ 2007 vs СЕГОДНЯ 🚀</div>
+        <div style="margin: 3px 0 2px 0; text-align: center;">
+          <label style="font-size: 8px; font-weight: bold; color: #000080;">🏙️ ГОРОД: </label>
+          <select id="inf-city-select" style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px; border: 1px solid #7F9DB9; background: #FFFDF0; color: #000; width: 115px;">
+            <optgroup label="🔍 Поиск города">
+              <option value="custom_search">🔍 [ Ввести свой город... ]</option>
+            </optgroup>
+            <optgroup label="🇷🇺 Россия">
+              <option value="moscow">📍 Москва</option>
+              <option value="spb">📍 Санкт-Петербург</option>
+              <option value="omsk">📍 Омск</option>
+              <option value="novosibirsk">📍 Новосибирск</option>
+              <option value="ekaterinburg">📍 Екатеринбург</option>
+              <option value="kazan">📍 Казань</option>
+              <option value="nnov">📍 Н. Новгород</option>
+              <option value="chelyabinsk">📍 Челябинск</option>
+              <option value="samara">📍 Самара</option>
+              <option value="ufa">📍 Уфа</option>
+              <option value="rostov">📍 Ростов-на-Дону</option>
+              <option value="krasnodar">📍 Краснодар</option>
+              <option value="voronezh">📍 Воронеж</option>
+              <option value="perm">📍 Пермь</option>
+              <option value="volgograd">📍 Волгоград</option>
+              <option value="krasnoyarsk">📍 Красноярск</option>
+              <option value="saratov">📍 Саратов</option>
+              <option value="tumen">📍 Тюмень</option>
+              <option value="tolyatti">📍 Тольятти</option>
+              <option value="barnaul">📍 Барнаул</option>
+              <option value="vladivostok">📍 Владивосток</option>
+            </optgroup>
+            <optgroup label="🇧🇾 Беларусь">
+              <option value="minsk">📍 Минск</option>
+              <option value="brest">📍 Брест</option>
+              <option value="grodno">📍 Гродно</option>
+              <option value="gomel">📍 Гомель</option>
+              <option value="vitebsk">📍 Витебск</option>
+              <option value="mogilev">📍 Могилев</option>
+            </optgroup>
+            <optgroup label="🇰🇿 Казахстан & СНГ">
+              <option value="almaty">📍 Алматы</option>
+              <option value="astana">📍 Астана</option>
+              <option value="yerevan">📍 Ереван</option>
+              <option value="tbilisi">📍 Тбилиси</option>
+              <option value="tashkent">📍 Ташкент</option>
+            </optgroup>
+          </select>
+        </div>
+        <div id="inf-custom-box" style="display: none; margin: 3px 0; text-align: center; background: #E6F0FA; padding: 3px; border: 1px inset #808080;">
+          <input type="text" id="inf-custom-input" placeholder="Название города..." style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px 3px; width: 95px; border: 1px solid #7F9DB9;">
+          <button type="button" id="inf-custom-btn" style="font-size: 8.5px; padding: 0 4px; cursor: pointer; background: #FFFDF0; border: 1px outset #FFF;">OK</button>
+          <div id="inf-custom-msg" style="font-size: 7.5px; color: #8B0000; margin-top: 2px;"></div>
+        </div>
+        <table class="informer-mini-table">
+          <thead>
+            <tr>
+              <th style="width: 38%;">Параметр</th>
+              <th class="col-then" style="width: 26%;">2007</th>
+              <th class="col-now" style="width: 36%;">СЕЙЧАС</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong id="inf-weather-label">🌡️ Погода</strong></td>
+              <td id="inf-w-then" class="col-then">+20.6°C</td>
+              <td id="inf-w-now" class="col-now">+25.2°C</td>
+            </tr>
+            <tr>
+              <td><strong>💵 USD (ЦБ)</strong></td>
+              <td class="col-then">25.56₽</td>
+              <td id="inf-usd-now" class="col-now">80.07₽ <span class="retro-arrow-up">▲</span></td>
+            </tr>
+            <tr>
+              <td><strong>💶 EUR (ЦБ)</strong></td>
+              <td class="col-then">34.98₽</td>
+              <td id="inf-eur-now" class="col-now">91.96₽ <span class="retro-arrow-up">▲</span></td>
+            </tr>
+            <tr>
+              <td><strong>⛽ АИ-92</strong></td>
+              <td class="col-then">18.50₽</td>
+              <td class="col-now col-fuel-multi" title="РФ Avg: 68.82₽ / Москва: 65.50₽">
+                <span class="fuel-prem">68.82₽</span> <span class="fuel-sep">/</span> <span class="fuel-std">65.50₽</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="informer-marquee">
+          <marquee scrollamount="2" behavior="scroll">🎵 Хит 2007: МакSим — «Знаешь ли ты» ★ 🎮 Игра 2007: S.T.A.L.K.E.R. ★ ⛽ АИ-92: 18.50₽ ➔ 68.82₽ (РФ) / 65.50₽ (МСК)</marquee>
+        </div>
+      </div>
+
+      <div class="informer-box" style="text-align: center; border: 2px solid #0088CC; background: #F0F8FF;">
+        <div style="background: #0088CC; color: #FFF; font-weight: bold; padding: 2px 4px; font-size: 10px;">
+          📱 ТЕЛЕГРАМ СОЗДАТЕЛЯ
+        </div>
+        <div style="margin-top: 4px; font-size: 10px;">
+          Пишите Мастеру Никитке прямо в Telegram:<br>
+          <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" style="font-weight: bold; color: #0088CC; font-size: 11px; text-decoration: underline;">
+            👉 @Ai_nikitka93
+          </a>
+        </div>
+      </div>
+
+      <h2>ДРУЗЬЯ САЙТА</h2>
+      <div class="badges-container">
+        <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" class="badge-88x31" title="Telegram Создателя: @Ai_nikitka93"><img src="img/banner-telegram.png" alt="Telegram @Ai_nikitka93" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-netscape" title="Netscape Navigator"><img src="img/banner-netscape.png" alt="Netscape Navigator" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-rambler" title="Rambler TOP100"><img src="img/banner-rambler.png" alt="Rambler TOP100" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-800x600" title="1024x768 Best View"><img src="img/banner-800x600.png" alt="1024x768 Best View" width="88" height="31"></a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ПОДВАЛ САЙТА -->
+  <footer class="site-footer">
+    <div>
+      <span data-i18n="footer.copyright">© 2001–2026 Компьютерная помощь «КиберНикитка».</span> <a href="admin.html" style="color: #FFF; text-decoration: underline;" data-i18n="footer.adminLink">Панель Мастера [Admin]</a><br>
+      <span style="font-size: 9.5px; color: #FFFF80; font-weight: bold;" data-i18n="footer.portfolioNote">🎈 Развлекательный арт-проект & Ретро Web 1.0 Портфолио Концепт</span>
+    </div>
+    <div>
+      <span data-i18n="footer.hitCounterLabel">Посетитель № </span><span id="hit-counter" class="counter-box">004219</span>
+    </div>
+  </footer>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО ВЫБОРА РЕТРО-АВАТАРКИ -->
+<div class="forum-modal-overlay" id="avatar-modal" style="display: none;">
+  <div class="forum-modal-window" style="width: 380px;">
+    <div style="background: linear-gradient(180deg, #000080, #1084D0); color: #FFF; padding: 4px 8px; font-weight: bold; display: flex; justify-content: space-between; border: 1px outset #FFF; margin-bottom: 8px;">
+      <span>🖼️ ВЫБЕРИТЕ РЕТРО-АВАТАРКУ (80x80)</span>
+      <span style="cursor: pointer;" onclick="closeAvatarModal()">✕</span>
+    </div>
+
+    <div class="avatar-modal-grid">
+      <img src="img/photo-nikitka.png" alt="Мастер Никитка" title="Мастер Никитка (2007)" class="avatar-picker-item" onclick="selectProfileAvatar('img/photo-nikitka.png')">
+      <img src="img/avatar-cs.png" alt="CS 1.6" title="Батя CS 1.6 [PRO]" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-cs.png')">
+      <img src="img/avatar-neo.png" alt="Neo Matrix" title="Хакер Neo 1337" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-neo.png')">
+      <img src="img/avatar-stalker.png" alt="Stalker" title="Сталкер Меченый" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-stalker.png')">
+      <img src="img/avatar-cat.png" alt="Cool Cat" title="Cool Cat (Deal With It)" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-cat.png')">
+      <img src="img/avatar-emo.png" alt="Emo Kid 2007" title="Эмо-Кид 2007" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-emo.png')">
+      <img src="img/avatar-bliss.png" alt="XP Bliss" title="XP Bliss SP2" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-bliss.png')">
+      <img src="img/avatar-admin.png" alt="Sysadmin" title="Сисадмин Root" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-admin.png')">
+      <img src="img/avatar-winamp.png" alt="Winamp" title="Winamp 2.91 Freak" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-winamp.png')">
+      <img src="img/avatar-skater.png" alt="Skate Punk" title="Скейтер SK8" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-skater.png')">
+      <img src="img/avatar-anime.png" alt="Neko Anime" title="Kawaii Anime Neko" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-anime.png')">
+      <img src="img/avatar-icq.png" alt="ICQ 777" title="Агент ICQ (O-Oh!)" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-icq.png')">
+    </div>
+
+    <div class="form-actions" style="justify-content: flex-end;">
+      <button type="button" class="retro-button" onclick="closeAvatarModal()">ЗАКРЫТЬ</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/api-client.js"></script>
+<script src="js/sensory-pack.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  loadCabinetData();
+});
+
+function loadCabinetData() {
+  const token = window.ApiClient.getToken();
+  if (!token) {
+    alert('Для просмотра Личного Кабинета необходимо сначала авторизоваться!');
+    window.location.href = 'login.html';
+    return;
+  }
+  window.ApiClient.getCabinet()
+    .then(res => {
+      if (res && res.data) {
+        const d = res.data;
+        renderProfile(d.profile);
+        renderRating(d.rating || 85);
+        renderWallComments(d.wall_comments || []);
+        renderMyDisks(d.disks);
+        renderMyRequests(d.repair_requests);
+        renderMyForumActivity(d.forum_topics, d.forum_posts);
+      }
+    })
+    .catch(err => {
+      alert('Для входа в Личный Кабинет необходимо авторизоваться!');
+      window.location.href = 'login.html';
+    });
+}
+
+function renderProfile(user) {
+  if (!user) return;
+  document.getElementById('cab-avatar-img').src = user.avatar_url || 'img/avatar-cs.png';
+  document.getElementById('cab-username').textContent = user.display_name || user.username;
+  document.getElementById('cab-icq').textContent = user.icq_uin || '777-200-07';
+  document.getElementById('cab-city').textContent = user.city || 'Москва';
+  document.getElementById('views-count-val').textContent = String(user.views_count || 184).padStart(6, '0');
+
+  if (user.qip_status) {
+    document.getElementById('qip-status-select').value = user.qip_status;
+  }
+  if (user.text_quote) {
+    document.getElementById('status-quote-input').value = user.text_quote;
+  }
+  if (user.pc_specs) {
+    document.getElementById('pc_specs_input').value = user.pc_specs;
+  }
+
+  const rankEl = document.getElementById('cab-rank');
+  if (user.role === 'admin') {
+    rankEl.textContent = '[Администратор / Мастер]';
+    rankEl.className = 'retro-banner-error';
+  } else {
+    rankEl.textContent = '[Пользователь / Ретро-Геймер]';
+    rankEl.className = 'retro-banner-success';
+  }
+}
+
+function renderRating(ratingVal) {
+  const percent = Math.min(100, Math.max(0, ratingVal));
+  document.getElementById('rating-percent-num').textContent = `${percent}%`;
+  document.getElementById('rating-bar-fill').style.width = `${percent}%`;
+  const textEl = document.getElementById('rating-bar-text');
+  
+  if (percent >= 100) {
+    textEl.textContent = `⚡ РЕЙТИНГ 100%: ЛЕГЕНДА РУНЕТА 2007!`;
+    document.getElementById('rating-box').style.border = '2px solid #FFD700';
+  } else {
+    textEl.textContent = `АВТОРИТЕТ: ${percent}% [РЕЙТИНГ 2007 ГОДА]`;
+  }
+}
+
+function saveQipStatus() {
+  const status = document.getElementById('qip-status-select').value;
+  window.ApiClient.updateProfile({ qip_status: status })
+    .then(() => {
+      alert(` Статус QIP успешно обновлен: ${status}`);
+    });
+}
+
+function saveTextQuote() {
+  const quote = document.getElementById('status-quote-input').value.trim();
+  window.ApiClient.updateProfile({ text_quote: quote })
+    .then(() => {
+      alert('💬 Цитата/статус в аське сохранен!');
+    });
+}
+
+function savePcSpecs() {
+  const specs = document.getElementById('pc_specs_input').value.trim();
+  window.ApiClient.updateProfile({ pc_specs: specs })
+    .then(() => {
+      alert('🖥️ Конфигурация ПК сохранена! Теперь она будет отображаться в вашей подписи на Форуме!');
+    });
+}
+
+function openAvatarModal() {
+  document.getElementById('avatar-modal').style.display = 'flex';
+}
+
+function closeAvatarModal() {
+  document.getElementById('avatar-modal').style.display = 'none';
+}
+
+function selectProfileAvatar(url) {
+  document.getElementById('cab-avatar-img').src = url;
+  closeAvatarModal();
+  window.ApiClient.updateProfile({ avatar_url: url })
+    .then(() => {
+      alert('🖼️ Аватарка профиля обновлена!');
+    });
+}
+
+function submitWallAutograph() {
+  const msg = document.getElementById('wall_msg').value.trim();
+  if (!msg) return;
+
+  window.ApiClient.postWallAutograph({ message: msg })
+    .then(res => {
+      document.getElementById('wall_msg').value = '';
+      alert('🖊️ Роспись на стене успешно оставлена!');
+      loadCabinetData();
+    })
+    .catch(err => {
+      alert('Ошибка: ' + err.message);
+    });
+}
+
+function renderWallComments(wallList) {
+  const cont = document.getElementById('wall-comments-list');
+  if (!cont) return;
+  if (!wallList || wallList.length === 0) {
+    cont.innerHTML = '<p style="font-size: 10px; color: #555;">На вашей стене пока нет автографов.</p>';
+    return;
+  }
+  cont.innerHTML = wallList.map(w => `
+    <div class="wall-comment-card">
+      <div class="wall-comment-header">
+        <strong>${w.author || 'Друг'}</strong>
+        <span>${w.created_at ? w.created_at.substring(0, 16).replace('T', ' ') : '04.08.2026'}</span>
+      </div>
+      <div>${w.message}</div>
+    </div>
+  `).join('');
+}
+
+function renderMyDisks(disks) {
+  const tbody = document.getElementById('my-disks-list');
+  if (!tbody) return;
+  if (!disks || disks.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Вы пока не добавили ни одного диска на обмен.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = disks.map(d => `
+    <tr>
+      <td><strong>${d.title}</strong></td>
+      <td>${d.category}</td>
+      <td>${d.type} (${d.year})</td>
+      <td><span style="color: green; font-weight: bold;">● В НАЛИЧИИ</span></td>
+    </tr>
+  `).join('');
+}
+
+function renderMyRequests(requests) {
+  const tbody = document.getElementById('my-requests-list');
+  if (!tbody) return;
+  if (!requests || requests.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">У вас нет активных заявок на вызов мастера.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = requests.map(r => `
+    <tr>
+      <td><strong>${r.id}</strong></td>
+      <td>${r.client_phone || '8 (900) 200-07-07'}</td>
+      <td>${r.created_at ? r.created_at.substring(0, 10) : '04.08.2026'}</td>
+      <td><strong style="color: green;">${r.status || 'В обработке'}</strong></td>
+    </tr>
+  `).join('');
+}
+
+function renderMyForumActivity(topics, posts) {
+  const topCont = document.getElementById('my-topics-list');
+  const postCont = document.getElementById('my-posts-list');
+
+  if (topCont) {
+    if (!topics || topics.length === 0) {
+      topCont.innerHTML = '<p style="font-size: 10px; color: #555;">Вы еще не создавали тем на форуме.</p>';
+    } else {
+      topCont.innerHTML = topics.map(t => `
+        <div style="padding: 4px 0; border-bottom: 1px dashed #DDD;">
+          💬 <a href="forum.html"><strong>${t.title}</strong></a> <span style="font-size: 9px; color: #777;">(${t.created_at ? t.created_at.substring(0, 10) : '04.08'})</span>
+        </div>
+      `).join('');
+    }
+  }
+
+  if (postCont) {
+    if (!posts || posts.length === 0) {
+      postCont.innerHTML = '<p style="font-size: 10px; color: #555;">Вы еще не ответили ни в одной теме.</p>';
+    } else {
+      postCont.innerHTML = posts.map(p => `
+        <div style="padding: 4px 0; border-bottom: 1px dashed #DDD;">
+          ✍️ <em>"${p.content.substring(0, 70)}..."</em> <span style="font-size: 9px; color: #777;">(${p.created_at ? p.created_at.substring(0, 10) : '04.08'})</span>
+        </div>
+      `).join('');
+    }
+  }
+}
+
+function handleAddDisk() {
+  const title = document.getElementById('disk_title').value.trim();
+  const category = document.getElementById('disk_category').value;
+  const type = document.getElementById('disk_type').value;
+  const year = document.getElementById('disk_year').value;
+  const description = document.getElementById('disk_desc').value.trim();
+  const banner = document.getElementById('add-disk-banner');
+
+  if (!title) {
+    alert('Укажите название диска!');
+    return;
+  }
+
+  window.ApiClient.addMyDisk({ title, category, type, year, description })
+    .then(res => {
+      banner.className = 'retro-banner-success';
+      banner.textContent = '🎉 Диск успешно добавлен в каталог обмена!';
+      banner.style.display = 'block';
+      document.getElementById('add-disk-form').reset();
+      loadCabinetData();
+    })
+    .catch(err => {
+      alert('Ошибка добавления диска: ' + err.message);
+    });
+}
+</script>
+</body>
+</html>

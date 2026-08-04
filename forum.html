@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+  <title>Ретро-Форум 2000-х (phpBB 2.0) — КиберНикитка</title>
+  <link rel="stylesheet" href="css/retro-style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    .forum-modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.6); display: none; justify-content: center; align-items: center; z-index: 9999;
+    }
+    .forum-modal-window {
+      width: 550px; max-width: 95%; background: var(--color-win-gray);
+      border: 3px outset #FFFFFF; padding: 12px; box-shadow: 4px 4px 0px #000;
+    }
+    .category-row-clickable { cursor: pointer; transition: background 0.15s; }
+    .category-row-clickable:hover { background-color: #FFF8DC !important; }
+    .topic-row:hover { background-color: #FFF8DC; cursor: pointer; }
+    .forum-breadcrumb { font-size: 11px; margin-bottom: 10px; }
+    .forum-breadcrumb a { font-weight: bold; }
+    .user-card {
+      width: 135px; background-color: var(--color-zebra-blue); padding: 8px;
+      border: 1px inset #808080; font-size: 10px; text-align: center; flex-shrink: 0;
+    }
+    .user-avatar { width: 64px; height: 64px; border: 2px outset #FFF; object-fit: cover; margin-bottom: 4px; background: #000; }
+    .user-rank { display: inline-block; padding: 2px 6px; color: #FFF; font-weight: bold; margin: 2px 0; font-size: 9px; border-radius: 2px; }
+    .rank-admin { background: #CC0000; border: 1px solid #990000; }
+    .rank-master { background: #008000; border: 1px solid #005000; }
+    .rank-user { background: #808080; }
+  </style>
+</head>
+<body>
+
+<div class="site-container">
+  <!-- ШАПКА САЙТА -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html" class="wordart-logo" title="КиберНикитка">
+        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+      </a>
+      <div class="tagline" data-i18n="header.forumTagline">Конференция геймеров, коллекционеров дисков и сисадминов</div>
+    </div>
+    <div class="header-search">
+      <input type="text" id="forum-search-input" class="header-search-input" placeholder="Поиск по форуму..." aria-label="Поиск по форуму" data-i18n-placeholder="forum.searchPlaceholder" onkeydown="if(event.key==='Enter') filterForumTopics()">
+      <button type="button" class="header-search-btn" onclick="filterForumTopics()" data-i18n="header.searchBtn">Поиск</button>
+      <div class="lang-switcher-box">
+        <span class="lang-label" data-i18n="header.langSwitchLabel">LANG:</span>
+        <button type="button" class="lang-btn active" data-lang="ru" onclick="CyberI18n.setLang('ru')">🇷🇺 RU</button>
+        <button type="button" class="lang-btn" data-lang="en" onclick="CyberI18n.setLang('en')">🇬🇧 EN</button>
+      </div>
+    </div>
+    <div class="header-right">
+      <div><span data-i18n="header.urgentCall">Срочный вызов: </span><span class="phone-number">8 (900) 200-07-07</span></div>
+      <div id="header-clock" data-i18n="header.clockLoading">Загрузка времени...</div>
+    </div>
+  </header>
+
+  <!-- БЕГУЩАЯ СТРОКА -->
+  <div class="marquee-bar">
+    <marquee scrollamount="4" behavior="scroll" direction="left" data-i18n="marquee.forum">
+      ★ Добро пожаловать на форум «КиберНикитка»! Обсуждайте железо 2000-х, разгон процессоров и обмен дисками! ★
+    </marquee>
+  </div>
+
+  <!-- ОСНОВНОЙ ТРЕХКОЛОНОЧНЫЙ БЛОК -->
+  <div class="main-wrapper">
+    <!-- ЛЕВАЯ НАВИГАЦИЯ -->
+    <nav class="sidebar-left">
+      <h2 data-i18n="nav.sidebarTitle">НАВИГАЦИЯ</h2>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-button" data-i18n="nav.home">■ Главная страница</a>
+        <a href="services.html" class="nav-button" data-i18n="nav.services">■ Услуги и Цены</a>
+        <a href="disks.html" class="nav-button" data-i18n="nav.disks">■ Обмен CD/DVD</a>
+        <a href="forum.html" class="nav-button active" data-i18n="nav.forum">■ Ретро-Форум</a>
+        <a href="guestbook.html" class="nav-button" data-i18n="nav.guestbook">■ Гостевая книга</a>
+        <a href="contacts.html" class="nav-button" data-i18n="nav.contacts">■ Контакты мастерской</a>
+      </div>
+
+      <div class="informer-box" style="margin-top: 10px;">
+        <div class="informer-title" data-i18n="forum.statsTitle">СТАТИСТИКА</div>
+        <p><span data-i18n="forum.statTopics">Тем на форуме:</span> <strong id="stat-topics-count">16</strong></p>
+        <p><span data-i18n="forum.statPosts">Сообщений:</span> <strong id="stat-posts-count">94</strong></p>
+        <p><span data-i18n="forum.statUsers">Пользователей:</span> <strong>42</strong></p>
+      </div>
+
+      <h2 data-i18n="forum.quickLinksTitle">БЫСТРЫЕ ССЫЛКИ</h2>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <button type="button" class="retro-button" onclick="showCategoryView()" data-i18n="forum.btnHome">🏠 Главная форума</button>
+        <button type="button" class="retro-button" onclick="openNewTopicModal()" data-i18n="forum.btnNewTopic">✏️ Создать тему</button>
+      </div>
+    </nav>
+
+    <!-- ЦЕНТРАЛЬНЫЙ КОНТЕНТ (phpBB2 / IPB 1.3 СТИЛЬ) -->
+    <main class="content-center">
+      <div class="forum-breadcrumb" id="forum-breadcrumb">
+        <a href="index.html">Главная сайта</a> &raquo; <a href="#" onclick="showCategoryView(); return false;"><strong>Список форумов phpBB 2.0</strong></a>
+      </div>
+
+      <!-- VIEW 1: СПИСОК КАТЕГОРИЙ И ТЕМ (DEFAULT) -->
+      <div id="forum-index-view">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h1 style="margin: 0;" data-i18n="forum.mainHeading">Конференция «КиберНикитка»</h1>
+          <button type="button" class="retro-button" onclick="openNewTopicModal()" data-i18n="forum.btnCreateTopic">+ СОЗДАТЬ НОВУЮ ТЕМУ</button>
+        </div>
+
+        <!-- КАТЕГОРИИ ФОРУМА (ИНТЕРАКТИВНЫЕ РАЗДЕЛЫ) -->
+        <table class="retro-table">
+          <thead>
+            <tr>
+              <th style="width: 50%;" data-i18n="forum.colCategory">Форум / Описание (Кликните для фильтрации)</th>
+              <th style="text-align: center; width: 10%;" data-i18n="forum.colTopics">Темы</th>
+              <th style="text-align: center; width: 10%;" data-i18n="forum.colReplies">Ответы</th>
+              <th style="width: 30%;" data-i18n="forum.colLastPost">Последнее сообщение</th>
+            </tr>
+          </thead>
+          <tbody id="forum-categories-list">
+            <tr><td colspan="4" style="text-align: center;">Загрузка разделов форума...</td></tr>
+          </tbody>
+        </table>
+
+        <!-- ШАПКА СПИСКА ТЕМ С ИНДИКАТОРОМ КАТЕГОРИИ -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 6px;">
+          <h2 id="topics-section-title" style="margin: 0;" data-i18n="forum.allTopicsTitle">СПИСОК ВСЕХ ТЕМ (ПОСЛЕДНИЕ ОБНОВЛЕНИЯ)</h2>
+          <button type="button" class="retro-button" id="reset-cat-btn" style="display: none;" onclick="showCategoryView()" data-i18n="forum.btnShowAllCategories">ПОКАЗАТЬ ВСЕ РАЗДЕЛЫ</button>
+        </div>
+
+        <div id="forum-topics-list">
+          <p>Загрузка списка тем...</p>
+        </div>
+      </div>
+
+      <!-- VIEW 2: ЧТЕНИЕ КОНКРЕТНОЙ ТЕМЫ (THREAD READER) -->
+      <div id="forum-thread-view" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h1 id="thread-title" style="margin: 0; font-size: 14px;">Загрузка темы...</h1>
+          <button type="button" class="retro-button" onclick="showCategoryView()">&laquo; Назад к списку тем</button>
+        </div>
+
+        <div id="thread-posts-list">
+          <!-- Динамические посты темы -->
+        </div>
+
+        <!-- ФОРМА БЫСТРОГО ОТВЕТА В ТЕМУ -->
+        <div class="retro-form-box" style="margin-top: 15px;">
+          <h3 data-i18n="forum.quickReplyTitle">Быстрый ответ в эту тему</h3>
+          <form id="forum-reply-form" onsubmit="event.preventDefault(); submitForumPost();">
+            <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+              <div style="flex: 1;">
+                <label for="f_author" data-i18n="forum.labelAuthor">Ваше имя / Никнейм: *</label>
+                <input type="text" id="f_author" class="retro-input" value="Гость_Форума" required>
+              </div>
+              <div style="width: 120px;">
+                <label for="f_icq" data-i18n="forum.labelIcq">ICQ UIN:</label>
+                <input type="text" id="f_icq" class="retro-input" placeholder="777-200-07">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 4px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button type="button" class="retro-button" onclick="insertBBCode('[b]', '[/b]')"><strong>B</strong></button>
+              <button type="button" class="retro-button" onclick="insertBBCode('[i]', '[/i]')"><em>I</em></button>
+              <button type="button" class="retro-button" onclick="insertBBCode('[u]', '[/u]')"><u>U</u></button>
+              <button type="button" class="retro-button" onclick="insertBBCode('[code]', '[/code]')">Code</button>
+              <button type="button" class="retro-button" onclick="insertBBCode('[quote]', '[/quote]')">Quote</button>
+              <span style="margin-left: 10px; font-weight: bold;" data-i18n="forum.smiliesLabel">Смайлы:</span>
+              <button type="button" class="retro-button" onclick="insertBBCode(' :-D ', '')">:-D</button>
+              <button type="button" class="retro-button" onclick="insertBBCode(' ;-) ', '')">;-)</button>
+              <button type="button" class="retro-button" onclick="insertBBCode(' B-) ', '')">B-)</button>
+              <button type="button" class="retro-button" onclick="insertBBCode(' 8-) ', '')">8-)</button>
+            </div>
+
+            <div class="form-group">
+              <label for="f_content" data-i18n="forum.labelMessage">Сообщение: *</label>
+              <textarea id="f_content" class="retro-textarea" style="min-height: 90px;" placeholder="Напишите ваш ответ..." required data-i18n-placeholder="forum.replyPlaceholder"></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="retro-button">ОТПРАВИТЬ ОТВЕТ</button>
+              <button type="reset" class="retro-button">ОЧИСТИТЬ</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- ПРАВАЯ ПАНЕЛЬ ИНФОРМЕРОВ -->
+    <aside class="sidebar-right">
+      <h2>КТО ОНЛАЙН</h2>
+      <div class="informer-box" style="text-align: left;">
+        Всего онлайн: <strong>5</strong><br>
+        Гостей: 3, Пользователей: 2<br>
+        <em>Пользователи: Dimon_2007, nikitka_master</em>
+      </div>
+
+      <!-- ⏳ КОМПАКТНЫЙ РЕТРО-ИНФОРМЕР «ТОГДА (2007) VS СЕГОДНЯ» -->
+      <div class="informer-box informer-then-now">
+        <div class="informer-title">⏳ 2007 vs СЕГОДНЯ 🚀</div>
+        <div style="margin: 3px 0 2px 0; text-align: center;">
+          <label style="font-size: 8px; font-weight: bold; color: #000080;">🏙️ ГОРОД: </label>
+          <select id="inf-city-select" style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px; border: 1px solid #7F9DB9; background: #FFFDF0; color: #000; width: 115px;">
+            <optgroup label="🔍 Поиск города">
+              <option value="custom_search">🔍 [ Ввести свой город... ]</option>
+            </optgroup>
+            <optgroup label="🇷🇺 Россия">
+              <option value="moscow">📍 Москва</option>
+              <option value="spb">📍 Санкт-Петербург</option>
+              <option value="omsk">📍 Омск</option>
+              <option value="novosibirsk">📍 Новосибирск</option>
+              <option value="ekaterinburg">📍 Екатеринбург</option>
+              <option value="kazan">📍 Казань</option>
+              <option value="nnov">📍 Н. Новгород</option>
+              <option value="chelyabinsk">📍 Челябинск</option>
+              <option value="samara">📍 Самара</option>
+              <option value="ufa">📍 Уфа</option>
+              <option value="rostov">📍 Ростов-на-Дону</option>
+              <option value="krasnodar">📍 Краснодар</option>
+              <option value="voronezh">📍 Воронеж</option>
+              <option value="perm">📍 Пермь</option>
+              <option value="volgograd">📍 Волгоград</option>
+              <option value="krasnoyarsk">📍 Красноярск</option>
+              <option value="saratov">📍 Саратов</option>
+              <option value="tumen">📍 Тюмень</option>
+              <option value="tolyatti">📍 Тольятти</option>
+              <option value="barnaul">📍 Барнаул</option>
+              <option value="vladivostok">📍 Владивосток</option>
+            </optgroup>
+            <optgroup label="🇧🇾 Беларусь">
+              <option value="minsk">📍 Минск</option>
+              <option value="brest">📍 Брест</option>
+              <option value="grodno">📍 Гродно</option>
+              <option value="gomel">📍 Гомель</option>
+              <option value="vitebsk">📍 Витебск</option>
+              <option value="mogilev">📍 Могилев</option>
+            </optgroup>
+            <optgroup label="🇰🇿 Казахстан & СНГ">
+              <option value="almaty">📍 Алматы</option>
+              <option value="astana">📍 Астана</option>
+              <option value="yerevan">📍 Ереван</option>
+              <option value="tbilisi">📍 Тбилиси</option>
+              <option value="tashkent">📍 Ташкент</option>
+            </optgroup>
+          </select>
+        </div>
+        <div id="inf-custom-box" style="display: none; margin: 3px 0; text-align: center; background: #E6F0FA; padding: 3px; border: 1px inset #808080;">
+          <input type="text" id="inf-custom-input" placeholder="Название города..." style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px 3px; width: 95px; border: 1px solid #7F9DB9;">
+          <button type="button" id="inf-custom-btn" style="font-size: 8.5px; padding: 0 4px; cursor: pointer; background: #FFFDF0; border: 1px outset #FFF;">OK</button>
+          <div id="inf-custom-msg" style="font-size: 7.5px; color: #8B0000; margin-top: 2px;"></div>
+        </div>
+        <table class="informer-mini-table">
+          <thead>
+            <tr>
+              <th style="width: 38%;">Параметр</th>
+              <th class="col-then" style="width: 26%;">2007</th>
+              <th class="col-now" style="width: 36%;">СЕЙЧАС</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong id="inf-weather-label">🌡️ Погода</strong></td>
+              <td id="inf-w-then" class="col-then">+20.6°C</td>
+              <td id="inf-w-now" class="col-now">+25.2°C</td>
+            </tr>
+            <tr>
+              <td><strong>💵 USD (ЦБ)</strong></td>
+              <td class="col-then">25.56₽</td>
+              <td id="inf-usd-now" class="col-now">80.07₽ <span class="retro-arrow-up">▲</span></td>
+            </tr>
+            <tr>
+              <td><strong>💶 EUR (ЦБ)</strong></td>
+              <td class="col-then">34.98₽</td>
+              <td id="inf-eur-now" class="col-now">91.96₽ <span class="retro-arrow-up">▲</span></td>
+            </tr>
+            <tr>
+              <td><strong>⛽ АИ-92</strong></td>
+              <td class="col-then">18.50₽</td>
+              <td class="col-now col-fuel-multi" title="РФ Avg: 68.82₽ / Москва: 65.50₽">
+                <span class="fuel-prem">68.82₽</span> <span class="fuel-sep">/</span> <span class="fuel-std">65.50₽</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="informer-marquee">
+          <marquee scrollamount="2" behavior="scroll">🎵 Хит 2007: МакSим — «Знаешь ли ты» ★ 🎮 Игра 2007: S.T.A.L.K.E.R. ★ ⛽ АИ-92: 18.50₽ ➔ 68.82₽ (РФ) / 65.50₽ (МСК)</marquee>
+        </div>
+      </div>
+
+      <div class="informer-box" style="text-align: center; border: 2px solid #0088CC; background: #F0F8FF;">
+        <div style="background: #0088CC; color: #FFF; font-weight: bold; padding: 2px 4px; font-size: 10px;">
+          📱 ТЕЛЕГРАМ СОЗДАТЕЛЯ
+        </div>
+        <div style="margin-top: 4px; font-size: 10px;">
+          Пишите Мастеру Никитке прямо в Telegram:<br>
+          <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" style="font-weight: bold; color: #0088CC; font-size: 11px; text-decoration: underline;">
+            👉 @Ai_nikitka93
+          </a>
+        </div>
+      </div>
+
+      <h2>ДРУЗЬЯ САЙТА</h2>
+      <div class="badges-container">
+        <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" class="badge-88x31" title="Telegram Создателя: @Ai_nikitka93"><img src="img/banner-telegram.png" alt="Telegram @Ai_nikitka93" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-netscape" title="Netscape Navigator"><img src="img/banner-netscape.png" alt="Netscape Navigator" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-rambler" title="Rambler TOP100"><img src="img/banner-rambler.png" alt="Rambler TOP100" width="88" height="31"></a>
+        <a href="#" class="badge-88x31 badge-800x600" title="1024x768 Best View"><img src="img/banner-800x600.png" alt="1024x768 Best View" width="88" height="31"></a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ПОДВАЛ САЙТА -->
+  <footer class="site-footer">
+    <div>
+      <span data-i18n="footer.copyright">© 2001–2026 Компьютерная помощь «КиберНикитка». Powered by phpBB 2.0.22.</span> <a href="admin.html" style="color: #FFF; text-decoration: underline;" data-i18n="footer.adminLink">Панель Мастера [Admin]</a><br>
+      <span style="font-size: 9.5px; color: #FFFF80; font-weight: bold;" data-i18n="footer.portfolioNote">🎈 Развлекательный арт-проект & Ретро Web 1.0 Портфолио Концепт</span>
+    </div>
+    <div>
+      <span data-i18n="footer.hitCounterLabel">Посетитель № </span><span id="hit-counter" class="counter-box">004219</span>
+    </div>
+  </footer>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО СОЗДАНИЯ НОВОЙ ТЕМЫ -->
+<div class="forum-modal-overlay" id="new-topic-modal">
+  <div class="forum-modal-window">
+    <div style="background: linear-gradient(180deg, #000080, #1084D0); color: #FFF; padding: 4px 8px; font-weight: bold; display: flex; justify-content: space-between; border: 1px outset #FFF; margin-bottom: 10px;">
+      <span>✏️ СОЗДАТЬ НОВУЮ ТЕМУ НА ФОРУМЕ</span>
+      <span style="cursor: pointer;" onclick="closeNewTopicModal()">✕</span>
+    </div>
+
+    <form id="new-topic-form" onsubmit="event.preventDefault(); submitNewTopic();">
+      <div class="form-group">
+        <label for="nt_category">Выберите раздел форума: *</label>
+        <select id="nt_category" class="retro-select">
+          <option value="cat-01">📁 Железо и Софт 2000-х</option>
+          <option value="cat-02">📀 Обсуждение Дисков и Обмена</option>
+          <option value="cat-03">🛠 Вопросы Мастеру Никитке (Советы и FAQ)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="nt_title">Заголовок темы: *</label>
+        <input type="text" id="nt_title" class="retro-input" placeholder="Например: Помогите настроить модем 56k в Windows XP" required>
+      </div>
+
+      <div style="display: flex; gap: 10px;" class="form-group">
+        <div style="flex: 1;">
+          <label for="nt_author">Ваше Имя / Никнейм: *</label>
+          <input type="text" id="nt_author" class="retro-input" value="Гость_Форума" required>
+        </div>
+        <div style="width: 140px;">
+          <label for="nt_icq">ICQ UIN:</label>
+          <input type="text" id="nt_icq" class="retro-input" placeholder="123-456-789">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="nt_content">Текст сообщения: *</label>
+        <textarea id="nt_content" class="retro-textarea" style="height: 120px;" placeholder="Опишите ваш вопрос или тему для обсуждения..." required></textarea>
+      </div>
+
+      <div class="form-actions" style="justify-content: flex-end;">
+        <button type="submit" class="retro-button">СОЗДАТЬ ТЕМУ</button>
+        <button type="button" class="retro-button" onclick="closeNewTopicModal()">ОТМЕНА</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/api-client.js"></script>
+<script src="js/sensory-pack.js"></script>
+<script src="js/main.js"></script>
+<script>
+const DEFAULT_MASTER_TOPICS = [
+  {
+    id: 'top-advice-01',
+    category_id: 'cat-03',
+    author: 'nikitka_master',
+    title: '📌 [СОВЕТ МАСТЕРА] Топ-5 настроек Windows XP SP3 для максимальной скорости в играх!',
+    is_pinned: 1,
+    views_count: 512,
+    replies_count: 1,
+    created_at: '2026-08-04T10:00:00Z'
+  },
+  {
+    id: 'top-faq-01',
+    category_id: 'cat-03',
+    author: 'nikitka_master',
+    title: '📌 [F.A.Q. / ВОПРОС-ОТВЕТ] Что делать при вылете Синего Экрана Смерти (BSOD 0x000000D1)?',
+    is_pinned: 1,
+    views_count: 389,
+    replies_count: 1,
+    created_at: '2026-08-03T14:30:00Z'
+  },
+  {
+    id: 'top-01',
+    category_id: 'cat-01',
+    author: 'Dimon_2007',
+    title: 'Что лучше для игр 2007 года: Core 2 Duo E6600 или Athlon 64 X2 6000+?',
+    is_pinned: 0,
+    views_count: 142,
+    replies_count: 2,
+    created_at: '2026-08-01T12:00:00Z'
+  },
+  {
+    id: 'top-02',
+    category_id: 'cat-02',
+    author: 'Alex_Lenina',
+    title: 'Ищу диск с оригинальной GTA III в переводе Бука! Обменяю на Heroes V.',
+    is_pinned: 0,
+    views_count: 89,
+    replies_count: 1,
+    created_at: '2026-08-03T09:15:00Z'
+  }
+];
+
+const DEFAULT_MASTER_POSTS = [
+  {
+    id: 'post-adv-01',
+    topic_id: 'top-advice-01',
+    author: 'nikitka_master',
+    rank_title: '[Администратор]',
+    icq_uin: '777-200-07',
+    avatar_url: 'img/photo-nikitka.png',
+    content: 'Привет всем ретро-геймерам! Как администратор и компьютерный мастер с 2001 года, даю вам 5 золотых советов по оптимизации вашей системы:\n\n[b]1. Отключите ненужные службы[/b] в msconfig (Служба индексирования, Автоматическое обновление, Веб-клиент).\n[b]2. Размер файла подкачки (pagefile.sys)[/b]: установите фиксированный размер (1.5x от объёма вашей ОЗУ DDR2).\n[b]3. Кодеки и видео[/b]: ставьте только [code]K-Lite Codec Pack 3.90 Full[/code] — идеален для KMPlayer и Winamp 2.x!\n[b]4. Очистка от пыли[/b]: раз в полгода меняйте термопасту КПТ-8 на процессоре LGA775 и видеокарте AGP!\n[b]5. Задавайте вопросы[/b]: пишите любые вопросы по железу прямо в этот раздел!',
+    created_at: '2026-08-04T10:00:00Z'
+  },
+  {
+    id: 'post-adv-02',
+    topic_id: 'top-advice-01',
+    author: 'Gamer_2007',
+    rank_title: '[Пользователь]',
+    icq_uin: '444-555-11',
+    content: 'Спасибо огромнейшее Никитке за совет! Отключил индексацию — Windows XP стала загружаться за 12 секунд!',
+    created_at: '2026-08-04T11:20:00Z'
+  },
+  {
+    id: 'post-faq-01',
+    topic_id: 'top-faq-01',
+    author: 'nikitka_master',
+    rank_title: '[Администратор]',
+    icq_uin: '777-200-07',
+    avatar_url: 'img/photo-nikitka.png',
+    content: 'Разбираем самую частую проблему 2000-х годов — Синий Экран Смерти:\n[quote]Код ошибки: DRIVER_IRQL_NOT_LESS_OR_EQUAL (0x000000D1)[/quote]\n[b]Причина:[/b] Конфликт драйверов NVIDIA ForceWare/ATI Catalyst или перегрев чипсета/плашек оперативной памяти.\n\n[b]Решение от Мастера Никитки:[/b]\n1. Проверьте плашки ОЗУ утилитой MemTest86.\n2. Переустановите драйвер видеокарты с полной очисткой через Driver Cleaner.\n3. Если вылет повторяется — звоните 8 (900) 200-07-07, привозите системник ко мне на радиорынок, всё настроим!',
+    created_at: '2026-08-03T14:30:00Z'
+  },
+  {
+    id: 'post-01',
+    topic_id: 'top-01',
+    author: 'Dimon_2007',
+    rank_title: '[Пользователь]',
+    content: 'Народ, собираю ПК под S.T.A.L.K.E.R. и Crysis. Стою перед выбором проца: Интел Core 2 Duo E6600 или АМД Athlon 64 X2 6000+? Видеокарта будет GeForce 8800 GTS.',
+    created_at: '2026-08-01T12:00:00Z'
+  },
+  {
+    id: 'post-02',
+    topic_id: 'top-01',
+    author: 'nikitka_master',
+    rank_title: '[Администратор]',
+    icq_uin: '777-200-07',
+    avatar_url: 'img/photo-nikitka.png',
+    content: 'Привет! Core 2 Duo архитектуры Conroe разгоняется намного лучше и меньше греется. Бери E6600 и материнку на чипсете P35, не пожалеешь!',
+    created_at: '2026-08-02T09:10:00Z'
+  },
+  {
+    id: 'post-03',
+    topic_id: 'top-02',
+    author: 'Alex_Lenina',
+    rank_title: '[Пользователь]',
+    content: 'Мужики, очень нужен лицензионный диск GTA 3. Готов отдать в обмен отличный диск Heroes of Might and Magic V в боксе!',
+    created_at: '2026-08-03T09:15:00Z'
+  }
+];
+
+let forumData = {
+  categories: [
+    { id: 'cat-01', title: 'Железо и Софт 2000-х', description: 'Обсуждение процессоров Socket 478/LGA775, видеокарт AGP и настройки Windows XP.', order_index: 1 },
+    { id: 'cat-02', title: 'Обсуждение Дисков и Обмена', description: 'Поиск редких лицензионных дисков, обзоры коллекций и предложенные обмены.', order_index: 2 },
+    { id: 'cat-03', title: 'Вопросы Мастеру Никитке (Советы и FAQ)', description: 'Советы Администратора по оптимизации ПК, решению BSOD и выбору деталей.', order_index: 3 }
+  ],
+  topics: DEFAULT_MASTER_TOPICS,
+  posts: DEFAULT_MASTER_POSTS
+};
+
+let activeTopicId = null;
+let selectedCategoryId = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadForumData();
+  setupAuthAutoFill();
+});
+
+function setupAuthAutoFill() {
+  const user = window.ApiClient ? window.ApiClient.getCurrentUser() : null;
+  if (user && user.username) {
+    const fAuth = document.getElementById('f_author');
+    const fIcq = document.getElementById('f_icq');
+    const ntAuth = document.getElementById('nt_author');
+    const ntIcq = document.getElementById('nt_icq');
+
+    if (fAuth) { fAuth.value = user.display_name || user.username; fAuth.readOnly = true; fAuth.style.backgroundColor = '#EAEAEA'; }
+    if (fIcq) { fIcq.value = user.icq_uin || '777-200-07'; }
+    if (ntAuth) { ntAuth.value = user.display_name || user.username; ntAuth.readOnly = true; ntAuth.style.backgroundColor = '#EAEAEA'; }
+    if (ntIcq) { ntIcq.value = user.icq_uin || '777-200-07'; }
+  }
+}
+
+function loadForumData() {
+  window.ApiClient.getForum()
+    .then(res => {
+      if (res && res.data) {
+        const fetched = res.data;
+        if (fetched.categories && fetched.categories.length) forumData.categories = fetched.categories;
+        
+        const localTopics = JSON.parse(localStorage.getItem('cyber_user_topics') || '[]');
+        const localPosts = JSON.parse(localStorage.getItem('cyber_user_posts') || '[]');
+
+        const existingTopicIds = (fetched.topics || []).map(t => t.id);
+        const missingMasterTopics = DEFAULT_MASTER_TOPICS.filter(dt => !existingTopicIds.includes(dt.id));
+        const missingLocalTopics = localTopics.filter(lt => !existingTopicIds.includes(lt.id));
+
+        forumData.topics = [...missingLocalTopics, ...missingMasterTopics, ...(fetched.topics || [])];
+
+        const existingPostIds = (fetched.posts || []).map(p => p.id);
+        const missingMasterPosts = DEFAULT_MASTER_POSTS.filter(dp => !existingPostIds.includes(dp.id));
+        const missingLocalPosts = localPosts.filter(lp => !existingPostIds.includes(lp.id));
+
+        forumData.posts = [...missingLocalPosts, ...missingMasterPosts, ...(fetched.posts || [])];
+
+        renderCategories();
+        renderTopics();
+        updateStats();
+      }
+    })
+    .catch(err => {
+      console.warn('[Forum Error Fallback]', err);
+      const localTopics = JSON.parse(localStorage.getItem('cyber_user_topics') || '[]');
+      const localPosts = JSON.parse(localStorage.getItem('cyber_user_posts') || '[]');
+      forumData.topics = [...localTopics, ...DEFAULT_MASTER_TOPICS];
+      forumData.posts = [...localPosts, ...DEFAULT_MASTER_POSTS];
+      renderCategories();
+      renderTopics();
+      updateStats();
+    });
+}
+
+function updateStats() {
+  const topicsCountEl = document.getElementById('stat-topics-count');
+  const postsCountEl = document.getElementById('stat-posts-count');
+  if (topicsCountEl) topicsCountEl.textContent = forumData.topics ? forumData.topics.length : 16;
+  if (postsCountEl) postsCountEl.textContent = forumData.posts ? forumData.posts.length : 94;
+}
+
+function renderCategories() {
+  const tbody = document.getElementById('forum-categories-list');
+  if (!tbody) return;
+
+  const cats = forumData.categories || [];
+  if (cats.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4">Нет категорий</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = cats.map(cat => {
+    const catTopics = (forumData.topics || []).filter(t => t.category_id === cat.id);
+    const catTopicIds = catTopics.map(t => t.id);
+    const catPosts = (forumData.posts || []).filter(p => catTopicIds.includes(p.topic_id));
+    const isSelected = selectedCategoryId === cat.id;
+
+    return `
+      <tr class="category-row-clickable" onclick="filterByCategory('${cat.id}')" style="${isSelected ? 'background-color: #FFFFD0; border-left: 4px solid var(--color-navy-dark);' : ''}">
+        <td>
+          <div style="font-weight: bold; color: var(--color-navy-dark); font-size: 12px;">
+            📁 ${cat.title} ${isSelected ? '◄ [АКТИВНЫЙ РАЗДЕЛ]' : ''}
+          </div>
+          <div style="font-size: 10px; color: #555;">
+            ${cat.description || ''}
+          </div>
+        </td>
+        <td style="text-align: center; font-weight: bold;">${catTopics.length}</td>
+        <td style="text-align: center; font-weight: bold;">${catPosts.length}</td>
+        <td style="font-size: 10px;">
+          <strong>Мастер Никитка</strong><br>
+          Сегодня &raquo;
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function filterByCategory(catId) {
+  selectedCategoryId = catId;
+  renderCategories();
+
+  const catObj = (forumData.categories || []).find(c => c.id === catId);
+  const titleEl = document.getElementById('topics-section-title');
+  const resetBtn = document.getElementById('reset-cat-btn');
+
+  if (titleEl && catObj) {
+    titleEl.textContent = `СПИСОК ТЕМ В РАЗДЕЛЕ: 📁 ${catObj.title.toUpperCase()}`;
+  }
+  if (resetBtn) {
+    resetBtn.style.display = 'inline-block';
+  }
+
+  const filtered = (forumData.topics || []).filter(t => t.category_id === catId);
+  renderTopics(filtered);
+}
+
+function showCategoryView() {
+  activeTopicId = null;
+  selectedCategoryId = null;
+  document.getElementById('forum-index-view').style.display = 'block';
+  document.getElementById('forum-thread-view').style.display = 'none';
+  document.getElementById('forum-breadcrumb').innerHTML = `
+    <a href="index.html">Главная сайта</a> &raquo; <a href="#" onclick="showCategoryView(); return false;"><strong>Список форумов phpBB 2.0</strong></a>
+  `;
+
+  const titleEl = document.getElementById('topics-section-title');
+  const resetBtn = document.getElementById('reset-cat-btn');
+  if (titleEl) titleEl.textContent = 'СПИСОК ВСЕХ ТЕМ (ПОСЛЕДНИЕ ОБНОВЛЕНИЯ)';
+  if (resetBtn) resetBtn.style.display = 'none';
+
+  renderCategories();
+  renderTopics();
+}
+
+function renderTopics(filteredTopics = null) {
+  const container = document.getElementById('forum-topics-list');
+  if (!container) return;
+
+  let topics = filteredTopics || forumData.topics || [];
+  topics.sort((a, b) => (b.is_pinned || 0) - (a.is_pinned || 0));
+
+  if (topics.length === 0) {
+    container.innerHTML = '<p style="padding: 10px; background: #FFF;">В данном разделе пока нет тем. Станьте первым, кто создаст тему!</p>';
+    return;
+  }
+
+  container.innerHTML = topics.map(t => {
+    const topicPosts = (forumData.posts || []).filter(p => p.topic_id === t.id);
+    const repliesCount = t.replies_count || (topicPosts.length > 0 ? topicPosts.length - 1 : 0);
+    const viewsCount = t.views_count || 142;
+    const isPinned = t.is_pinned === 1 || t.is_pinned === true;
+    const isAdminTopic = t.author === 'nikitka_master';
+
+    return `
+      <article class="guestbook-post topic-row" onclick="openTopic('${t.id}')" style="${isPinned ? 'border: 2px solid #CC0000; background-color: #FFFDF0;' : ''}">
+        <div class="post-header" style="${isPinned ? 'background: linear-gradient(180deg, #8B0000, #CC0000); color: #FFF;' : ''}">
+          <span>${isPinned ? '📌 [ЗАКРЕПЛЕНО] ' : '💬 '}${t.title}</span>
+          <span>Автор: <strong>${t.author || 'Гость'}</strong> ${isAdminTopic ? '👑 [Админ]' : ''}</span>
+        </div>
+        <div style="padding: 6px 8px; display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #444;">
+          <div>
+            Ответов: <strong>${repliesCount}</strong> | Просмотров: <strong>${viewsCount}</strong>
+          </div>
+          <div>
+            Дата: ${t.created_at ? t.created_at.substring(0, 10) : '04.08.2026'} &raquo;
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function openTopic(topicId) {
+  activeTopicId = topicId;
+  const topic = (forumData.topics || []).find(t => t.id === topicId);
+  if (!topic) return;
+
+  document.getElementById('forum-index-view').style.display = 'none';
+  document.getElementById('forum-thread-view').style.display = 'block';
+
+  document.getElementById('forum-breadcrumb').innerHTML = `
+    <a href="index.html">Главная сайта</a> &raquo; 
+    <a href="#" onclick="showCategoryView(); return false;">Список форумов phpBB 2.0</a> &raquo; 
+    <strong>${topic.title}</strong>
+  `;
+
+  document.getElementById('thread-title').textContent = (topic.is_pinned ? '📌 ' : '💬 ') + topic.title;
+
+  renderPosts(topicId);
+}
+
+function renderPosts(topicId) {
+  const container = document.getElementById('thread-posts-list');
+  if (!container) return;
+
+  const posts = (forumData.posts || []).filter(p => p.topic_id === topicId);
+  if (posts.length === 0) {
+    container.innerHTML = '<p>В этой теме пока нет сообщений.</p>';
+    return;
+  }
+
+  container.innerHTML = posts.map(p => {
+    const isAdmin = p.author === 'nikitka_master' || p.rank_title === '[Администратор]';
+    const isMaster = p.rank_title === '[Мастер ПК]';
+    const avatar = p.avatar_url || (isAdmin ? 'img/photo-nikitka.png' : 'img/avatar-cs.png');
+
+    let rankBadge = '<span class="user-rank rank-user">[Пользователь]</span>';
+    if (isAdmin) rankBadge = '<span class="user-rank rank-admin">[Администратор]</span>';
+    else if (isMaster) rankBadge = '<span class="user-rank rank-master">[Мастер ПК]</span>';
+
+    return `
+      <article class="guestbook-post" style="${isAdmin ? 'border: 2px solid #CC0000;' : ''}">
+        <div class="post-header" style="${isAdmin ? 'background: linear-gradient(180deg, #8B0000, #CC0000); color: #FFF;' : ''}">
+          <span>Сообщение от: <strong>${p.author || 'Пользователь'}</strong> ${isAdmin ? '👑 [Создатель сайта]' : ''}</span>
+          <span>${p.created_at ? p.created_at.substring(0, 16).replace('T', ' ') : '04.08.2026'}</span>
+        </div>
+        <div style="display: flex; gap: 10px; padding: 8px;">
+          <div class="user-card" style="${isAdmin ? 'background-color: #FFF0F0; border-color: #CC0000;' : ''}">
+            <img src="${avatar}" alt="Avatar" class="user-avatar"><br>
+            <strong style="${isAdmin ? 'color: #CC0000;' : ''}">${p.author || 'Пользователь'}</strong><br>
+            ${rankBadge}<br>
+            ICQ: ${p.icq_uin || '777-200-07'}
+          </div>
+          <div style="flex-grow: 1; font-size: 11px; line-height: 1.5; white-space: pre-line;">
+            ${formatBBCode(p.content || '')}
+            ${p.pc_specs || p.signature ? `\n\n<div style="border-top: 1px dashed #AAA; margin-top: 6px; padding-top: 4px; font-size: 9px; color: #555;">_________________<br>💻 <strong>Конфигурация ПК:</strong> ${p.pc_specs || p.signature}</div>` : ''}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function formatBBCode(str) {
+  if (!str) return '';
+  let formatted = str
+    .replace(/\[b\](.*?)\[\/b\]/gi, '<strong>$1</strong>')
+    .replace(/\[i\](.*?)\[\/i\]/gi, '<em>$1</em>')
+    .replace(/\[u\](.*?)\[\/u\]/gi, '<u>$1</u>')
+    .replace(/\[code\](.*?)\[\/code\]/gi, '<pre style="background: #000; color: #00FF00; padding: 6px; font-family: monospace; font-size: 10px; border: 1px inset #FFF;">$1</pre>')
+    .replace(/\[quote\](.*?)\[\/quote\]/gi, '<blockquote style="background: #FFFFE0; border-left: 4px solid #CC0000; margin: 6px 0; padding: 6px 10px; font-style: italic; border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;">$1</blockquote>')
+    .replace(/:-D/g, '😃')
+    .replace(/;-\)/g, '😉')
+    .replace(/B-\)/g, '😎')
+    .replace(/8-\)/g, '🤓');
+  return formatted;
+}
+
+function openNewTopicModal() {
+  document.getElementById('new-topic-modal').style.display = 'flex';
+}
+
+function closeNewTopicModal() {
+  document.getElementById('new-topic-modal').style.display = 'none';
+}
+
+function submitNewTopic() {
+  const catId = document.getElementById('nt_category').value;
+  const title = document.getElementById('nt_title').value;
+  const author = document.getElementById('nt_author').value;
+  const icq = document.getElementById('nt_icq').value;
+  const content = document.getElementById('nt_content').value;
+
+  window.ApiClient.sendForumTopic({
+    category_id: catId,
+    title: title,
+    author: author,
+    icq_uin: icq,
+    content: content
+  }).then(res => {
+    alert('🎉 Тема успешно создана на форуме!');
+    closeNewTopicModal();
+
+    const newTopId = res.data?.topic_id || ('top-' + Date.now());
+    const newTopicObj = {
+      id: newTopId,
+      category_id: catId,
+      title: title,
+      author: author,
+      views_count: 1,
+      replies_count: 0,
+      is_pinned: 0,
+      created_at: new Date().toISOString()
+    };
+    const newPostObj = {
+      id: res.data?.post_id || ('post-' + Date.now()),
+      topic_id: newTopId,
+      author: author,
+      icq_uin: icq,
+      rank_title: '[Пользователь]',
+      content: content,
+      created_at: new Date().toISOString()
+    };
+
+    if (!forumData.topics) forumData.topics = [];
+    if (!forumData.posts) forumData.posts = [];
+    forumData.topics.unshift(newTopicObj);
+    forumData.posts.push(newPostObj);
+
+    const localTopics = JSON.parse(localStorage.getItem('cyber_user_topics') || '[]');
+    localTopics.unshift(newTopicObj);
+    localStorage.setItem('cyber_user_topics', JSON.stringify(localTopics));
+
+    const localPosts = JSON.parse(localStorage.getItem('cyber_user_posts') || '[]');
+    localPosts.push(newPostObj);
+    localStorage.setItem('cyber_user_posts', JSON.stringify(localPosts));
+
+    renderTopics();
+    updateStats();
+    openTopic(newTopId);
+  }).catch(err => {
+    alert('Ошибка при создании темы: ' + err.message);
+  });
+}
+
+function submitForumPost() {
+  if (!activeTopicId) return;
+  const author = document.getElementById('f_author').value;
+  const icq = document.getElementById('f_icq').value;
+  const content = document.getElementById('f_content').value;
+
+  window.ApiClient.sendForumPost({
+    topic_id: activeTopicId,
+    author: author,
+    content: content
+  }).then(res => {
+    alert('💬 Ваш ответ добавлен в тему!');
+    document.getElementById('f_content').value = '';
+
+    const newPost = {
+      id: res.data?.id || ('post-' + Date.now()),
+      topic_id: activeTopicId,
+      author: author,
+      icq_uin: icq,
+      rank_title: '[Пользователь]',
+      content: content,
+      created_at: new Date().toISOString()
+    };
+    if (!forumData.posts) forumData.posts = [];
+    forumData.posts.push(newPost);
+
+    const localPosts = JSON.parse(localStorage.getItem('cyber_user_posts') || '[]');
+    localPosts.push(newPost);
+    localStorage.setItem('cyber_user_posts', JSON.stringify(localPosts));
+
+    renderPosts(activeTopicId);
+    updateStats();
+  }).catch(err => {
+    alert('Ошибка ответа: ' + err.message);
+  });
+}
+
+function insertBBCode(startTag, endTag) {
+  const txt = document.getElementById('f_content');
+  if (!txt) return;
+  const start = txt.selectionStart;
+  const end = txt.selectionEnd;
+  const val = txt.value;
+  txt.value = val.substring(0, start) + startTag + val.substring(start, end) + endTag + val.substring(end);
+  txt.focus();
+}
+
+function filterForumTopics() {
+  const q = document.getElementById('forum-search-input').value.toLowerCase().trim();
+  if (!q) {
+    renderTopics();
+    return;
+  }
+  const filtered = (forumData.topics || []).filter(t => t.title.toLowerCase().includes(q) || t.author.toLowerCase().includes(q));
+  renderTopics(filtered);
+}
+</script>
+</body>
+</html>
