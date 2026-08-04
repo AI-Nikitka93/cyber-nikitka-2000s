@@ -88,7 +88,7 @@ flowchart TD
 
     UI -->|Ввод пользователя| XSS
     XSS -->|Валидированный payload| JS
-    JS -->|AJAX Fetch (X-Cyber-Token)| API
+    JS -->|"AJAX Fetch with X-Cyber-Token"| API
     JS -.->|Резервный офлайн-режим| LS
     JS -->|Интерактивные события| AUDIO
     

@@ -86,7 +86,7 @@ flowchart TD
 
     UI -->|User Interaction| XSS
     XSS -->|Validated Payload| JS
-    JS -->|AJAX Fetch (X-Cyber-Token)| API
+    JS -->|"AJAX Fetch with X-Cyber-Token"| API
     JS -.->|Offline / Fallback Mode| LS
     JS -->|Interactive UI Events| AUDIO
     
