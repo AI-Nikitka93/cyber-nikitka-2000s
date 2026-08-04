@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="40" viewBox="0 0 180 40">
+  <g transform="translate(20, 20)">
+    <ellipse cx="7" cy="-9" rx="6" ry="4.5" transform="rotate(-35 7 -9)" fill="#FF1414" stroke="#900000" stroke-width="0.8"/>
+    <ellipse cx="0" cy="-12" rx="4.5" ry="6" fill="#00D700" stroke="#006000" stroke-width="0.8"/>
+    <ellipse cx="-7" cy="-8" rx="6" ry="4.5" transform="rotate(30 -7 -8)" fill="#00D700" stroke="#006000" stroke-width="0.8"/>
+    <ellipse cx="-9" cy="2" rx="6" ry="4.5" transform="rotate(-20 -9 2)" fill="#00D700" stroke="#006000" stroke-width="0.8"/>
+    <ellipse cx="-3" cy="9" rx="4.5" ry="6" transform="rotate(30 -3 9)" fill="#00D700" stroke="#006000" stroke-width="0.8"/>
+    <ellipse cx="6" cy="8" rx="6" ry="4.5" transform="rotate(-40 6 8)" fill="#00D700" stroke="#006000" stroke-width="0.8"/>
+    <ellipse cx="10" cy="0" rx="6" ry="4.5" transform="rotate(10 10 0)" fill="#00D700" stroke="#006000" stroke-width="0.8"/>
+    <circle cx="0" cy="0" r="5.5" fill="#FFE600" stroke="#A07000" stroke-width="0.9"/>
+  </g>
+  <text x="45" y="24" font-family="Impact, Arial Black" font-size="24" fill="#008000">ICQ</text>
+  <text x="44" y="23" font-family="Impact, Arial Black" font-size="24" fill="#00E000">ICQ</text>
+  <text x="92" y="24" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" fill="#006400">777-200-07</text>
+  <text x="92" y="35" font-family="Tahoma, sans-serif" font-size="9" font-weight="bold" fill="#00B300">[● В СЕТИ]</text>
+</svg>

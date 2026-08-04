@@ -16,7 +16,7 @@ try {
   console.warn('[Server Warning] Модуль turso.js не найден. Работает в режиме Fallback.');
 }
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8089;
 const PUBLIC_DIR = path.join(__dirname, '..');
 const BACKUP_FILE = path.join(PUBLIC_DIR, 'data_backup.json');
 

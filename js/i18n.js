@@ -115,7 +115,10 @@
       title: { ru: 'СТАТУС МАСТЕРА', en: 'MASTER STATUS' },
       online: { ru: '● В СЕТИ (ONLINE)', en: '● ONLINE' },
       eta: { ru: 'Готов выехать на дом в течение 1 часа!', en: 'Ready for home visit within 1 hour!' },
-      icq: { ru: 'ICQ: 777-200-07', en: 'ICQ: 777-200-07' }
+      icq: {
+        ru: '<img src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon"> ICQ: <strong>777-200-07</strong>',
+        en: '<img src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon"> ICQ: <strong>777-200-07</strong>'
+      }
     },
 
     // 3. INDEX PAGE
@@ -216,6 +219,60 @@
       hint: {
         ru: '💡 Отметьте галочками нужные услуги мастера — стоимость и скидка посчитаются автоматически!',
         en: '💡 Check the required services — total cost and discount calculate automatically!'
+      },
+      colSelect: { ru: 'Выбор', en: 'Select' },
+      colName: { ru: 'Наименование услуги', en: 'Service Description' },
+      colDesc: { ru: 'Описание работы и софт 2000-х', en: 'Work Details & 2000s Software' },
+      colPrice: { ru: 'Цена (руб.)', en: 'Price (RUB)' },
+      table: {
+        freeNotice: { ru: 'БЕСПЛАТНО*', en: 'FREE*' },
+        freeNote: { ru: '* Выезд мастера по городу бесплатный при заказе ремонта от 500 рублей.', en: '* Free master visit with any repair order of 500 RUB or more.' }
+      },
+      items: {
+        visit: {
+          name: { ru: '🚚 Выезд мастера по городу', en: '🚚 Master City Visit' },
+          desc: { ru: 'Диагностика системного блока, БП и компонентов на дому', en: 'In-home diagnostic of PC tower, PSU & components' }
+        },
+        dustKpt8: {
+          name: { ru: '🧹 Чистка от пыли + Замена КПТ-8', en: '🧹 Dust Clean + KPT-8 Paste' },
+          desc: { ru: 'Полное продувание кулеров, чистка радиаторов, нанесение пасты КПТ-8', en: 'Full cooler blowout, heatsink cleaning, fresh KPT-8 thermal paste' }
+        },
+        winXp: {
+          name: { ru: '📀 Установка Windows XP SP3 + Драйверы', en: '📀 Windows XP SP3 Install + Drivers' },
+          desc: { ru: 'Установка чистой ОС, драйверы ForceWare/Catalyst, Direct-X 9.0c', en: 'Clean OS install, ForceWare/Catalyst drivers, DirectX 9.0c' }
+        },
+        trojanRemoval: {
+          name: { ru: '🛡️ Лечение от вирусов и SMS-блокеров', en: '🛡️ Virus & SMS Blocker Removal' },
+          desc: { ru: 'Удаление баннеров-вымогателей, проверка Kaspersky 6.0 & CureIt', en: 'Ransomware banner removal, scan with Kaspersky 6.0 & CureIt' }
+        },
+        internetDialUp: {
+          name: { ru: '🌐 Настройка модема 56k / ADSL / VPN', en: '🌐 56k Modem / ADSL / VPN Setup' },
+          desc: { ru: 'Настройка подключаемого модема USRobotics / D-Link для выхода в сеть', en: 'Configuring USRobotics / D-Link dial-up modems for Web access' }
+        },
+        softPack: {
+          name: { ru: '📦 Пакет «Софт 2007» (Winamp, K-Lite, Nero)', en: '📦 "Soft 2007" Pack (Winamp, K-Lite, Nero)' },
+          desc: { ru: 'Полный набор: Winamp 2.91, K-Lite Codecs, Nero Burning ROM, Total Cmd', en: 'Full suit: Winamp 2.91, K-Lite Codecs, Nero Burning ROM, Total Cmd' }
+        },
+        dataRecovery: {
+          name: { ru: '💾 Восстановление данных с HDD / флешек', en: '💾 HDD & Flash Data Recovery' },
+          desc: { ru: 'Спасение удаленных фото и документов утилитой EasyRecovery', en: 'Recovering deleted photos & documents with EasyRecovery' }
+        },
+        capacitors: {
+          name: { ru: '🔌 Перепайка вздутых конденсаторов', en: '🔌 Swollen Capacitor Soldering' },
+          desc: { ru: 'Замена потекших кондеров на материнской плате LGA775 / Socket 478', en: 'Replacing blown caps on LGA775 / Socket 478 motherboards' }
+        },
+        gameOpt: {
+          name: { ru: '🎮 Оптимизация под S.T.A.L.K.E.R. и Crysis', en: '🎮 STALKER & Crysis Optimization' },
+          desc: { ru: 'Тюнинг реестра, файл подкачки, разгон видеокарты через RivaTuner', en: 'Registry tuning, pagefile tweak, GPU overclock via RivaTuner' }
+        }
+      },
+      calc: {
+        selectedServices: { ru: 'услуги', en: 'services' },
+        subtotal: { ru: 'руб.', en: 'RUB' },
+        totalLabel: { ru: 'ИТОГО К ОПЛАТЕ:', en: 'TOTAL TO PAY:' },
+        btnApplyOrder: { ru: '📝 ОФОРМИТЬ ЗАЯВКУ НА ЭТИ УСЛУГИ', en: '📝 ORDER THESE SERVICES' },
+        btnSelectAll: { ru: '☑️ Выбрать все', en: '☑️ Select All' },
+        btnResetAll: { ru: '❌ Сбросить', en: '❌ Reset' }
       },
       orderFormTitle: {
         ru: 'ФОРМА ВЫЗОВА МАСТЕРА ИЛИ ЗАКАЗА ПК',

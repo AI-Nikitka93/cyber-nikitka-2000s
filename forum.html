@@ -712,7 +712,10 @@ function renderPosts(topicId) {
             <img src="${avatar}" alt="Avatar" class="user-avatar"><br>
             <strong style="${isAdmin ? 'color: #CC0000;' : ''}">${p.author || 'Пользователь'}</strong><br>
             ${rankBadge}<br>
-            ICQ: ${p.icq_uin || '777-200-07'}
+            <div style="display: flex; align-items: center; justify-content: center; gap: 3px; margin-top: 3px;">
+              <img src="img/icq-icon.png" alt="ICQ" style="width: 14px; height: 14px; vertical-align: middle;">
+              <span>ICQ: ${p.icq_uin || '777-200-07'}</span>
+            </div>
           </div>
           <div style="flex-grow: 1; font-size: 11px; line-height: 1.5; white-space: pre-line;">
             ${formatBBCode(p.content || '')}
