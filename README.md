@@ -1,12 +1,12 @@
-# 💿 Веб-портал «КиберНикитка» — Senior Showcase & Web 1.0 Architectural Reconstruction
+# 💿 «CyberNikitka» Web Portal — Senior Showcase & Web 1.0 Architectural Reconstruction
 
 <div align="center">
 
-[ 🇷🇺 **Русский** | 🌐 **[English Version](README.en.md)** ]
+[ 🇬🇧 **English** | 🌐 **[Русская версия](README.ru.md)** ]
 
 <br>
 
-**Инженерная реконструкция веб-портала эпохи Рунета 2000-х годов на современной серверлесс-инфраструктуре.**
+**Senior-level Web 1.0 architectural reconstruction of a 2000s Runet web portal powered by modern serverless infrastructure.**
 
 <br>
 
@@ -24,41 +24,39 @@
 ---
 
 > [!IMPORTANT]
-> Данный репозиторий является **пет-проектом, созданным исключительно для развлечения, ностальгической реконструкции веб-эстетики Рунета 2000-х годов и демонстрации инженерных навыков (Senior Developer Portfolio Showcase)**. Это **НЕ** реальный коммерческий сервис и не выездная мастерская по ремонту ПК. Проект разработан как демонстрация архитектуры: пиксельно-точный ретро-интерфейс над современной серверлесс-инфраструктурой.
+> This repository is a **pet-project created exclusively for entertainment, nostalgic Web 1.0 reconstruction (2000s Runet web culture), and senior developer portfolio showcase**. It is **NOT** a real commercial PC repair business. The project demonstrates senior frontend and serverless architecture: a pixel-perfect retro aesthetic engineered on top of modern serverless infrastructure.
 
 ---
 
-## 🌟 Ключевая ценность (Core Value Proposition)
+## 🌟 Core Value Proposition
 
-**«КиберНикитка»** — это интерактивный, полностью адаптивный веб-портал сервиса компьютерной помощи и обмена CD/DVD дисками в 100% аутентичной эстетике раннего Рунета 2000–2007 годов (табличная сетка Netscape, 3D-рамки inset/outset, Web-safe палитра `#D4D0C8`/`#000080`, 88x31 баннеры, WordArt-логотипы, бегущие строки `<marquee>`, текстовые информеры и Winamp 2.x плеер).
+**«CyberNikitka»** is an interactive, responsive 2000s Early Runet web portal reconstruction. It combines authentic Web 1.0 aesthetics (Netscape table layout emulation, 3D inset/outset borders, Web-safe palette `#D4D0C8`/`#000080`, 88x31 badges, WordArt headings, marquee announcements, text informers, and a Winamp 2.x audio player) with **production-grade senior engineering practices**:
 
-За ностальгическим визуальным слоем скрыта **современная продуктовая архитектура senior-уровня**:
-
-- **0 KB JS Framework Overhead:** 100% Vanilla HTML5 / CSS3 / ES6 без внешних зависимостей и тяжелых сборщиков (Webpack/Vite/React).
-- **Procedural Web Audio Synthesizer (`js/sensory-pack.js`):** Встроенный процедурный синтезатор звуковых эффектов 2000-х на чистом Web Audio API (звуки Windows, ICQ "Uh-Oh!", HDD seek, Winamp) — 0 KB аудио-файлов.
-- **Двухуровневая Serverless-персистентность:** Гибридная архитектура синхронизации через HTTP REST API между Vercel Edge Serverless Functions и облачной БД Turso (libSQL/SQLite) с автоматическим переключением на LocalStorage и fallback JSON state.
-- **Защищенность и Доступность:** Соответствие WCAG 2.2 AA, защита от XSS-инъекций (`escapeHtml()`), хэширование паролей PBKDF2 + SHA-256 (1000 итераций + соль) и ретро-капча (`2 + 3 = 5`).
+- **0 KB JS Framework Overhead:** 100% Vanilla HTML5 / CSS3 / ES6. Zero external npm dependencies or heavy build bundlers (Webpack/Vite/React).
+- **Procedural Web Audio Synthesizer (`js/sensory-pack.js`):** Built-in Web Audio API sound effects engine generating retro sounds (Windows UI clicks, ICQ "Uh-Oh!", HDD seek chatter, Winamp) using real-time oscillators (`triangle`, `square`, `sawtooth`) — 0 KB audio file network payload.
+- **Dual-Layer Serverless Persistence:** Seamless HTTP REST state syncing between Vercel Edge Serverless Functions and Turso Cloud DB (libSQL/SQLite), featuring an automatic fallback to client-side LocalStorage and `data_backup.json`.
+- **Security & Accessibility:** Full WCAG 2.2 AA contrast compliance, client & server-side XSS neutralization (`escapeHtml()`), salted PBKDF2 + SHA-256 password hashing (1000 iterations), and custom anti-spam arithmetic captchas (`2 + 3 = 5`).
 
 ---
 
-## 📸 Галерея UI и интерактивные модули
+## 📸 Interface Gallery & Interactive Modules
 
 <details>
 <summary>📸 <b>UI Gallery & Modules (Click to expand)</b></summary>
 
 <br>
 
-| 🖥️ Главный портал, новости и информеры | 🛠️ Прайс-лист и Калькулятор ПК 2007 |
+| 🖥️ Main Portal & Retro Informers | 🛠️ Services & 2007 PC Assembly Calculator |
 | :---: | :---: |
-| ![Главная страница](img/preview-hero.png) | ![Услуги и калькулятор](img/preview-services.png) |
-| 💿 **Каталог обмена CD/DVD дисков** | 💬 **Интерактивная Гостевая книга** |
-| ![Каталог дисков](img/preview-disks.png) | ![Гостевая книга](img/preview-guestbook.png) |
+| ![Main Portal](img/preview-hero.png) | ![Services & Calculator](img/preview-services.png) |
+| 💿 **CD/DVD Exchange Catalog** | 💬 **Interactive Guestbook & Admin Wall** |
+| ![Disks Catalog](img/preview-disks.png) | ![Guestbook](img/preview-guestbook.png) |
 
 </details>
 
 ---
 
-## 🏗️ Архитектура системы
+## 🏗️ System Architecture
 
 <details>
 <summary>🏗️ <b>System Architecture & Data Flow</b></summary>
@@ -67,7 +65,7 @@
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Слой Клиента (Browser Runtime)"]
+    subgraph Client ["Client Layer (Browser Runtime)"]
         UI["Vanilla HTML5 / Retro CSS3 (WCAG 2.2 AA)"]
         JS["Client Logic (main.js) - ES6 Modules"]
         AUDIO["Web Audio API Sound Engine (sensory-pack.js)"]
@@ -75,27 +73,27 @@ flowchart TD
         XSS["XSS Neutralizer & Anti-Spam Captcha Engine"]
     end
 
-    subgraph Edge ["Слой Серверлесс Вычислений (Vercel Edge)"]
+    subgraph Edge ["Serverless Compute Layer (Vercel Edge)"]
         API["Vercel Serverless Router (/api/index.js)"]
         AUTH["Token Auth (X-Cyber-Token / Crypto Bearer)"]
         SAN["PBKDF2 Password Hashing & Input Truncation"]
     end
 
-    subgraph Database ["Слой Хранения Данных"]
+    subgraph Database ["Persistent Data Store Layer"]
         TURSO["Turso Cloud Database (libSQL / SQLite over HTTPS)"]
         MEM["Serverless In-Memory State Cache"]
     end
 
-    UI -->|Ввод пользователя| XSS
-    XSS -->|Валидированный payload| JS
+    UI -->|User Interaction| XSS
+    XSS -->|Validated Payload| JS
     JS -->|"AJAX Fetch with X-Cyber-Token"| API
-    JS -.->|Резервный офлайн-режим| LS
-    JS -->|Интерактивные события| AUDIO
+    JS -.->|Offline / Fallback Mode| LS
+    JS -->|Interactive UI Events| AUDIO
     
     API --> AUTH
     AUTH --> SAN
     SAN -->|HTTPS Query| TURSO
-    SAN -.->|При сбое сети| MEM
+    SAN -.->|Connection Error Fallback| MEM
     TURSO -->|JSON Data| API
     API -->|CORS / JSON Response| JS
     JS -->|DOM Reflow / UI Hydration| UI
@@ -105,25 +103,25 @@ flowchart TD
 
 ---
 
-## 🛠️ Инженерные показатели и метрики
+## 🛠️ Engineering Highlights & Metrics
 
-| Фича / Модуль | Техническая реализация | Инженерная ценность |
+| Feature / Module | Technical Implementation | Senior Engineering Value |
 | :--- | :--- | :--- |
-| **Ретро Дизайн-Система** | CSS Variable Tokens (`--color-win-gray`, inset/outset 3D math) | 100% аутентичность эпохе WinXP/Netscape без тяжелогрузных фреймворков. |
-| **Звуковой движок Web Audio** | Генерация огибающих звука через осцилляторы (`triangle`, `square`, `sawtooth`) | 0 KB сетевых запросов на аудиофайлы; мгновенный отклик UI. |
-| **Отказоустойчивое состояние** | REST API к Turso Cloud DB (libSQL) + клиентский фоллбэк на LocalStorage | Нулевой даунтайм: сайт работает даже при полном отключении облачной базы. |
-| **Безопасность данных** | Хэширование PBKDF2/SHA-256 с солью, экранирование HTML-сущностей | Бескомпромиссная защита от XSS в публичной гостевой книге. |
-| **12 Таблиц SQL Schema** | Проектирование SQLite-схемы с индексами по категориальным полям | Оптимальное проектирование БД для каталогов, пользователей, форума и заказов. |
+| **Retro Design System** | Custom CSS Variable Tokens (`--color-win-gray`, inset/outset 3D math) | 100% fidelity to WinXP/Netscape era without heavy utility frameworks. |
+| **Web Audio Sound FX Engine** | Real-time audio envelopes via oscillators (`triangle`, `square`, `sawtooth`) | 0 KB audio network requests; zero latency UI sound triggers. |
+| **Resilient State Persistence** | Turso Cloud DB (libSQL) via HTTP REST API + automatic client LocalStorage fallback | Zero downtime: site remains operational even during cloud database outages. |
+| **Data Defense-in-Depth** | Salted PBKDF2/SHA-256 password hashing, entity-encoded HTML escaping | Total mitigation against XSS attacks in public guestbook and forum inputs. |
+| **12-Table Relational Schema** | SQLite schema design with indexed query paths on categories and tokens | Production-grade relational database design for catalogs, users, and orders. |
 
 ### 📊 Cost Engineering & Performance Metrics
 
-- **Затраты на инфраструктуру:** **$0.00 / месяц** (Vercel Free Tier + Turso Free Cloud Tier).
-- **Размер сторонних JS-зависимостей:** **0 KB** (чистый Vanilla JavaScript).
-- **Время первой отрисовки (LCP):** **< 150 мс** через Vercel Edge CDN.
-- **Оценки Lighthouse:** Performance: **100** | Accessibility: **98** | Best Practices: **100** | SEO: **100**.
+- **Infrastructure Cost:** **$0.00 / month** (Deployed on Vercel Hobby Tier + Turso Free Tier).
+- **Vendor JS Dependencies:** **0 KB** (100% Vanilla JavaScript).
+- **First Contentful Paint (LCP):** **< 150 ms** via Vercel Edge CDN.
+- **Lighthouse Scores:** Performance: **100** | Accessibility: **98** | Best Practices: **100** | SEO: **100**.
 
 ---
 
-## 📜 Лицензия
+## 📜 License
 
-Распространяется под лицензией **MIT License**. Подробности в файле [LICENSE](LICENSE).
+Distributed under the **MIT License**. See [LICENSE](LICENSE) for details.
