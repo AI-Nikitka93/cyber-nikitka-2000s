@@ -1,73 +1,69 @@
 # 💿 Веб-портал «КиберНикитка» — Senior Showcase & Web 1.0 Architectural Reconstruction
 
-🌐 **Language / Язык:** **Русский** | 🌐 **[English Version](README.en.md)**
-
----
-
-> ⚠️ **ДИСКЛЕЙМЕР / DISCLAIMER:**  
-> Данный репозиторий является **пет-проектом, созданным исключительно для развлечения, ностальгической реконструкции веб-эстетики Рунета 2000-х годов и демонстрации инженерных навыков (Senior Developer Portfolio Showcase)**. Это **НЕ** реальный коммерческий сервис и не выездная мастерская по ремонту ПК. Проект разработан как демонстрация архитектуры: пиксельно-точный ретро-интерфейс над современной серверлесс-инфраструктурой.
-
----
-
 <div align="center">
 
-![CyberNikitka Web 1.0 Portal Live Preview](img/hero-preview.png)
+[ 🇷🇺 **Русский** | 🌐 **[English Version](README.en.md)** ]
+
+<br>
+
+**Инженерная реконструкция веб-портала эпохи Рунета 2000-х годов на современной серверлесс-инфраструктуре.**
+
+<br>
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-cyber--nikitka--2000s.vercel.app-blue?style=for-the-badge&logo=vercel)](https://cyber-nikitka-2000s.vercel.app)
 [![Stack](https://img.shields.io/badge/Stack-Vanilla_HTML5%2FCSS3%2FES6%20%7C%20Vercel%20Serverless%20%7C%20Turso%20libSQL-000000?style=for-the-badge)](https://cyber-nikitka-2000s.vercel.app)
 [![Infra Cost](https://img.shields.io/badge/Infra_Cost-%240%2Fmonth-brightgreen?style=for-the-badge)](#-cost-engineering--performance-metrics)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
+<br>
+
+![CyberNikitka Web 1.0 Portal Live Preview](img/preview-hero.png)
+
 </div>
 
 ---
 
-## 🌟 Обзор проекта и ценность (Value Proposition)
-
-**«КиберНикитка»** — это интерактивный, полностью адаптивный веб-портал сервиса компьютерной помощи и обмена CD/DVD дисками в 100% аутентичной эстетике раннего Рунета 2000-2007 годов (табличная сетка Netscape, 3D-рамки inset/outset, Web-safe палитра `#D4D0C8`/`#000080`, 88x31 баннеры, WordArt-логотипы, бегущие строки `<marquee>`, текстовые информеры и Winamp 2.x плеер).
-
-За ностальгическим визуальным слоем скрыта **современная продуктовая архитектура senior-уровня**:
-
-- **0 KB JS Framework Overhead:** 100% Vanilla HTML5 / CSS3 / ES6. Полное отсутствие внешних JS-библиотек или тяжелых бандлеров (Webpack/Vite/React).
-- **Procedural Web Audio Synthesizer (`js/sensory-pack.js`):** Встроенный процедурный синтезатор звуковых эффектов на чистом Web Audio API (звуки кликов Windows, «Uh-Oh!» ICQ, треск считывания HDD, джингл 3DMark) без тяжелых MP3/WAV ассетов (0 KB аудио-пайлоад).
-- **Двухуровневая Serverless-персистентность:** Гибридная архитектура синхронизации через HTTP REST API между Vercel Edge Serverless Functions и облачной БД Turso (libSQL/SQLite) с автоматическим отказоустойчивым переключением на client-side LocalStorage и `data_backup.json`.
-- **Защищенность и Доступность:** Соответствие контрасту WCAG 2.2 AA, защита от XSS-инъекций (`escapeHtml()`), хэширование паролей PBKDF2 + SHA-256 (1000 итераций + соль) и ретро-капча (`2 + 3 = 5`).
+> [!IMPORTANT]
+> Данный репозиторий является **пет-проектом, созданным исключительно для развлечения, ностальгической реконструкции веб-эстетики Рунета 2000-х годов и демонстрации инженерных навыков (Senior Developer Portfolio Showcase)**. Это **НЕ** реальный коммерческий сервис и не выездная мастерская по ремонту ПК. Проект разработан как демонстрация архитектуры: пиксельно-точный ретро-интерфейс над современной серверлесс-инфраструктурой.
 
 ---
 
-## 📸 Галерея интерфейса и интерактивные модули
+## 🌟 Ключевая ценность (Core Value Proposition)
 
-<details open>
-<summary><b>🖼️ Нажмите, чтобы развернуть/свернуть галерею скриншотов</b></summary>
+**«КиберНикитка»** — это интерактивный, полностью адаптивный веб-портал сервиса компьютерной помощи и обмена CD/DVD дисками в 100% аутентичной эстетике раннего Рунета 2000–2007 годов (табличная сетка Netscape, 3D-рамки inset/outset, Web-safe палитра `#D4D0C8`/`#000080`, 88x31 баннеры, WordArt-логотипы, бегущие строки `<marquee>`, текстовые информеры и Winamp 2.x плеер).
+
+За ностальгическим визуальным слоем скрыта **современная продуктовая архитектура senior-уровня**:
+
+- **0 KB JS Framework Overhead:** 100% Vanilla HTML5 / CSS3 / ES6 без внешних зависимостей и тяжелых сборщиков (Webpack/Vite/React).
+- **Procedural Web Audio Synthesizer (`js/sensory-pack.js`):** Встроенный процедурный синтезатор звуковых эффектов 2000-х на чистом Web Audio API (звуки Windows, ICQ "Uh-Oh!", HDD seek, Winamp) — 0 KB аудио-файлов.
+- **Двухуровневая Serverless-персистентность:** Гибридная архитектура синхронизации через HTTP REST API между Vercel Edge Serverless Functions и облачной БД Turso (libSQL/SQLite) с автоматическим переключением на LocalStorage и fallback JSON state.
+- **Защищенность и Доступность:** Соответствие WCAG 2.2 AA, защита от XSS-инъекций (`escapeHtml()`), хэширование паролей PBKDF2 + SHA-256 (1000 итераций + соль) и ретро-капча (`2 + 3 = 5`).
+
+---
+
+## 📸 Галерея UI и интерактивные модули
+
+<details>
+<summary>📸 <b>UI Gallery & Modules (Click to expand)</b></summary>
 
 <br>
 
-### 1. Главный портал, новости и ретро-информеры
-![Главная страница](img/hero-preview.png)
-
-### 2. Прайс-лист услуг и Калькулятор сборки ПК 2007 года
-![Услуги и калькулятор](img/services-preview.png)
-
-### 3. Каталог обмена CD/DVD дисков
-![Каталог дисков](img/disks-preview.png)
-
-### 4. Интерактивная Гостевая книга с ответами админа
-![Гостевая книга](img/guestbook-preview.png)
+| 🖥️ Главный портал, новости и информеры | 🛠️ Прайс-лист и Калькулятор ПК 2007 |
+| :---: | :---: |
+| ![Главная страница](img/preview-hero.png) | ![Услуги и калькулятор](img/preview-services.png) |
+| 💿 **Каталог обмена CD/DVD дисков** | 💬 **Интерактивная Гостевая книга** |
+| ![Каталог дисков](img/preview-disks.png) | ![Гостевая книга](img/preview-guestbook.png) |
 
 </details>
 
 ---
 
-## 🚀 Демонстрационная вертушка (Live Showcase)
+## 🏗️ Архитектура системы
 
-🔗 **Прямой адрес сайта:** [https://cyber-nikitka-2000s.vercel.app](https://cyber-nikitka-2000s.vercel.app)
+<details>
+<summary>🏗️ <b>System Architecture & Data Flow</b></summary>
 
----
-
-## 🏗️ Современные схемы и диаграммы архитектуры
-
-<details open>
-<summary><b>📐 1. Общая архитектура системы и потоки данных (System Architecture)</b></summary>
+<br>
 
 ```mermaid
 flowchart TD
@@ -107,105 +103,9 @@ flowchart TD
 
 </details>
 
-<details>
-<summary><b>🔄 2. Последовательность отказоустойчивой синхронизации (Sequence Diagram)</b></summary>
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User as Пользователь (Браузер)
-    participant UI as Ретро UI / DOM
-    participant ClientJS as main.js / api-client.js
-    participant Edge as Vercel Edge Serverless (/api)
-    participant Turso as Turso Cloud DB (libSQL)
-    participant Local as Browser LocalStorage
-
-    User->>UI: Отправка отзыва в Гостевой книге
-    UI->>ClientJS: Валидация капчи (2+3=5) & escapeHtml()
-    ClientJS->>Edge: POST /api/guestbook (X-Cyber-Token)
-    alt Облачная БД доступна
-        Edge->>Turso: INSERT INTO guestbook VALUES (...)
-        Turso-->>Edge: HTTP 200 OK (Row inserted)
-        Edge-->>ClientJS: { status: "success", data: post }
-    else Сбой сети / Отсутствие Turso ключей
-        Edge-->>ClientJS: HTTP 503 / Network Error
-        ClientJS->>Local: CyberNikitkaData.saveLocalFallback(post)
-        ClientJS-->>UI: Локальное обновление DOM (Офлайн-режим)
-    end
-    ClientJS->>UI: Отрисовка сообщения & проигрывание клика Web Audio
-```
-
-</details>
-
-<details>
-<summary><b>🔊 3. Синтезатор звуковых эффектов Web Audio API (Audio Pipeline)</b></summary>
-
-```mermaid
-flowchart LR
-    EVENT["Событие UI (Клик, Error, Winamp)"] --> ENGINE["AudioContext (sensory-pack.js)"]
-    ENGINE --> OSC1["OscillatorNode (Triangle / Square)"]
-    ENGINE --> OSC2["Noise Buffer (HDD Seek Simulation)"]
-    OSC1 --> GAIN["GainNode (Envelope ADSR)"]
-    OSC2 --> GAIN
-    GAIN --> DEST["AudioDestination (Динамики)"]
-```
-
-</details>
-
-<details>
-<summary><b>🗄️ 4. Схема реляционной базы данных (ER Diagram)</b></summary>
-
-```mermaid
-erDiagram
-    USERS ||--o{ SESSIONS : has
-    USERS ||--o{ GUESTBOOK : writes
-    USERS ||--o{ REPAIR_REQUESTS : orders
-    USERS ||--o{ FORUM_TOPICS : creates
-    FORUM_TOPICS ||--o{ FORUM_POSTS : contains
-
-    USERS {
-        int id PK
-        string username UK
-        string password_hash
-        string salt
-        string role
-        string icq_uin
-    }
-    SESSIONS {
-        int id PK
-        int user_id FK
-        string token UK
-        datetime expires_at
-    }
-    DISKS {
-        int id PK
-        string title
-        string category
-        string media_type
-        string status
-    }
-    GUESTBOOK {
-        int id PK
-        string author
-        string message
-        string admin_reply
-        datetime created_at
-    }
-    REPAIR_REQUESTS {
-        int id PK
-        int user_id FK
-        string client_name
-        string phone
-        string service_type
-        decimal total_price
-    }
-```
-
-</details>
-
 ---
 
-## 🛠️ Главные технические достижения
+## 🛠️ Инженерные показатели и метрики
 
 | Фича / Модуль | Техническая реализация | Инженерная ценность |
 | :--- | :--- | :--- |
@@ -215,21 +115,7 @@ erDiagram
 | **Безопасность данных** | Хэширование PBKDF2/SHA-256 с солью, экранирование HTML-сущностей | Бескомпромиссная защита от XSS в публичной гостевой книге. |
 | **12 Таблиц SQL Schema** | Проектирование SQLite-схемы с индексами по категориальным полям | Оптимальное проектирование БД для каталогов, пользователей, форума и заказов. |
 
----
-
-## ⚡ Инженерные вызовы и решения
-
-### 1. Симуляция табличных сеток 2000-х без хрупкости `<table>`
-- **Проблема:** Аутентичные сайты 2000-х строились на 3-колоночных таблицах со сложными вложенными cell padding, ломающимися на смартфонах.
-- **Решение:** Построена система CSS-переменных на базе современного CSS Grid и Flexbox. Имитация 3D-граней (`border: 2px outset/inset`) в сочетании с медиа-запросами (`@media (max-width: 768px)`) перестраивает 3-колоночную ретро-структуру в удобный мобильный поток.
-
-### 2. Серверлесс-персистентность в stateless-среде
-- **Проблема:** Vercel Serverless Functions сбрасывают состояние при cold start, вызывая риск утери сообщений гостевой книги и токенов сессий.
-- **Решение:** Разработан драйвер-обертка (`server/db/turso.js`) для связи с Turso Cloud DB по протоколу HTTPS REST. При отсутствии токенов Turso API автоматически переключается на сессионный кэш с синхронизацией в LocalStorage браузера.
-
----
-
-## 📊 Cost Engineering & Performance Metrics
+### 📊 Cost Engineering & Performance Metrics
 
 - **Затраты на инфраструктуру:** **$0.00 / месяц** (Vercel Free Tier + Turso Free Cloud Tier).
 - **Размер сторонних JS-зависимостей:** **0 KB** (чистый Vanilla JavaScript).
@@ -238,8 +124,6 @@ erDiagram
 
 ---
 
-## 📜 Лицензия и права (License)
+## 📜 Лицензия
 
 Распространяется под лицензией **MIT License**. Подробности в файле [LICENSE](LICENSE).
-
-Проект создан исключительно для портфолио, ностальгии и демонстрации архитектурных решений.
