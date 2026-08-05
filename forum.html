@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1.0, width=device-width">
   <title>Ретро-Форум 2000-х (phpBB 2.0) — КиберНикитка</title>
-  <link rel="stylesheet" href="css/retro-style.css">
+
+    <meta name="description" content="Городской форум компьютерных мастеров и любителей электроники 2000-х.">
+    <meta property="og:title" content="Форум — КиберНикитка">
+    <meta property="og:description" content="Городской форум компьютерных мастеров и любителей электроники 2000-х.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:url" content="https://cyber-nikitka-2000s.vercel.app/forum.html">
+    <link rel="preconnect" href="https://www.cbr-xml-daily.ru">
+  <link rel="stylesheet" href="css/retro-style.min.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <style>
     .forum-modal-overlay {
@@ -38,7 +46,7 @@
   <header class="site-header">
     <div class="header-left">
       <a href="index.html" class="wordart-logo" title="КиберНикитка">
-        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+        <img width="320" height="60" src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
       </a>
       <div class="tagline" data-i18n="header.forumTagline">Конференция геймеров, коллекционеров дисков и сисадминов</div>
     </div>
@@ -366,10 +374,10 @@
   </div>
 </div>
 
-<script src="js/i18n.js"></script>
+<script src="js/i18n.min.js" defer></script>
 <script src="js/api-client.js"></script>
 <script src="js/sensory-pack.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.min.js" defer></script>
 <script>
 const DEFAULT_MASTER_TOPICS = [
   {
@@ -713,7 +721,7 @@ function renderPosts(topicId) {
             <strong style="${isAdmin ? 'color: #CC0000;' : ''}">${p.author || 'Пользователь'}</strong><br>
             ${rankBadge}<br>
             <div style="display: flex; align-items: center; justify-content: center; gap: 3px; margin-top: 3px;">
-              <img src="img/icq-icon.png" alt="ICQ" style="width: 14px; height: 14px; vertical-align: middle;">
+              <img width="24" height="24" src="img/icq-icon.png" alt="ICQ" style="width: 14px; height: 14px; vertical-align: middle;">
               <span>ICQ: ${p.icq_uin || '777-200-07'}</span>
             </div>
           </div>

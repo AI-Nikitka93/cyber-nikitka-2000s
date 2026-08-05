@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1.0, width=device-width">
   <title>Личный Кабинет Пользователя — КиберНикитка</title>
-  <link rel="stylesheet" href="css/retro-style.css">
+
+    <meta name="description" content="Войдите в личный кабинет, чтобы управлять своими заказами и обмениваться дисками с Никиткой.">
+    <meta property="og:title" content="Личный Кабинет — КиберНикитка">
+    <meta property="og:description" content="Войдите в личный кабинет, чтобы управлять своими заказами и обмениваться дисками с Никиткой.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:url" content="https://cyber-nikitka-2000s.vercel.app/cabinet.html">
+    <link rel="preconnect" href="https://www.cbr-xml-daily.ru">
+  <link rel="stylesheet" href="css/retro-style.min.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <style>
     .cab-profile-card {
@@ -34,7 +42,7 @@
   <header class="site-header">
     <div class="header-left">
       <a href="index.html" class="wordart-logo" title="КиберНикитка">
-        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+        <img width="320" height="60" src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
       </a>
       <div class="tagline" data-i18n="header.subtagline">Персональный компьютерный мастер, чистка от пыли и обмен CD/DVD дисками</div>
     </div>
@@ -93,7 +101,7 @@
       <!-- 1. КАРТОЧКА ПРОФИЛЯ С QIP СТАТУСОМ -->
       <div class="cab-profile-card">
         <div class="cab-avatar-wrap" onclick="openAvatarModal()" title="Нажмите, чтобы сменить аватарку">
-          <img id="cab-avatar-img" src="img/avatar-cs.png" alt="Аватар" class="cab-avatar">
+          <img width="120" height="120" id="cab-avatar-img" src="img/avatar-cs.png" alt="Аватар" class="cab-avatar">
           <div class="cab-avatar-overlay">СМЕНИТЬ</div>
         </div>
 
@@ -105,7 +113,7 @@
 
           <!-- МОДУЛЬ 1: QIP СТАТУС ПРИСУТСТВИЯ -->
           <div style="margin-top: 4px; font-size: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-            <span data-i18n="cabinet.qipStatusLabel"><img src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon">QIP / ICQ Статус:</span>
+            <span data-i18n="cabinet.qipStatusLabel"><img width="24" height="24" src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon">QIP / ICQ Статус:</span>
             <select id="qip-status-select" class="qip-select" onchange="saveQipStatus()">
               <option value="🟢 В сети (Online)" data-i18n="cabinet.qip.online">🟢 В сети (Online)</option>
               <option value="🟡 Занят (DND)" data-i18n="cabinet.qip.dnd">🟡 Занят (DND)</option>
@@ -124,7 +132,7 @@
           </div>
 
           <div style="font-size: 10px; margin-top: 4px; color: #555; display: flex; align-items: center; gap: 4px;">
-            <img src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon">ICQ UIN: <strong id="cab-icq">777-200-07</strong> | Город: <strong id="cab-city">Москва</strong>
+            <img width="24" height="24" src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon">ICQ UIN: <strong id="cab-icq">777-200-07</strong> | Город: <strong id="cab-city">Москва</strong>
           </div>
         </div>
       </div>
@@ -437,18 +445,18 @@
     </div>
 
     <div class="avatar-modal-grid">
-      <img src="img/photo-nikitka.png" alt="Мастер Никитка" title="Мастер Никитка (2007)" class="avatar-picker-item" onclick="selectProfileAvatar('img/photo-nikitka.png')">
-      <img src="img/avatar-cs.png" alt="CS 1.6" title="Батя CS 1.6 [PRO]" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-cs.png')">
-      <img src="img/avatar-neo.png" alt="Neo Matrix" title="Хакер Neo 1337" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-neo.png')">
-      <img src="img/avatar-stalker.png" alt="Stalker" title="Сталкер Меченый" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-stalker.png')">
-      <img src="img/avatar-cat.png" alt="Cool Cat" title="Cool Cat (Deal With It)" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-cat.png')">
-      <img src="img/avatar-emo.png" alt="Emo Kid 2007" title="Эмо-Кид 2007" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-emo.png')">
-      <img src="img/avatar-bliss.png" alt="XP Bliss" title="XP Bliss SP2" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-bliss.png')">
-      <img src="img/avatar-admin.png" alt="Sysadmin" title="Сисадмин Root" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-admin.png')">
-      <img src="img/avatar-winamp.png" alt="Winamp" title="Winamp 2.91 Freak" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-winamp.png')">
-      <img src="img/avatar-skater.png" alt="Skate Punk" title="Скейтер SK8" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-skater.png')">
-      <img src="img/avatar-anime.png" alt="Neko Anime" title="Kawaii Anime Neko" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-anime.png')">
-      <img src="img/avatar-icq.png" alt="ICQ 777" title="Агент ICQ (O-Oh!)" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-icq.png')">
+      <img width="120" height="120" src="img/photo-nikitka.png" alt="Мастер Никитка" title="Мастер Никитка (2007)" class="avatar-picker-item" onclick="selectProfileAvatar('img/photo-nikitka.png')">
+      <img width="120" height="120" src="img/avatar-cs.png" alt="CS 1.6" title="Батя CS 1.6 [PRO]" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-cs.png')">
+      <img width="120" height="120" src="img/avatar-neo.png" alt="Neo Matrix" title="Хакер Neo 1337" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-neo.png')">
+      <img width="120" height="120" src="img/avatar-stalker.png" alt="Stalker" title="Сталкер Меченый" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-stalker.png')">
+      <img width="120" height="120" src="img/avatar-cat.png" alt="Cool Cat" title="Cool Cat (Deal With It)" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-cat.png')">
+      <img width="120" height="120" src="img/avatar-emo.png" alt="Emo Kid 2007" title="Эмо-Кид 2007" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-emo.png')">
+      <img width="120" height="120" src="img/avatar-bliss.png" alt="XP Bliss" title="XP Bliss SP2" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-bliss.png')">
+      <img width="120" height="120" src="img/avatar-admin.png" alt="Sysadmin" title="Сисадмин Root" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-admin.png')">
+      <img width="120" height="120" src="img/avatar-winamp.png" alt="Winamp" title="Winamp 2.91 Freak" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-winamp.png')">
+      <img width="120" height="120" src="img/avatar-skater.png" alt="Skate Punk" title="Скейтер SK8" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-skater.png')">
+      <img width="120" height="120" src="img/avatar-anime.png" alt="Neko Anime" title="Kawaii Anime Neko" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-anime.png')">
+      <img width="120" height="120" src="img/avatar-icq.png" alt="ICQ 777" title="Агент ICQ (O-Oh!)" class="avatar-picker-item" onclick="selectProfileAvatar('img/avatar-icq.png')">
     </div>
 
     <div class="form-actions" style="justify-content: flex-end;">
@@ -457,10 +465,10 @@
   </div>
 </div>
 
-<script src="js/i18n.js"></script>
+<script src="js/i18n.min.js" defer></script>
 <script src="js/api-client.js"></script>
 <script src="js/sensory-pack.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.min.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   loadCabinetData();

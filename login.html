@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1.0, width=device-width">
   <title>Вход в систему — КиберНикитка</title>
-  <link rel="stylesheet" href="css/retro-style.css">
+
+    <meta name="description" content="Авторизация в системе. Войдите, чтобы получить доступ к приватному FTP-серверу.">
+    <meta property="og:title" content="Вход — КиберНикитка">
+    <meta property="og:description" content="Авторизация в системе. Войдите, чтобы получить доступ к приватному FTP-серверу.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:url" content="https://cyber-nikitka-2000s.vercel.app/login.html">
+    <link rel="preconnect" href="https://www.cbr-xml-daily.ru">
+  <link rel="stylesheet" href="css/retro-style.min.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -14,7 +22,7 @@
   <header class="site-header">
     <div class="header-left">
       <a href="index.html" class="wordart-logo" title="КиберНикитка">
-        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+        <img width="320" height="60" src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
       </a>
       <div class="tagline" data-i18n="header.subtagline">Персональный компьютерный мастер, чистка от пыли и обмен CD/DVD дисками</div>
     </div>
@@ -71,7 +79,7 @@
 
           <form id="login-form" onsubmit="event.preventDefault(); handleLogin();">
             <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 15px; background: #FFF; padding: 10px; border: 2px inset #808080;">
-              <img src="img/photo-nikitka.png" alt="Вход" style="width: 72px; height: 72px; border: 2px outset #FFF; object-fit: cover; flex-shrink: 0;">
+              <img width="120" height="120" src="img/photo-nikitka.png" alt="Вход" style="width: 72px; height: 72px; border: 2px outset #FFF; object-fit: cover; flex-shrink: 0;">
               <div style="font-size: 11px; color: #000; line-height: 1.4;" data-i18n="login.intro">
                 <strong>Добро пожаловать в личный кабинет!</strong> Введите имя пользователя и пароль для входа. После авторизации вам будет доступен индивидуальный профиль, управление каталогом обмена дисками, персональная аватарка и публикация статусов в QIP 2007.
               </div>
@@ -255,10 +263,10 @@
   </footer>
 </div>
 
-<script src="js/i18n.js"></script>
+<script src="js/i18n.min.js" defer></script>
 <script src="js/api-client.js"></script>
 <script src="js/sensory-pack.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.min.js" defer></script>
 <script>
 function fillTestAccount() {
   document.getElementById('username').value = 'nikitka_master';

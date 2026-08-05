@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1.0, width=device-width">
   <title>Регистрация аккаунта — КиберНикитка</title>
-  <link rel="stylesheet" href="css/retro-style.css">
+
+    <meta name="description" content="Зарегистрируйтесь на сайте, чтобы стать частью нашего элитного хакерского клуба.">
+    <meta property="og:title" content="Регистрация — КиберНикитка">
+    <meta property="og:description" content="Зарегистрируйтесь на сайте, чтобы стать частью нашего элитного хакерского клуба.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:url" content="https://cyber-nikitka-2000s.vercel.app/register.html">
+    <link rel="preconnect" href="https://www.cbr-xml-daily.ru">
+  <link rel="stylesheet" href="css/retro-style.min.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <style>
     .avatar-option {
@@ -22,7 +30,7 @@
   <header class="site-header">
     <div class="header-left">
       <a href="index.html" class="wordart-logo" title="КиберНикитка">
-        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+        <img width="320" height="60" src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
       </a>
       <div class="tagline" data-i18n="header.subtagline">Персональный компьютерный мастер, чистка от пыли и обмен CD/DVD дисками</div>
     </div>
@@ -83,7 +91,7 @@
                 <input type="text" id="reg_username" class="retro-input" placeholder="Например: Gamer_2007" required autofocus data-i18n-placeholder="register.usernamePlaceholder" style="width: 100%; box-sizing: border-box; padding: 6px 10px; font-size: 11.5px;">
               </div>
               <div class="form-group" style="margin-bottom: 0;">
-                <label for="reg_icq" style="font-weight: bold; font-size: 11.5px; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;" data-i18n="register.labelIcq"><img src="img/icq-icon.png" alt="ICQ" style="width: 14px; height: 14px;"> ICQ UIN:</label>
+                <label for="reg_icq" style="font-weight: bold; font-size: 11.5px; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;" data-i18n="register.labelIcq"><img width="24" height="24" src="img/icq-icon.png" alt="ICQ" style="width: 14px; height: 14px;"> ICQ UIN:</label>
                 <input type="text" id="reg_icq" class="retro-input" placeholder="777-200-07" value="777-200-07" style="width: 100%; box-sizing: border-box; padding: 6px 10px; font-size: 11.5px;">
               </div>
             </div>
@@ -107,18 +115,18 @@
             <div class="form-group" style="margin-bottom: 16px;">
               <label style="font-weight: bold; font-size: 11.5px; margin-bottom: 6px; display: block;" data-i18n="register.labelAvatar">Выберите ретро-аватарку (12 культовых вариантов):</label>
               <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 4px; background: #FFF; padding: 10px; border: 2px inset #808080;" id="avatar-selector">
-                <img src="img/photo-nikitka.png" alt="Мастер Никитка" title="Мастер Никитка (2007)" class="avatar-option selected" data-url="img/photo-nikitka.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-cs.png" alt="CS 1.6 Pro" title="Батя CS 1.6 [PRO]" class="avatar-option" data-url="img/avatar-cs.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-neo.png" alt="Matrix Neo" title="Хакер Neo 1337" class="avatar-option" data-url="img/avatar-neo.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-stalker.png" alt="Stalker" title="Сталкер Меченый" class="avatar-option" data-url="img/avatar-stalker.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-cat.png" alt="Cool Cat" title="Cool Cat (Deal With It)" class="avatar-option" data-url="img/avatar-cat.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-emo.png" alt="Emo Kid 2007" title="Эмо-Кид 2007" class="avatar-option" data-url="img/avatar-emo.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-bliss.png" alt="XP Bliss" title="XP Bliss SP2" class="avatar-option" data-url="img/avatar-bliss.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-admin.png" alt="Sysadmin Root" title="Сисадмин Root" class="avatar-option" data-url="img/avatar-admin.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-winamp.png" alt="Winamp" title="Winamp 2.91 Freak" class="avatar-option" data-url="img/avatar-winamp.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-skater.png" alt="Skate Punk" title="Скейтер SK8" class="avatar-option" data-url="img/avatar-skater.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-anime.png" alt="Neko Anime" title="Kawaii Anime Neko" class="avatar-option" data-url="img/avatar-anime.png" onclick="selectAvatar(this)">
-                <img src="img/avatar-icq.png" alt="ICQ 777" title="Агент ICQ (O-Oh!)" class="avatar-option" data-url="img/avatar-icq.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/photo-nikitka.png" alt="Мастер Никитка" title="Мастер Никитка (2007)" class="avatar-option selected" data-url="img/photo-nikitka.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-cs.png" alt="CS 1.6 Pro" title="Батя CS 1.6 [PRO]" class="avatar-option" data-url="img/avatar-cs.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-neo.png" alt="Matrix Neo" title="Хакер Neo 1337" class="avatar-option" data-url="img/avatar-neo.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-stalker.png" alt="Stalker" title="Сталкер Меченый" class="avatar-option" data-url="img/avatar-stalker.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-cat.png" alt="Cool Cat" title="Cool Cat (Deal With It)" class="avatar-option" data-url="img/avatar-cat.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-emo.png" alt="Emo Kid 2007" title="Эмо-Кид 2007" class="avatar-option" data-url="img/avatar-emo.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-bliss.png" alt="XP Bliss" title="XP Bliss SP2" class="avatar-option" data-url="img/avatar-bliss.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-admin.png" alt="Sysadmin Root" title="Сисадмин Root" class="avatar-option" data-url="img/avatar-admin.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-winamp.png" alt="Winamp" title="Winamp 2.91 Freak" class="avatar-option" data-url="img/avatar-winamp.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-skater.png" alt="Skate Punk" title="Скейтер SK8" class="avatar-option" data-url="img/avatar-skater.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-anime.png" alt="Neko Anime" title="Kawaii Anime Neko" class="avatar-option" data-url="img/avatar-anime.png" onclick="selectAvatar(this)">
+                <img width="120" height="120" src="img/avatar-icq.png" alt="ICQ 777" title="Агент ICQ (O-Oh!)" class="avatar-option" data-url="img/avatar-icq.png" onclick="selectAvatar(this)">
               </div>
               <input type="hidden" id="selected_avatar" value="img/photo-nikitka.png">
             </div>
@@ -259,10 +267,10 @@
   </footer>
 </div>
 
-<script src="js/i18n.js"></script>
+<script src="js/i18n.min.js" defer></script>
 <script src="js/api-client.js"></script>
 <script src="js/sensory-pack.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.min.js" defer></script>
 <script>
 function selectAvatar(imgEl) {
   document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));

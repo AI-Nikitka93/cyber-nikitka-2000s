@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1.0, width=device-width">
   <title>Услуги и Цены — КиберНикитка</title>
-  <link rel="stylesheet" href="css/retro-style.css">
+
+    <meta name="description" content="Официальный прайс-лист на ремонт ПК и сборку компьютеров от мастера Никитки. Честные цены на услуги 2000-х годов.">
+    <meta property="og:title" content="Услуги и Цены — КиберНикитка">
+    <meta property="og:description" content="Официальный прайс-лист на ремонт ПК и сборку компьютеров от мастера Никитки. Честные цены на услуги 2000-х годов.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:url" content="https://cyber-nikitka-2000s.vercel.app/services.html">
+    <link rel="preconnect" href="https://www.cbr-xml-daily.ru">
+  <link rel="stylesheet" href="css/retro-style.min.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -14,7 +22,7 @@
   <header class="site-header">
     <div class="header-left">
       <a href="index.html" class="wordart-logo" title="КиберНикитка">
-        <img src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
+        <img width="320" height="60" src="img/logo.png" alt="КИБЕРНИКИТКА" style="height: 45px; vertical-align: middle;">
       </a>
       <div class="tagline" data-i18n="header.servicesTagline">Официальный прайс-лист на ремонт ПК и сборку компьютеров 2000-х</div>
     </div>
@@ -58,7 +66,7 @@
         <div class="informer-title" data-i18n="masterStatus.title">СТАТУС МАСТЕРА</div>
         <p><strong style="color: #008000;" data-i18n="masterStatus.online">● В СЕТИ (ONLINE)</strong></p>
         <p data-i18n="masterStatus.eta">Готов выехать на дом в течение 1 часа!</p>
-        <p data-i18n-html="masterStatus.icq"><img src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon"> ICQ: <strong>777-200-07</strong></p>
+        <p data-i18n-html="masterStatus.icq"><img width="24" height="24" src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon"> ICQ: <strong>777-200-07</strong></p>
       </div>
     </nav>
 
@@ -510,10 +518,10 @@
   </footer>
 </div>
 
-<script src="js/i18n.js"></script>
+<script src="js/i18n.min.js" defer></script>
 <script src="js/api-client.js"></script>
 <script src="js/sensory-pack.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.min.js" defer></script>
 <script>
 function updateServicesTotal() {
   const checkboxes = document.querySelectorAll('.service-checkbox:checked');
