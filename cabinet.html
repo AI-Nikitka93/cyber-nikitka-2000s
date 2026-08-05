@@ -114,7 +114,7 @@
           <!-- МОДУЛЬ 1: QIP СТАТУС ПРИСУТСТВИЯ -->
           <div style="margin-top: 4px; font-size: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
             <span data-i18n="cabinet.qipStatusLabel"><img width="24" height="24" src="img/icq-icon.png" alt="ICQ" class="icq-flower-icon">QIP / ICQ Статус:</span>
-            <select id="qip-status-select" class="qip-select" onchange="saveQipStatus()">
+            <select aria-label="select" id="qip-status-select" class="qip-select" onchange="saveQipStatus()">
               <option value="🟢 В сети (Online)" data-i18n="cabinet.qip.online">🟢 В сети (Online)</option>
               <option value="🟡 Занят (DND)" data-i18n="cabinet.qip.dnd">🟡 Занят (DND)</option>
               <option value="🍕 Ем пельмени" data-i18n="cabinet.qip.dumplings">🍕 Ем пельмени</option>
@@ -221,7 +221,7 @@
             </div>
             <div style="flex: 1;">
               <label for="disk_category" data-i18n="disks.categoriesLabel">Категория:</label>
-              <select id="disk_category" class="retro-select">
+              <select aria-label="select" id="disk_category" class="retro-select">
                 <option value="games" data-i18n="disks.catGames">Игры</option>
                 <option value="soft" data-i18n="disks.catSoft">Софт / Программы</option>
                 <option value="movies" data-i18n="disks.catMovies">Фильмы / Кино</option>
@@ -232,7 +232,7 @@
           <div style="display: flex; gap: 10px;" class="form-group">
             <div style="flex: 1;">
               <label for="disk_type" data-i18n="cabinet.labelDiskType">Тип носителя:</label>
-              <select id="disk_type" class="retro-select">
+              <select aria-label="select" id="disk_type" class="retro-select">
                 <option value="DVD-5">DVD-5 (4.7 GB)</option>
                 <option value="DVD-9">DVD-9 (8.5 GB)</option>
                 <option value="CD-ROM">CD-ROM (700 MB)</option>
@@ -315,7 +315,7 @@
         <div class="informer-title">⏳ 2007 vs СЕГОДНЯ 🚀</div>
         <div style="margin: 3px 0 2px 0; text-align: center;">
           <label style="font-size: 8px; font-weight: bold; color: #000080;">🏙️ ГОРОД: </label>
-          <select id="inf-city-select" style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px; border: 1px solid #7F9DB9; background: #FFFDF0; color: #000; width: 115px;">
+          <select aria-label="select" id="inf-city-select" style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px; border: 1px solid #7F9DB9; background: #FFFDF0; color: #000; width: 115px;">
             <optgroup label="🔍 Поиск города">
               <option value="custom_search">🔍 [ Ввести свой город... ]</option>
             </optgroup>
@@ -402,13 +402,13 @@
         </div>
       </div>
 
-      <div class="informer-box" style="text-align: center; border: 2px solid #0088CC; background: #F0F8FF;">
-        <div style="background: #0088CC; color: #FFF; font-weight: bold; padding: 2px 4px; font-size: 10px;">
+      <div class="informer-box" style="text-align: center; border: 2px solid #005f8d; background: #F0F8FF;">
+        <div style="background: #005f8d; color: #FFF; font-weight: bold; padding: 2px 4px; font-size: 10px;">
           📱 ТЕЛЕГРАМ СОЗДАТЕЛЯ
         </div>
         <div style="margin-top: 4px; font-size: 10px;">
           Пишите Мастеру Никитке прямо в Telegram:<br>
-          <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" style="font-weight: bold; color: #0088CC; font-size: 11px; text-decoration: underline;">
+          <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" style="font-weight: bold; color: #005f8d; font-size: 11px; text-decoration: underline;">
             👉 @Ai_nikitka93
           </a>
         </div>

@@ -206,7 +206,7 @@
           <legend class="retro-legend" data-i18n="builder.legendCpuMb">💻 Базовые компоненты (CPU & MB)</legend>
           <div class="form-group">
             <label for="builder-cpu" data-i18n="builder.cpuLabel">🧠 Процессор (CPU):</label>
-            <select id="builder-cpu" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-cpu" class="retro-select" onchange="onComponentChange()">
               <option value="celeron1200" data-price="600" data-socket="Socket370" data-watt="30" data-score="15" data-i18n="builder.options.cpus.celeron1200">Intel Celeron 1.2 GHz (Socket 370, Tualatin) — 600 руб.</option>
               <option value="p3_1000" data-price="900" data-socket="Socket370" data-watt="29" data-score="20" data-i18n="builder.options.cpus.p3_1000">Intel Pentium III 1.0 GHz (Socket 370) — 900 руб.</option>
               <option value="p4" data-price="1200" data-socket="Socket478" data-watt="89" data-score="35" data-i18n="builder.options.cpus.p4">Intel Pentium 4 2.4GHz (Socket 478) — 1 200 руб.</option>
@@ -220,7 +220,7 @@
 
           <div class="form-group">
             <label for="builder-mb" data-i18n="builder.mbLabel">🟩 Материнская плата (MB):</label>
-            <select id="builder-mb" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-mb" class="retro-select" onchange="onComponentChange()">
               <option value="cuv4x" data-price="700" data-socket="Socket370" data-bus="AGP" data-ram="DDR1" data-i18n="builder.options.mbs.cuv4x">ASUS CUV4X-E (Socket 370, AGP 4X, SDR) — 700 руб.</option>
               <option value="p4i65g" data-price="1100" data-socket="Socket478" data-bus="AGP" data-ram="DDR1" data-i18n="builder.options.mbs.p4i65g">ASRock P4i65G (Socket 478, AGP 8X, DDR1) — 1 100 руб.</option>
               <option value="a7v8x" data-price="1200" data-socket="Socket462" data-bus="AGP" data-ram="DDR1" data-i18n="builder.options.mbs.a7v8x">ASUS A7V8X (Socket 462 / A, AGP 8X, DDR1) — 1 200 руб.</option>
@@ -235,7 +235,7 @@
           <legend class="retro-legend" data-i18n="builder.legendGpuRam">⚡ Графика, Память & Охлаждение</legend>
           <div class="form-group">
             <label for="builder-gpu" data-i18n="builder.gpuLabel">🎮 Видеокарта (GPU):</label>
-            <select id="builder-gpu" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-gpu" class="retro-select" onchange="onComponentChange()">
               <option value="gf2mx" data-price="400" data-bus="AGP" data-watt="15" data-score="15" data-i18n="builder.options.gpus.gf2mx">NVIDIA GeForce 2 MX400 32MB (AGP 4X) — 400 руб.</option>
               <option value="fx5200" data-price="900" data-bus="AGP" data-watt="25" data-score="25" data-i18n="builder.options.gpus.fx5200">NVIDIA GeForce FX 5200 128MB (AGP 8X) — 900 руб.</option>
               <option value="rad9800" data-price="1800" data-bus="AGP" data-watt="47" data-score="65" data-i18n="builder.options.gpus.rad9800">ATI Radeon 9800 PRO 128MB (AGP 8X) — 1 800 руб.</option>
@@ -249,7 +249,7 @@
 
           <div class="form-group">
             <label for="builder-ram" data-i18n="builder.ramLabel">⚡ Оперативная память (RAM):</label>
-            <select id="builder-ram" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-ram" class="retro-select" onchange="onComponentChange()">
               <option value="ram256" data-price="350" data-watt="5" data-score="15" data-ram="DDR1" data-i18n="builder.options.rams.ram256">256 MB DDR-333 (PC2700) — 350 руб.</option>
               <option value="ram512" data-price="650" data-watt="8" data-score="35" data-ram="DDR1" data-i18n="builder.options.rams.ram512">512 MB Kingston DDR-400 — 650 руб.</option>
               <option value="ram1gb" data-price="900" data-watt="10" data-score="60" data-ram="DDR2" data-i18n="builder.options.rams.ram1gb">1 GB DDR2-667 — 900 руб.</option>
@@ -259,7 +259,7 @@
 
           <div class="form-group">
             <label for="builder-cooler" data-i18n="builder.coolerLabel">❄️ Кулер процессора (Cooler):</label>
-            <select id="builder-cooler" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-cooler" class="retro-select" onchange="onComponentChange()">
               <option value="stock" data-price="200" data-watt="5" data-i18n="builder.options.coolers.stock">Боксовый алюминиевый кулер (Box) — 200 руб.</option>
               <option value="zalman7000" data-price="950" data-watt="8" selected data-i18n="builder.options.coolers.zalman7000">Zalman CNPS7000B-Cu Чистая Медь — 950 руб.</option>
             </select>
@@ -270,7 +270,7 @@
           <legend class="retro-legend" data-i18n="builder.legendHddPsu">💾 Диск, Питание & Звук</legend>
           <div class="form-group">
             <label for="builder-hdd" data-i18n="builder.hddLabel">💾 Накопитель (HDD):</label>
-            <select id="builder-hdd" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-hdd" class="retro-select" onchange="onComponentChange()">
               <option value="hdd40" data-price="800" data-watt="12" data-i18n="builder.options.hdds.hdd40">40 GB Seagate Barracuda 7200.7 PATA IDE — 800 руб.</option>
               <option value="hdd80" data-price="1200" data-watt="12" data-i18n="builder.options.hdds.hdd80">80 GB Western Digital Caviar IDE — 1 200 руб.</option>
               <option value="hdd250" data-price="2100" data-watt="15" selected data-i18n="builder.options.hdds.hdd250">250 GB Samsung SpinPoint SATA-II — 2 100 руб.</option>
@@ -280,7 +280,7 @@
 
           <div class="form-group">
             <label for="builder-sound" data-i18n="builder.soundLabel">🔊 Звуковая карта (Sound):</label>
-            <select id="builder-sound" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-sound" class="retro-select" onchange="onComponentChange()">
               <option value="integrated" data-price="0" data-watt="2" data-i18n="builder.options.sounds.integrated">Встроенный AC'97 Sound — 0 руб.</option>
               <option value="live51" data-price="500" data-watt="5" data-i18n="builder.options.sounds.live51">Sound Blaster Live! 5.1 (PCI) — 500 руб.</option>
               <option value="audigy2" data-price="850" data-watt="7" selected data-i18n="builder.options.sounds.audigy2">Creative Sound Blaster Audigy 2 ZS — 850 руб.</option>
@@ -289,7 +289,7 @@
 
           <div class="form-group">
             <label for="builder-psu" data-i18n="builder.psuLabel">🔌 Блок питания (PSU):</label>
-            <select id="builder-psu" class="retro-select" onchange="onComponentChange()">
+            <select aria-label="select" id="builder-psu" class="retro-select" onchange="onComponentChange()">
               <option value="psu250" data-price="350" data-watt="250" data-i18n="builder.options.psus.psu250">Codegen 250W ATX (Внимание: слабая 12V линяя!) — 350 руб.</option>
               <option value="psu350" data-price="850" data-watt="350" data-i18n="builder.options.psus.psu350">350W FSP Group ATX 2.0 — 850 руб.</option>
               <option value="psu400" data-price="900" data-watt="400" selected data-i18n="builder.options.psus.psu400">FSP 400W ATX 12V v2.0 — 900 руб.</option>
@@ -397,7 +397,7 @@
         <div class="informer-title">⏳ 2007 vs СЕГОДНЯ 🚀</div>
         <div style="margin: 3px 0 2px 0; text-align: center;">
           <label style="font-size: 8px; font-weight: bold; color: #000080;">🏙️ ГОРОД: </label>
-          <select id="inf-city-select" style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px; border: 1px solid #7F9DB9; background: #FFFDF0; color: #000; width: 115px;">
+          <select aria-label="select" id="inf-city-select" style="font-size: 8.5px; font-family: Tahoma, sans-serif; padding: 1px; border: 1px solid #7F9DB9; background: #FFFDF0; color: #000; width: 115px;">
             <optgroup label="🔍 Поиск города">
               <option value="custom_search">🔍 [ Ввести свой город... ]</option>
             </optgroup>
@@ -484,13 +484,13 @@
         </div>
       </div>
 
-      <div class="informer-box" style="text-align: center; border: 2px solid #0088CC; background: #F0F8FF;">
-        <div style="background: #0088CC; color: #FFF; font-weight: bold; padding: 2px 4px; font-size: 10px;">
+      <div class="informer-box" style="text-align: center; border: 2px solid #005f8d; background: #F0F8FF;">
+        <div style="background: #005f8d; color: #FFF; font-weight: bold; padding: 2px 4px; font-size: 10px;">
           📱 ТЕЛЕГРАМ СОЗДАТЕЛЯ
         </div>
         <div style="margin-top: 4px; font-size: 10px;">
           Пишите Мастеру Никитке прямо в Telegram:<br>
-          <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" style="font-weight: bold; color: #0088CC; font-size: 11px; text-decoration: underline;">
+          <a href="https://t.me/Ai_nikitka93" target="_blank" rel="noopener" style="font-weight: bold; color: #005f8d; font-size: 11px; text-decoration: underline;">
             👉 @Ai_nikitka93
           </a>
         </div>
